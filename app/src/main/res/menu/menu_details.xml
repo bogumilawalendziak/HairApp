@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+ <group android:checkableBehavior="single">
+
+    <item
+            android:id="@+id/btn_hair"
+            android:title="włosy"
+            android:icon="@drawable/plans"
+            >
+
+    </item>
+    <item
+            android:id="@+id/btn_scanner"
+            android:title="skaner"
+            android:icon="@drawable/scanner_icon"
+
+            >
+
+    </item>
+    <item
+            android:id="@+id/btn_plans"
+            android:title="plany"
+            android:icon="@drawable/clipboard_icon"
+            >
+
+    </item>
+     <item
+             android:id="@+id/btn_calendar"
+             android:title="kalendarz"
+             android:icon="@drawable/calendar_icon"
+            >
+
+     </item>
+ </group>
+</menu>

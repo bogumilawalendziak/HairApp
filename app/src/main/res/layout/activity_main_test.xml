@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".test.StartTestActivity"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:background="@color/colorAccentYellow">
+
+    <TextView
+            android:id="@+id/test_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/test_description"
+            android:textColor="@color/colorTextIcon"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/test_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_name"
+            android:layout_marginBottom="40dp"
+            android:textSize="45sp"
+            android:textColor="@color/colorText"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:shadowDx="3"
+            android:shadowDy="6"
+            android:shadowColor="@color/colorTextIcon"
+            android:shadowRadius="5"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+        <Button
+                android:id="@+id/btn_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorBackground"
+                android:text="Start"
+                android:textColor="@color/colorText"
+                android:textSize="20dp"
+
+        ></Button>
+    </LinearLayout>
+
+</LinearLayout>

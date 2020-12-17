@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">HairCare</string>
+
+    <string name="test_name">Test</string>
+    <string name="test_description">Sprawdź porowatość swoich włosów</string>
+    <string name="open"></string>
+    <string name="close"></string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Hair settings preferences-->
+    <string name="greasy">przetłuszczanie</string>
+    <string name="dandruff">łupież</string>
+    <string name="psoriasis">łuszczyca</string>
+
+
+
+</resources>
