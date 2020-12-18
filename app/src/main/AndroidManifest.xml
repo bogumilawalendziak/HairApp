@@ -22,7 +22,7 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths"></meta-data>
+                    android:resource="@xml/file_paths"/>
         </provider>
 
         <meta-data
@@ -31,7 +31,8 @@
 
         <activity
                 android:name=".scanner.Scanner"
-                android:label="Scanner">
+                android:label="Scanner"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -40,16 +41,21 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".test.StartTestActivity">
+        <activity android:name=".test.StartTestActivity"
+                  android:parentActivityName=".hairsettings.HairMenu">
         </activity>
-        <activity android:name=".test.ResultActivity">
+        <activity android:name=".test.ResultActivity"
+                  android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".hairsettings.HairMenu">
+        <activity android:name=".hairsettings.HairMenu"
+        android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".test.QuestionActivity">
+        <activity android:name=".test.QuestionActivity"
+                  android:parentActivityName=".test.StartTestActivity">
         </activity>
         <activity android:name=".hairsettings.PersonalSettingsActivity"
                   android:theme="@style/AppTheme2"
+                  android:parentActivityName=".hairsettings.HairMenu"
                   >
         </activity>
         <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>

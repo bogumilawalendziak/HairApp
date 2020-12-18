@@ -18,8 +18,6 @@ class StartTestActivity : AppCompatActivity() {
             val intent = Intent(this,QuestionActivity::class.java)
             startActivity(intent)
             finish()
-
-
         }
     }
 }

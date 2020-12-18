@@ -22,7 +22,6 @@ import java.io.File
 
 class Scanner : AppCompatActivity() {
     private val FILE_NAME = "text_photo"
-    lateinit var readText: Button
     lateinit var loadImage: Button
     lateinit var textView: TextView
     lateinit var imageView: ImageView
@@ -42,13 +41,9 @@ class Scanner : AppCompatActivity() {
         imageView.visibility = View.GONE
 
 
-        loadImage.setOnClickListener(View.OnClickListener { v: View ->
-
+        loadImage.setOnClickListener { v: View ->
             dispatchTakePictureIntent()
-
-        })
-
-
+        }
     }
 
     private fun getPhotoFile(fileName: String): File {
@@ -65,8 +60,6 @@ class Scanner : AppCompatActivity() {
             loadImage.visibility = View.GONE
             textView.text = "Sprawdzam..."
             detectTextFromImage()
-
-
         }
     }
 
@@ -87,8 +80,7 @@ class Scanner : AppCompatActivity() {
     }
 
 
-    public fun detectTextFromImage() {
-        val uri = Uri.fromFile(photoFile)
+    fun detectTextFromImage() {
         val image: FirebaseVisionImage
 
         val fileProvider = FileProvider.getUriForFile(this, "com.example.haircare.fileprovider", photoFile)
