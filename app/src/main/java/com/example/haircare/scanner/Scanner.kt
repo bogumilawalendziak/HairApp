@@ -3,7 +3,6 @@ package com.example.haircare.scanner
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -17,10 +16,12 @@ import com.example.haircare.R
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
+import kotlinx.android.synthetic.main.activity_scanner.*
 import java.io.File
 
 
 class Scanner : AppCompatActivity() {
+    var databaseHandler: DB_Helper? = null
     private val FILE_NAME = "text_photo"
     lateinit var loadImage: Button
     lateinit var textView: TextView
@@ -33,6 +34,8 @@ class Scanner : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
 
+        databaseHandler = DB_Helper(this)
+
 
         loadImage = findViewById(R.id.loadImage)
         textView = findViewById(R.id.textView)
@@ -43,6 +46,7 @@ class Scanner : AppCompatActivity() {
 
         loadImage.setOnClickListener { v: View ->
             dispatchTakePictureIntent()
+
         }
     }
 
@@ -107,13 +111,22 @@ class Scanner : AppCompatActivity() {
 
                 val lineText = line.text
                 val data = lineText.split(",").toTypedArray()
+              //  val cosmetic: Cosmetics = databaseHandler!!.viewCosmetic("test")
+                textView.text = blockText
+                DB_name.text = getItem().name + ": " +getItem().description
+                //DB_description.text = getItem().description
 
                 for (element in line.elements) {
                     val elementText = element.text
-                    textView.text = data[0]
+
                 }
             }
         }
+    }
 
+    fun getItem(): Cosmetics {
+        //val nameField = textView.text.
+
+        return databaseHandler!!.viewCosmetic(textView.text as String)
     }
 }
