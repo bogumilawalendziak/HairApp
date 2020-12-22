@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -26,6 +27,13 @@ class Scanner : AppCompatActivity() {
     lateinit var loadImage: Button
     lateinit var textView: TextView
     lateinit var imageView: ImageView
+    lateinit var listView: ListView
+    lateinit var recognizedText: Array<String>
+    lateinit var name: String
+    lateinit var description: String
+    var ingredients: MutableList<Ingredients> = mutableListOf()
+    lateinit var ing: Ingredients
+
 
     val REQUEST_IMAGE_CAPTURE = 1
     lateinit var photoFile: File
@@ -36,12 +44,14 @@ class Scanner : AppCompatActivity() {
 
         databaseHandler = DB_Helper(this)
 
-
+        listView = findViewById(R.id.lv_item)
         loadImage = findViewById(R.id.loadImage)
         textView = findViewById(R.id.textView)
         imageView = findViewById(R.id.imageView)
 
+        // listView.adapter=MyAdapter(this)
         imageView.visibility = View.GONE
+        listView.visibility = View.GONE
 
 
         loadImage.setOnClickListener { v: View ->
@@ -83,7 +93,6 @@ class Scanner : AppCompatActivity() {
 
     }
 
-
     fun detectTextFromImage() {
         val image: FirebaseVisionImage
 
@@ -103,30 +112,32 @@ class Scanner : AppCompatActivity() {
 
     private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText?) {
         val resultText = firebaseVisionText?.text
-        for (block in firebaseVisionText?.textBlocks!!) {
+        listView.visibility = View.VISIBLE
+        loadImage.visibility = View.GONE
+        textView.visibility = View.GONE
 
-            val blockText = block.text
 
-            for (line in block.lines) {
+        var delimiter1 = "-"
+        var delimiter2 = ","
+        var delimiter3 = "*"
+        var delimiter4 = "•"
+        var delimiter5 = ":"
+        var delimiter6 = "."
 
-                val lineText = line.text
-                val data = lineText.split(",").toTypedArray()
-              //  val cosmetic: Cosmetics = databaseHandler!!.viewCosmetic("test")
-                textView.text = blockText
-                DB_name.text = getItem().name + ": " +getItem().description
-                //DB_description.text = getItem().description
+        recognizedText =
+            resultText?.toLowerCase()?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6)
+                ?.toTypedArray()!!
 
-                for (element in line.elements) {
-                    val elementText = element.text
+        for (item in recognizedText) {
 
-                }
-            }
+
+            var name = databaseHandler!!.viewCosmetic(item.trim()).name
+            var description = databaseHandler!!.viewCosmetic(item.trim()).description
+            ingredients.add(Ingredients(name,description))
+
         }
+
+        listView.adapter = MyAdapter(this, ingredients, R.layout.item_listview)
     }
 
-    fun getItem(): Cosmetics {
-        //val nameField = textView.text.
-
-        return databaseHandler!!.viewCosmetic(textView.text as String)
-    }
 }

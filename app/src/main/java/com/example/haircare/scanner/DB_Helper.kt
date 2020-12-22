@@ -8,28 +8,32 @@ import android.database.sqlite.SQLiteOpenHelper
 import java.io.File
 import java.io.FileOutputStream
 
-const val dbName = "db_cosmetics"
+const val dbName = "db_cosmetics.db"
 private const val TABLE_NAME = "COSMETICS"
+
 private const val COL_NAME = "name"
 private const val COL_ID = "_id"
 private const val COL_DESCRIPTION = "description"
+
+
 const val dbVersionNumber = 1
 
 class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName, null, dbVersionNumber) {
     private var dataBase: SQLiteDatabase? = null
 
-    init { //Checking if database is same as in asset folder
+    init {
         val dbExist = checkDatabase()
         if (dbExist) {
+            //if copied just open
             openDatabase()
         } else {
-            println("Database doesn't exist")
+            // copy database
+            println("Doesn't exist")
             createDatabase()
         }
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        // copyDatabase()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -39,29 +43,25 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         copyDatabase()
     }
 
-
-    // Check if the database already copied to the device.
     private fun checkDatabase(): Boolean {
         val dbFile = File(context.getDatabasePath(dbName).path)
         println(context.getDatabasePath(dbName).path)
         return dbFile.exists()
     }
 
-    // Copy the database
     private fun copyDatabase() {
 
-        val inputStream = context.assets.open("databases/db_cosmetics.db")
+        val inputStream = context.assets.open("databases/$dbName")
         val outputFile = File(context.getDatabasePath(dbName).path)
         val outputStream = FileOutputStream(outputFile)
         val bytesCopied = inputStream.copyTo(outputStream)
-        println("bytes copied $bytesCopied")
+        println("************************ bytesCopied $bytesCopied")
         inputStream.close()
 
         outputStream.flush()
         outputStream.close()
     }
 
-    // Open the database with read and write access mode.
     private fun openDatabase() {
         dataBase =
             SQLiteDatabase.openDatabase(context.getDatabasePath(dbName).path, null, SQLiteDatabase.OPEN_READWRITE)
@@ -75,34 +75,32 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
     }
 
     fun viewCosmetic(nameField: String): Cosmetics {
-        val szukaneslowo = "\'" + nameField + "\'"
-        println(szukaneslowo)
-        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_NAME =$szukaneslowo"
-        val cosm: Cosmetics
-
-        var cursor: Cursor?
+        val ingredient = "\'" + nameField.trim() + "\'"
+        println(ingredient)
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_NAME =$ingredient"
+        var cursor: Cursor? = null
 
         try {
             cursor = dataBase?.rawQuery(selectQuery, null)
 
         } catch (e: SQLiteException) {
             dataBase?.execSQL(selectQuery)
-            return Cosmetics("nothing", 0, "error")
+            return Cosmetics("error", 1, "nothing")
+
         }
         cursor?.moveToFirst()
         var id: Int
         var name: String
         var description: String
 
-
-        if (cursor != null) {
+        if (cursor != null && cursor.getCount() > 0) {
             id = cursor.getInt(cursor.getColumnIndex(COL_ID))
             name = cursor.getString(cursor.getColumnIndex(COL_NAME))
             description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
-            cosm = Cosmetics(id = id, description = description, name = name)
 
-            return cosm
+            return Cosmetics(id = id, description = description, name = name)
         }
-        return Cosmetics("nothing", 0, "error")
+        return Cosmetics("nic", 0, "niema :(")
     }
+
 }

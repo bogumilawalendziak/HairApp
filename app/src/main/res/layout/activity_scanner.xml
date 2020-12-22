@@ -10,6 +10,7 @@
         android:background="@color/colorAccentYellow"
 >
 
+
     <TextView
             android:id="@+id/textView"
             android:gravity="center"
@@ -23,32 +24,14 @@
             android:shadowColor="@color/colorTextIcon"
             android:shadowRadius="5"
     />
-    <TextView
-            android:id="@+id/DB_description"
-            android:gravity="center"
+
+    <ListView
             android:layout_width="match_parent"
-            android:layout_height="116dp"
-            android:text="Opis"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:shadowDx="3"
-            android:shadowDy="6"
-            android:shadowColor="@color/colorTextIcon"
-            android:shadowRadius="5"
-    />
-    <TextView
-            android:id="@+id/DB_name"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="116dp"
-            android:text="nazwa"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:shadowDx="3"
-            android:shadowDy="6"
-            android:shadowColor="@color/colorTextIcon"
-            android:shadowRadius="5"
-    />
+            android:layout_height="match_parent"
+            android:id="@+id/lv_item"
+            android:layout_marginTop="50dp"
+            />
+
 
     <ImageView
             android:id="@+id/imageView"
@@ -65,5 +48,6 @@
             android:textColor="@color/colorText"
             android:textSize="20sp"
     />
+
 
 </LinearLayout>
