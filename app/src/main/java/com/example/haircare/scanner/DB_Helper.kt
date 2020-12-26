@@ -78,7 +78,7 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         val ingredient = "\'" + nameField.trim() + "\'"
         println(ingredient)
         val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_NAME =$ingredient"
-        var cursor: Cursor? = null
+        var cursor: Cursor?
 
         try {
             cursor = dataBase?.rawQuery(selectQuery, null)
@@ -93,7 +93,7 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         var name: String
         var description: String
 
-        if (cursor != null && cursor.getCount() > 0) {
+        if (cursor != null && cursor.count > 0) {
             id = cursor.getInt(cursor.getColumnIndex(COL_ID))
             name = cursor.getString(cursor.getColumnIndex(COL_NAME))
             description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
@@ -104,3 +104,4 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
     }
 
 }
+

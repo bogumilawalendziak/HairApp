@@ -21,12 +21,12 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
     }
 
     override fun getItem(position: Int): Any {
-        println(mydata[position])
+
         return mydata[position]
     }
 
     override fun getItemId(position: Int): Long {
-        println(position.toLong())
+
         return position.toLong()
     }
 
@@ -36,7 +36,7 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
 
         val il_name: TextView = view.findViewById(R.id.il_name)
         val il_description: TextView = view.findViewById(R.id.il_description)
-        val il_description2: TextView = view.findViewById(R.id.il_description2)
+        val il_PEH: TextView = view.findViewById(R.id.il_PEH)
 
         il_name.text = mydata[position].name
         println(mydata[position].name)

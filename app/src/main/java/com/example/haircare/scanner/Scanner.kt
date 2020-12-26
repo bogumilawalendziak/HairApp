@@ -29,10 +29,9 @@ class Scanner : AppCompatActivity() {
     lateinit var imageView: ImageView
     lateinit var listView: ListView
     lateinit var recognizedText: Array<String>
-    lateinit var name: String
-    lateinit var description: String
+     var name: String?= null
+    private var description: String?= null
     var ingredients: MutableList<Ingredients> = mutableListOf()
-    lateinit var ing: Ingredients
 
 
     val REQUEST_IMAGE_CAPTURE = 1
@@ -123,18 +122,21 @@ class Scanner : AppCompatActivity() {
         var delimiter4 = "•"
         var delimiter5 = ":"
         var delimiter6 = "."
+        var delimiter7 = "/"
 
         recognizedText =
-            resultText?.toLowerCase()?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6)
+            resultText?.toLowerCase()?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6,delimiter7)
                 ?.toTypedArray()!!
 
         for (item in recognizedText) {
 
 
-            var name = databaseHandler!!.viewCosmetic(item.trim()).name
-            var description = databaseHandler!!.viewCosmetic(item.trim()).description
-            ingredients.add(Ingredients(name,description))
-
+             name = databaseHandler!!.viewCosmetic(item.trim()).name
+            println(item)
+            println("wytimowane : " + name)
+            if(name!="nic") {description = databaseHandler!!.viewCosmetic(item.trim()).description
+                ingredients.add(Ingredients(name,description))
+            }
         }
 
         listView.adapter = MyAdapter(this, ingredients, R.layout.item_listview)

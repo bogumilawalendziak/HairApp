@@ -12,6 +12,7 @@
 >
 
     <com.google.android.material.navigation.NavigationView
+            tools:override="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:headerLayout="@layout/nav_header"
@@ -19,7 +20,11 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             android:id="@+id/nav_view"
-            android:backgroundTint="@color/colorBackground">
+            android:backgroundTint="@color/colorBackground"
+            app:itemIconSize="40dp"
+    >
+
 
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
