@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.haircare">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="18" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission
+            android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+            android:maxSdkVersion="18"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
             android:allowBackup="true"
@@ -14,6 +16,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".calendar.CareSchedule">
+        </activity>
+        <activity android:name=".plans.HairCarePlan"
+        android:parentActivityName=".MainActivity">
+        </activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -27,7 +34,7 @@
 
         <meta-data
                 android:name="com.google.mlkit.vision.DEPENDENCIES"
-                android:value="ocr" />
+                android:value="ocr"/>
 
         <activity
                 android:name=".scanner.Scanner"
@@ -41,24 +48,31 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".test.StartTestActivity"
-                  android:parentActivityName=".hairsettings.HairMenu">
+        <activity
+                android:name=".test.StartTestActivity"
+                android:parentActivityName=".hairsettings.HairMenu">
         </activity>
-        <activity android:name=".test.ResultActivity"
-                  android:parentActivityName=".MainActivity">
+        <activity
+                android:name=".test.ResultActivity"
+                android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".hairsettings.HairMenu"
-        android:parentActivityName=".MainActivity">
+        <activity
+                android:name=".hairsettings.HairMenu"
+                android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".test.QuestionActivity"
-                  android:parentActivityName=".test.StartTestActivity">
+        <activity
+                android:name=".test.QuestionActivity"
+                android:parentActivityName=".test.StartTestActivity">
         </activity>
-        <activity android:name=".hairsettings.PersonalSettingsActivity"
-                  android:theme="@style/AppTheme2"
-                  android:parentActivityName=".hairsettings.HairMenu"
-                  >
+        <activity
+                android:name=".hairsettings.PersonalSettingsActivity"
+                android:parentActivityName=".hairsettings.HairMenu"
+                android:theme="@style/AppTheme2">
         </activity>
-        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+
+        <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts"/>
     </application>
 
 </manifest>
