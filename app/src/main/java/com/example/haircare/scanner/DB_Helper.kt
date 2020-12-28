@@ -40,17 +40,6 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
     }
 
     private fun createDatabase() {
-        copyDatabase()
-    }
-
-    private fun checkDatabase(): Boolean {
-        val dbFile = File(context.getDatabasePath(dbName).path)
-        println(context.getDatabasePath(dbName).path)
-        return dbFile.exists()
-    }
-
-    private fun copyDatabase() {
-
         val inputStream = context.assets.open("databases/$dbName")
         val outputFile = File(context.getDatabasePath(dbName).path)
         val outputStream = FileOutputStream(outputFile)
@@ -61,6 +50,14 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         outputStream.flush()
         outputStream.close()
     }
+
+    private fun checkDatabase(): Boolean {
+        val dbFile = File(context.getDatabasePath(dbName).path)
+        //println(context.getDatabasePath(dbName).path)
+        return dbFile.exists()
+    }
+
+
 
     private fun openDatabase() {
         dataBase =
@@ -89,14 +86,11 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
 
         }
         cursor?.moveToFirst()
-        var id: Int
-        var name: String
-        var description: String
 
         if (cursor != null && cursor.count > 0) {
-            id = cursor.getInt(cursor.getColumnIndex(COL_ID))
-            name = cursor.getString(cursor.getColumnIndex(COL_NAME))
-            description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
+            val id = cursor.getInt(cursor.getColumnIndex(COL_ID))
+            val name = cursor.getString(cursor.getColumnIndex(COL_NAME))
+            val description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
 
             return Cosmetics(id = id, description = description, name = name)
         }

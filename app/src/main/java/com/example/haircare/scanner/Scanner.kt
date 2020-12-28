@@ -17,11 +17,11 @@ import com.example.haircare.R
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
-import kotlinx.android.synthetic.main.activity_scanner.*
 import java.io.File
 
 
 class Scanner : AppCompatActivity() {
+
     var databaseHandler: DB_Helper? = null
     private val FILE_NAME = "text_photo"
     lateinit var loadImage: Button
@@ -29,8 +29,8 @@ class Scanner : AppCompatActivity() {
     lateinit var imageView: ImageView
     lateinit var listView: ListView
     lateinit var recognizedText: Array<String>
-     var name: String?= null
-    private var description: String?= null
+    var name: String? = null
+    private var description: String? = null
     var ingredients: MutableList<Ingredients> = mutableListOf()
 
 
@@ -116,26 +116,28 @@ class Scanner : AppCompatActivity() {
         textView.visibility = View.GONE
 
 
-        var delimiter1 = "-"
-        var delimiter2 = ","
-        var delimiter3 = "*"
-        var delimiter4 = "•"
-        var delimiter5 = ":"
-        var delimiter6 = "."
-        var delimiter7 = "/"
+        val delimiter1 = "-"
+        val delimiter2 = ","
+        val delimiter3 = "*"
+        val delimiter4 = "•"
+        val delimiter5 = ":"
+        val delimiter6 = "."
+        val delimiter7 = "/"
 
         recognizedText =
-            resultText?.toLowerCase()?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6,delimiter7)
+            resultText?.toLowerCase()
+                ?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6, delimiter7)
                 ?.toTypedArray()!!
 
         for (item in recognizedText) {
 
 
-             name = databaseHandler!!.viewCosmetic(item.trim()).name
+            name = databaseHandler!!.viewCosmetic(item.trim()).name
             println(item)
             println("wytimowane : " + name)
-            if(name!="nic") {description = databaseHandler!!.viewCosmetic(item.trim()).description
-                ingredients.add(Ingredients(name,description))
+            if (name != "nic") {
+                description = databaseHandler!!.viewCosmetic(item.trim()).description
+                ingredients.add(Ingredients(name, description))
             }
         }
 

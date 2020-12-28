@@ -19,7 +19,7 @@
         <activity android:name=".calendar.CareSchedule">
         </activity>
         <activity android:name=".plans.HairCarePlan"
-        android:parentActivityName=".MainActivity">
+                  android:parentActivityName=".MainActivity">
         </activity>
 
         <provider
@@ -69,6 +69,7 @@
                 android:parentActivityName=".hairsettings.HairMenu"
                 android:theme="@style/AppTheme2">
         </activity>
+
 
         <meta-data
                 android:name="preloaded_fonts"
