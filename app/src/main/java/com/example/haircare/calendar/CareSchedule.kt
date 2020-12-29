@@ -1,11 +1,11 @@
 package com.example.haircare.calendar
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.R
 import com.example.haircare.plans.PlanCreate.getPlan
-import com.example.haircare.scanner.DB_Helper
 
 class CareSchedule : AppCompatActivity() {
 
@@ -13,9 +13,11 @@ class CareSchedule : AppCompatActivity() {
     var name: String? = null
     var product: String? = null
 
-    var numer : Array<Int>? = null
+    var numer: Array<Int>? = null
     var taskList: MutableList<Task> = mutableListOf()
     lateinit var listView: ListView
+
+    lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,21 +29,28 @@ class CareSchedule : AppCompatActivity() {
     }
 
 
-  private fun takePlan(){
-      val day = "monday"
-      val hairType = "wysokoporowate"
-      val planList = getPlan()
-      for (item in planList) {
-          if(item.hairType == hairType)
-            {
-                numer= item.taskList.get(day)
-                 for(num in numer!!){
+    private fun takePlan() {
+       sp = getSharedPreferences("sh_pref", MODE_PRIVATE)
 
-                     taskList.add(dbhandler!!.viewTasks(num))
+        var hairType = "wysokoporowate"
+        when {
+            sp.getBoolean("sw_low", true) -> hairType = "niskoporowate"
+            sp.getBoolean("sw_med", true) -> hairType = "srednioporowate"
+            sp.getBoolean("sw_hig", true) -> hairType = "wysokoporowate"
+        }
+        println(hairType)
+        val day = "monday"
+        val planList = getPlan()
+        for (item in planList) {
+            if (item.hairType == hairType) {
+                numer = item.taskList.get(day)
+                for (num in numer!!) {
 
-                 }
-             }
-      }
-      listView.adapter = TaskAdapter(this, taskList, R.layout.task_view)
-  }
+                    taskList.add(dbhandler!!.viewTasks(num))
+
+                }
+            }
+        }
+        listView.adapter = TaskAdapter(this, taskList, R.layout.task_view)
+    }
 }

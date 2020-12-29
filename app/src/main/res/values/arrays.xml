@@ -12,7 +12,7 @@
     <string-array name="activity_personal_hair"/>
 
     <string-array name="pref_hair_type">
-        <item>porowate</item>
+        <item>średniporowate</item>
         <item>niskoporowate</item>
         <item>wysokoporowate</item>
     </string-array>

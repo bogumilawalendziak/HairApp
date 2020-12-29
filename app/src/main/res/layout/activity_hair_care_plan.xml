@@ -31,207 +31,206 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="50dp"
-                app:contentPadding="20dp">
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Aktywny plan pielęgnacji"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:shadowRadius="3"
-                    android:shadowDy="2"
-                    android:shadowDx="2"
-                    android:gravity="top"
-            />
+                android:orientation="vertical">
+
+
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="15dp"
                     android:layout_marginTop="50dp"
-                    app:cardBackgroundColor="@color/colorAccentYellow"
-                    app:contentPadding="10dp"
-            >
-                <LinearLayout
+                    app:contentPadding="20dp">
+                <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
+                        android:text="Aktywny plan pielęgnacji"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:shadowRadius="3"
+                        android:shadowDy="2"
+                        android:shadowDx="2"
+                        android:gravity="top"
+                />
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginTop="50dp"
+                        app:cardBackgroundColor="@color/colorAccentYellow"
+                        app:contentPadding="10dp"
+
                 >
-
-
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="center">
-                        <TextView
-                                android:text="włosy porowate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_porowate"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"
-                        />
-                        <Switch
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/sw_porowate"
-                                android:layout_weight="1"
-                                android:padding="10dp"
-                                android:thumbTint="@color/colorAccentYellow" android:checked="false"/>
-                    </LinearLayout>
-
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
+                            android:orientation="vertical"
                     >
-                        <TextView
-                                android:text="włosy średnioporowate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_średnioporowate"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"/>
-                        <Switch
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/sw_średnioporowate"
-                                android:layout_weight="1"
-                                android:padding="10dp"/>
-                    </LinearLayout>
 
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="center">
-                        <TextView
-                                android:text="włosy wysokoporowate"
-                                android:layout_width="wrap_content"
+                        <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_wysokoporowate"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"/>
-                        <Switch
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/sw_wysokoporowate"
-                                android:layout_weight="1"
-                                android:padding="10dp"/>
-                    </LinearLayout>
+                                android:gravity="center">
+                            <TextView
+                                    android:text="włosy niskoporowate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_niskoporowate"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"
+                            />
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/cz_niskoporowate"
+                                    android:padding="10dp"
+                                    android:thumbTint="@color/colorAccentYellow"
+                            />
+                        </LinearLayout>
 
-                </LinearLayout>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                        >
+                            <TextView
+                                    android:text="włosy średnioporowate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_srednioporowate"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/cz_srednioporowate"
+                                    android:padding="10dp"
+                                   />
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center">
+                            <TextView
+                                    android:text="włosy wysokoporowate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_wysokoporowate"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/cz_wysokoporowate"
+                                    android:padding="10dp"
+                                    />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                app:cardCornerRadius="15dp"
-                app:contentPadding="20dp"
-        >
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dodatkowy cel pielęgnacji:"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:shadowRadius="3"
-                    android:padding="10dp"
-                    android:shadowColor="@color/colorTextIcon"
-                    android:shadowDx="3"
-                    android:shadowDy="4"/>
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="15dp"
                     android:layout_marginTop="50dp"
-                    app:cardBackgroundColor="@color/colorAccentYellow"
-                    app:contentPadding="10dp"
+                    app:cardCornerRadius="15dp"
+                    app:contentPadding="20dp"
             >
-                <LinearLayout
+                <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:text="Dodatkowy cel pielęgnacji:"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:shadowRadius="3"
+                        android:padding="10dp"
+                        android:shadowColor="@color/colorTextIcon"
+                        android:shadowDx="3"
+                        android:shadowDy="4"/>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginTop="50dp"
+                        app:cardBackgroundColor="@color/colorAccentYellow"
+                        app:contentPadding="10dp"
+                >
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
 
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="center">
-                        <TextView
-                                android:text="Zapobieganie wypadaniu włosów"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_volume"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"/>
-                        <CheckBox
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/ch_plan_volume"
-                                android:buttonTint="@color/colorBackground"
-                                android:backgroundTint="@color/colorBackground"
-                                android:checked="true"/>
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center">
+                            <TextView
+                                    android:text="Zapobieganie wypadaniu włosów"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_volume"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/ch_plan_volume"
+                                    android:buttonTint="@color/colorBackground"
+                                    android:backgroundTint="@color/colorBackground"
+                                    android:checked="true"/>
 
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center">
+                            <TextView
+                                    android:text="Przyspiesenie wzrostu włosów"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_grow"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/ch_plan_grow"
+                                    android:buttonTint="@color/colorBackground"
+                                    android:backgroundTint="@color/colorBackground"
+                                    android:checked="true"/>
+
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center">
+                            <TextView
+                                    android:text="Zapobieganie przetłuszczaniu się włosów"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_plan_greasy"
+                                    android:padding="10dp"
+                                    android:textSize="16sp"
+                                    android:layout_weight="1"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/ch_plan_greasy"
+                                    android:buttonTint="@color/colorBackground"
+                                    android:backgroundTint="@color/colorBackground"
+                                    android:checked="false"/>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="center">
-                        <TextView
-                                android:text="Przyspiesenie wzrostu włosów"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_grow"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"/>
-                        <CheckBox
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/ch_plan_grow"
-                                android:buttonTint="@color/colorBackground"
-                                android:backgroundTint="@color/colorBackground"
-                                android:checked="true"/>
-
-                    </LinearLayout>
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="center">
-                        <TextView
-                                android:text="Zapobieganie przetłuszczaniu się włosów"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_plan_greasy"
-                                android:padding="10dp"
-                                android:textSize="16sp"
-                                android:layout_weight="1"/>
-                        <CheckBox
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/ch_plan_greasy"
-                                android:buttonTint="@color/colorBackground"
-                                android:backgroundTint="@color/colorBackground"
-                                android:checked="false"/>
-
-                    </LinearLayout>
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -3,38 +3,49 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
+
     <PreferenceCategory
             app:title="Włosy"
-            android:layout="@layout/settings_tittle">
-    <ListPreference
-            android:title="Typ włosa"
-            android:key="pref_hair_type"
-            app:entries="@array/pref_hair_type"
-            app:entryValues="@array/pref_hair_type"
-            app:useSimpleSummaryProvider="true"
-
-
+            android:layout="@layout/settings_tittle"
+    >
+    <CheckBoxPreference
+            android:id="@+id/pref_niskoporowate"
+            android:title="niskoporowate"
+            android:key="niskoporowate"
     />
+        <CheckBoxPreference
+                android:id="@+id/pref_wysokoporowate"
+                android:title="wysokoporowate"
+                android:key="wysokoporowate"
+        />
+        <CheckBoxPreference
+                android:id="@+id/pref_srednioporowate"
+                android:title="średnioporowate"
+                android:key="srednioporowate"
+        />
     </PreferenceCategory>
     <PreferenceCategory
             app:title="Skóra głowy"
             android:layout="@layout/settings_tittle">
-        <CheckBoxPreference
+        <SwitchPreference
+                android:id="@+id/sw_lusz"
+                android:layout="@layout/switch_view"
                 android:title="@string/psoriasis"
                 android:key="check_box_psoriasis"
                 android:defaultValue="false"
         />
-        <CheckBoxPreference
-                android:singleLineTitle="true"
+        <SwitchPreference
+                android:layout="@layout/switch_view"
                 android:title="@string/dandruff"
                 android:key="check_box_dandruff"
                 android:defaultValue="false"
 
         />
-        <CheckBoxPreference
+        <SwitchPreference
                 android:title="@string/greasy"
                 android:key="check_box_greasy"
                 android:defaultValue="false"
+                android:layout="@layout/switch_view"
         />
     </PreferenceCategory>
     <PreferenceCategory
@@ -44,8 +55,6 @@
         <SwitchPreferenceCompat
                 app:key="switch"
                 app:title="switch"/>
-
-
 
     </PreferenceCategory>
 </PreferenceScreen>
