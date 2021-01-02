@@ -4,7 +4,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
     <androidx.cardview.widget.CardView
             android:layout_height="wrap_content"
@@ -13,44 +14,24 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_dayAndMonth"
                 android:text="1 stycznia "
                 android:gravity="start"
                 android:textSize="20sp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_dayOfWeek"
                 android:text="wtorek"
                 android:gravity="end"
                 android:textSize="20sp"/>
     </androidx.cardview.widget.CardView>
-    <View
+
+    <ListView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorTextIcon"
-            android:layout_gravity="bottom"
-            android:padding="10dp"/>
-    <androidx.cardview.widget.CardView
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:contentPadding="10dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/colorAccentYellow">
-        <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lv_task"
-                android:layout_marginTop="50dp"
-                android:background="@color/colorBackground"
-        />
-
-
-    </androidx.cardview.widget.CardView>
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorTextIcon"
-            android:layout_gravity="bottom"
-            android:padding="10dp"/>
-
-
+            android:id="@+id/lv_task"
+            android:background="@color/colorBackground"
+            android:fillViewport="true"
+    />
 </LinearLayout>

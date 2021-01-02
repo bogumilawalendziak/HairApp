@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.haircare.R
 
-class TaskAdapter(val context: Context, val list: MutableList<Task>, val resources: Int): BaseAdapter() {
+class TaskAdapter(val context: Context, private val list: MutableList<Task>, private val resources: Int): BaseAdapter() {
     override fun getCount(): Int {
         return list.size
     }

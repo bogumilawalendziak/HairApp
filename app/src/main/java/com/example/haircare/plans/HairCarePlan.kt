@@ -45,6 +45,9 @@ class HairCarePlan : AppCompatActivity() {
 
             save(SW_HIG,isChecked)
         }
+
+        loadData()
+
     }
 
     private fun save(value: String, key:Boolean) {
@@ -53,8 +56,12 @@ class HairCarePlan : AppCompatActivity() {
         editor.putBoolean(value, key)
         println(" set $value as $key")
         editor.apply()
-
     }
+   private fun loadData(){
+       checkboxLow.isChecked = sp.getBoolean(SW_LOW,false)
+       checkboxMed.isChecked = sp.getBoolean(SW_MED,false)
+       checkboxHigh.isChecked = sp.getBoolean(SW_HIG,false)
+   }
 
 
 }

@@ -92,7 +92,7 @@ class Scanner : AppCompatActivity() {
 
     }
 
-    fun detectTextFromImage() {
+    private fun detectTextFromImage() {
         val image: FirebaseVisionImage
 
         val fileProvider = FileProvider.getUriForFile(this, "com.example.haircare.fileprovider", photoFile)
