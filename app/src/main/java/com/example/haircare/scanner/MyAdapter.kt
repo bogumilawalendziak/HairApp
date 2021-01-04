@@ -15,8 +15,6 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
 
 
     override fun getCount(): Int {
-        println("**************ADAPTER*******************")
-        println(mydata.size)
         return mydata.size
     }
 
@@ -34,13 +32,12 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
         val layoutInflater: LayoutInflater = LayoutInflater.from(myContext)
         val view: View = layoutInflater.inflate(resources,null)
 
-        val il_name: TextView = view.findViewById(R.id.il_name)
-        val il_description: TextView = view.findViewById(R.id.il_description)
+        val ilName: TextView = view.findViewById(R.id.il_name)
+        val ilDescription: TextView = view.findViewById(R.id.il_description)
         val il_PEH: TextView = view.findViewById(R.id.il_PEH)
 
-        il_name.text = mydata[position].name
-        println(mydata[position].name)
-        il_description.text = mydata[position].description
+        ilName.text = mydata[position].name
+        ilDescription.text = mydata[position].description
 
         return view
     }

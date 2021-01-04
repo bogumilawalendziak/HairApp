@@ -34,7 +34,7 @@ class Scanner : AppCompatActivity() {
     var ingredients: MutableList<Ingredients> = mutableListOf()
 
 
-    val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_IMAGE_CAPTURE = 1
     lateinit var photoFile: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class Scanner : AppCompatActivity() {
             val imageFull = BitmapFactory.decodeFile(photoFile.absolutePath)
             imageView.setImageBitmap(imageFull)
             loadImage.visibility = View.GONE
-            textView.text = "Sprawdzam..."
+            textView.text = getString(R.string.checking_text)
             detectTextFromImage()
         }
     }
@@ -99,7 +99,7 @@ class Scanner : AppCompatActivity() {
         image = FirebaseVisionImage.fromFilePath(this, fileProvider)
 
         val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
-        val result = detector.processImage(image)
+        detector.processImage(image)
             .addOnSuccessListener { firebaseVisionText ->
                 // success
                 displayTextFromImage(firebaseVisionText)
@@ -133,8 +133,7 @@ class Scanner : AppCompatActivity() {
 
 
             name = databaseHandler!!.viewCosmetic(item.trim()).name
-            println(item)
-            println("wytimowane : " + name)
+
             if (name != "nic") {
                 description = databaseHandler!!.viewCosmetic(item.trim()).description
                 ingredients.add(Ingredients(name, description))

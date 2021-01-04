@@ -39,11 +39,11 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
         val dbExist = checkIfDbExist()
         if (dbExist){
             openDataBase()
-            println("***************************** istnieje db ******************* ")
+            println("***** db exist *******")
         }
         else {
             createDataBase()
-            println("***************************** nieistnieje db ******************* ")
+            println("***** db doesn't exist *******")
         }
     }
 
@@ -90,8 +90,8 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
         }
         cursor?.moveToFirst()
 
-        if (cursor != null && cursor.count > 0) {
-            var id: Int = cursor.getInt(cursor.getColumnIndex(COL_ID))
+        return if (cursor != null && cursor.count > 0) {
+            cursor.getInt(cursor.getColumnIndex(COL_ID))
             var name: String = cursor.getString(cursor.getColumnIndex(COL_NAME))
             println(name)
             var product: String = cursor.getString(cursor.getColumnIndex(COL_PRODUCT))
@@ -99,8 +99,8 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
             var description: String = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
             println(description)
 
-            return Task( product = product, name = name,description = description)
-        } else return Task( "error", "not found","sorry")
+            Task( product = product, name = name,description = description)
+        } else Task( "error", "not found","sorry")
 
     }
 

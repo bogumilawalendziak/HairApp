@@ -20,6 +20,18 @@
     <string name="greasy">przetłuszczanie</string>
     <string name="dandruff">łupież</string>
     <string name="psoriasis">łuszczyca</string>
+    <string name="high_porosity">wysokoporowate</string>
+    <string name="medium_porosity">średnioporowate</string>
+    <string name="low_porosity">niskoporowate</string>
+    <string name="Hair">Włosy</string>
+    <string name="Head_skin">Skóra głowy</string>
+    <string name="no_plan_text">Wybierz rodzaj pielęgnacji włosów by zobaczyć plan.</string>
+    <string name="plan">Plan</string>
+    <string name="checking_text">Sprawdzam...</string>
+    <string name="actual_care_plan_text">Aktywny plan pielęgnacji</string>
+    <string name="additional_care_plan_text">Dodatkowy cel pielęgnacji:</string>
+    <string name="question">Jak oceniasz porowatość swoich włosów ?</string>
+    <string name="question_description">Jak oceniasz porowatość swoich włosów ?</string>
 
 
 </resources>

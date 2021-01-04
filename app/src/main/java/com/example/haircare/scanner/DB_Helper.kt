@@ -44,7 +44,7 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         val outputFile = File(context.getDatabasePath(dbName).path)
         val outputStream = FileOutputStream(outputFile)
         val bytesCopied = inputStream.copyTo(outputStream)
-        println("************************ bytesCopied $bytesCopied")
+        println("*** bytesCopied $bytesCopied")
         inputStream.close()
 
         outputStream.flush()
@@ -53,7 +53,6 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
 
     private fun checkDatabase(): Boolean {
         val dbFile = File(context.getDatabasePath(dbName).path)
-        //println(context.getDatabasePath(dbName).path)
         return dbFile.exists()
     }
 
@@ -87,14 +86,14 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         }
         cursor?.moveToFirst()
 
-        if (cursor != null && cursor.count > 0) {
+         if (cursor != null && cursor.count > 0) {
             val id = cursor.getInt(cursor.getColumnIndex(COL_ID))
             val name = cursor.getString(cursor.getColumnIndex(COL_NAME))
             val description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
 
             return Cosmetics(id = id, description = description, name = name)
         }
-        return Cosmetics("nic", 0, "niema :(")
+        return Cosmetics("nothing", 0, "nothing")
     }
 
 }

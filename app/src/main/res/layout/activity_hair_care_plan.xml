@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".plans.HairCarePlan"
         android:orientation="vertical"
@@ -13,7 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/colorAccentYellow"
-            app:cardCornerRadius="15dp">
+            app:cardCornerRadius="15dp"
+            android:padding="20dp"
+            android:layout_marginBottom="50dp"
+    >
 
         <TextView
                 android:layout_width="match_parent"
@@ -22,17 +25,16 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:shadowRadius="3"
-                android:padding="10dp"
-                android:shadowColor="@color/colorTextIcon"
-                android:shadowDx="3"
-                android:shadowDy="4"/>
+                android:padding="10dp"/>
     </androidx.cardview.widget.CardView>
 
     <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
+
         <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -46,12 +48,11 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Aktywny plan pielęgnacji"
+                        android:text="@string/actual_care_plan_text"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:shadowRadius="3"
-                        android:shadowDy="2"
-                        android:shadowDx="2"
+
                         android:gravity="top"
                 />
                 <androidx.cardview.widget.CardView
@@ -63,85 +64,88 @@
                         app:contentPadding="10dp"
 
                 >
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                    >
+
 
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center">
-                            <TextView
-                                    android:text="włosy niskoporowate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/tv_plan_niskoporowate"
-                                    android:padding="10dp"
-                                    android:textSize="16sp"
-                                    android:layout_weight="1"
-                            />
-                            <CheckBox
-                                    android:buttonTint="@color/colorBackground"
-                                    android:backgroundTint="@color/colorBackground"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/cz_niskoporowate"
-                                    android:padding="10dp"
-                                    android:thumbTint="@color/colorAccentYellow"
-                            />
-                        </LinearLayout>
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
+                                android:orientation="vertical"
                         >
-                            <TextView
-                                    android:text="włosy średnioporowate"
-                                    android:layout_width="wrap_content"
+
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/tv_plan_srednioporowate"
-                                    android:padding="10dp"
-                                    android:textSize="16sp"
-                                    android:layout_weight="1"/>
-                            <CheckBox
-                                    android:buttonTint="@color/colorBackground"
-                                    android:backgroundTint="@color/colorBackground"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
+                                    android:gravity="center">
+                                <TextView
+                                        android:text="@string/low_porosity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_plan_low_porosity"
+                                        android:padding="10dp"
+                                        android:textSize="16sp"
+
+                                        android:layout_weight="1"
+                                />
+                                <CheckBox
+                                        android:buttonTint="@color/colorBackground"
+                                        android:backgroundTint="@color/colorBackground"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/checkbox_low_porosity"
+                                        android:padding="10dp"
+                                        android:thumbTint="@color/colorAccentYellow"
+
+                                />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/cz_srednioporowate"
-                                    android:padding="10dp"
-                                   />
+                                    android:gravity="center"
+                            >
+                                <TextView
+                                        android:text="@string/medium_porosity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_plan_medium_porosity"
+                                        android:padding="10dp"
+                                        android:textSize="16sp"
+                                        android:layout_weight="1"/>
+                                <CheckBox
+                                        android:buttonTint="@color/colorBackground"
+                                        android:backgroundTint="@color/colorBackground"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/checkbox_medium_porosity"
+                                        android:padding="10dp"
+                                />
+                            </LinearLayout>
+
+                            <LinearLayout android:layout_width="match_parent"
+                                          android:layout_height="wrap_content"
+                                          android:gravity="center">
+                                <TextView
+
+                                        android:text="@string/high_porosity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_plan_high_porosity"
+                                        android:padding="10dp"
+                                        android:textSize="16sp"
+                                        android:layout_weight="1"/>
+                                <CheckBox
+                                        android:buttonTint="@color/colorBackground"
+                                        android:backgroundTint="@color/colorBackground"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/checkbox_high_porosity"
+                                        android:padding="10dp"
+                                />
+                            </LinearLayout>
                         </LinearLayout>
-
-                        <LinearLayout android:layout_width="match_parent"
-                                      android:layout_height="wrap_content"
-                                      android:gravity="center">
-                            <TextView
-
-                                    android:text="włosy wysokoporowate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/tv_plan_wysokoporowate"
-                                    android:padding="10dp"
-                                    android:textSize="16sp"
-                                    android:layout_weight="1"/>
-                            <CheckBox
-                                    android:buttonTint="@color/colorBackground"
-                                    android:backgroundTint="@color/colorBackground"
-                                    android:checked="false"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/cz_wysokoporowate"
-                                    android:padding="10dp"
-                                    />
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.cardview.widget.CardView>
 
@@ -155,12 +159,12 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dodatkowy cel pielęgnacji:"
+                        android:text="@string/additional_care_plan_text"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:shadowRadius="3"
                         android:padding="10dp"
-                        android:shadowColor="@color/colorTextIcon"
+                        android:shadowColor="@color/colorAccentYellow"
                         android:shadowDx="3"
                         android:shadowDy="4"/>
                 <androidx.cardview.widget.CardView
@@ -195,7 +199,7 @@
                                     android:id="@+id/ch_plan_volume"
                                     android:buttonTint="@color/colorBackground"
                                     android:backgroundTint="@color/colorBackground"
-                                    />
+                            />
 
                         </LinearLayout>
 
@@ -217,7 +221,7 @@
                                     android:id="@+id/ch_plan_grow"
                                     android:buttonTint="@color/colorBackground"
                                     android:backgroundTint="@color/colorBackground"
-                                    />
+                            />
 
                         </LinearLayout>
                         <LinearLayout android:layout_width="match_parent"
@@ -238,7 +242,7 @@
                                     android:id="@+id/ch_plan_greasy"
                                     android:buttonTint="@color/colorBackground"
                                     android:backgroundTint="@color/colorBackground"
-                                    />
+                            />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -246,4 +250,5 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

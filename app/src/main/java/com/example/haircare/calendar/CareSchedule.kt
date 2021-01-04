@@ -28,7 +28,7 @@ class CareSchedule : AppCompatActivity() {
     private lateinit var planTittle: TextView
     private lateinit var sp: SharedPreferences
     private lateinit var tvNoPlan: TextView
-    private lateinit var cardPlan: androidx.cardview.widget.CardView
+    private lateinit var layout: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +36,16 @@ class CareSchedule : AppCompatActivity() {
         setContentView(R.layout.activity_care_schedule)
         sp = getSharedPreferences("sh_pref", MODE_PRIVATE)
 
-            initViews()
-        takePlan()
+        initViews()
+        if (sp.getBoolean("sw_low", true) ||
+            sp.getBoolean("sw_med", true) ||
+            sp.getBoolean("sw_hig", true)) {
+            takePlan()
+        } else {
+            tvNoPlan.visibility = VISIBLE
+            layout.visibility = View.GONE
+            planTittle.visibility= View.GONE
+        }
     }
 
     private fun takePlan() {
@@ -46,6 +54,7 @@ class CareSchedule : AppCompatActivity() {
         val layout: LinearLayout = findViewById(R.id.plan_layout)
 
         try {
+            //find LinearLayout
             for (i in 0 until layout.childCount) {
                 val v: View = layout.getChildAt(i)
                 if (v is LinearLayout) {
@@ -57,6 +66,7 @@ class CareSchedule : AppCompatActivity() {
                         val nextDayOfMonth = dateTime.withDayOfMonth(dayOfMonth + i).dayOfMonth
                        // val dayValue = dateTime.dayOfWeek.plus(i.toLong() - 1).toString().toLowerCase()
                         val dayValue= dateTime.withDayOfMonth(dayOfMonth + i).dayOfWeek.toString().toLowerCase()
+                        //find ListView
                         if (l is ListView) {
                             println(dayValue)
                             val taskList = takePlanDay(dayValue, sp, context = this)
@@ -71,7 +81,7 @@ class CareSchedule : AppCompatActivity() {
                 }
             }
         } catch (e: Exception) {
-            cardPlan.visibility = View.GONE
+
             tvNoPlan.visibility = VISIBLE
 
         }
@@ -82,10 +92,10 @@ class CareSchedule : AppCompatActivity() {
         listView = findViewById(R.id.lv_task)
         planTittle = findViewById(R.id.tv_plan_tittle)
         tvNoPlan = findViewById(R.id.tv_no_plan)
-        cardPlan = findViewById(R.id.card_plan)
+        layout = findViewById(R.id.layout_calendar_plan)
         dbhandler = Task_DB_Helper(this)
         tvNoPlan.visibility = View.GONE
-        cardPlan.visibility = VISIBLE
+        layout.visibility = VISIBLE
         planTittle.text =" Plan na włosy " + takePlanWeek(sp).hairType
     }
 }

@@ -8,6 +8,7 @@ object PlanCreate {
         val srednioporowate = Plan(mapOf<String,Array<Int>>("monday" to arrayOf(1,2,3),"tuesday" to arrayOf(1,2,3),"wednesday" to arrayOf(1,2,3),"thursday" to arrayOf(1,2,3),"friday" to arrayOf(1,2,3),"saturday" to arrayOf(1,2,3),"sunday" to arrayOf(1,2,3)),"srednioporowate")
         val niskoporowate = Plan(mapOf<String,Array<Int>>("monday" to arrayOf(1,5,3),"tuesday" to arrayOf(1,2,3),"wednesday" to arrayOf(1,2,3),"thursday" to arrayOf(1,2,3),"friday" to arrayOf(1,2,8),"saturday" to arrayOf(1,3,9),"sunday" to arrayOf(1,2,3)),"niskoporowate")
         val wysokoporowate = Plan(mapOf<String,Array<Int>>("monday" to arrayOf(1,7,3),"tuesday" to arrayOf(1,2,3),"wednesday" to arrayOf(1,2,3),"thursday" to arrayOf(1,2,3),"friday" to arrayOf(1,2,3),"saturday" to arrayOf(1,2,3),"sunday" to arrayOf(1,2,3)),"wysokoporowate")
+        val no_plan = Plan(mapOf<String,Array<Int>>("Wybierz rodzaj pielegnacji wlosow by zobaczyc plan\"" to arrayOf(0)),"no_plan")
 
         val volume = Plan(mapOf<String,Array<Int>>("monday" to arrayOf(1,9,3),"tuesday" to arrayOf(1,9,3),"wednesday" to arrayOf(1,2,3),"thursday" to arrayOf(1,2,3),"friday" to arrayOf(1,2,3),"saturday" to arrayOf(1,2,3),"sunday" to arrayOf(1,2,3)),"volume")
         val greasy = Plan(mapOf<String,Array<Int>>("monday" to arrayOf(1,9,3),"tuesday" to arrayOf(1,2,3),"wednesday" to arrayOf(1,2,3),"thursday" to arrayOf(1,2,3),"friday" to arrayOf(1,2,3),"saturday" to arrayOf(1,2,3),"sunday" to arrayOf(1,2,3)),"greasy")

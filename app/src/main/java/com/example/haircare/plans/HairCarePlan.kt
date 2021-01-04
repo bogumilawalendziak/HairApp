@@ -22,27 +22,49 @@ class HairCarePlan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hair_care_plan)
         sp = getSharedPreferences(SH_PREF, MODE_PRIVATE)
-        checkboxLow = findViewById(R.id.cz_niskoporowate)
-        checkboxMed = findViewById(R.id.cz_wysokoporowate)
-        checkboxHigh = findViewById(R.id.cz_srednioporowate)
+        checkboxLow = findViewById(R.id.checkbox_low_porosity)
+        checkboxHigh = findViewById(R.id.checkbox_high_porosity)
+        checkboxMed = findViewById(R.id.checkbox_medium_porosity)
 
         checkboxLow.setOnClickListener {
+            //checkboxMed.isSelected=false
+            //checkboxHigh.isSelected=false
+            checkboxMed.isChecked=false
+            checkboxHigh.isChecked=false
+           // checkboxLow.isSelected=true
+            checkboxLow.isChecked=true
+
         }
         checkboxMed.setOnClickListener {
+            //checkboxLow.isSelected=false
+            //checkboxHigh.isSelected=false
+            checkboxLow.isChecked=false
+            checkboxHigh.isChecked=false
+            //checkboxMed.isSelected=true
+            checkboxMed.isChecked=true
         }
         checkboxHigh.setOnClickListener {
+           // checkboxLow.isSelected=false
+            //checkboxMed.isSelected=false
+            checkboxLow.isChecked=false
+            checkboxMed.isChecked=false
+            //checkboxHigh.isSelected=true
+            checkboxHigh.isChecked=true
         }
 
         checkboxLow.setOnCheckedChangeListener { buttonView, isChecked ->
+            //checkboxLow.isChecked = !checkboxLow.isSelected;
+
             save(SW_LOW,isChecked)
+
         }
 
         checkboxMed.setOnCheckedChangeListener { buttonView, isChecked ->
-            print("MED ")
+            //checkboxMed.isChecked = !checkboxMed.isSelected;
             save(SW_MED,isChecked)
         }
         checkboxHigh.setOnCheckedChangeListener { buttonView, isChecked ->
-
+            //checkboxHigh.isChecked = !checkboxHigh.isSelected;
             save(SW_HIG,isChecked)
         }
 

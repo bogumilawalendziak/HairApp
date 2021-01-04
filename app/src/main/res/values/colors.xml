@@ -3,9 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorTextIcon2">#655347</color>
 
-    <color name="colorBackground">#f6f4e6</color>
-    <color name="colorText">#41444b</color>
-    <color name="colorTextIcon">#52575d</color>
-    <color name="colorAccentYellow">#fddb3a</color>
+    <color name="colorBackground">#253145</color>
+    <color name="colorText">#253145</color>
+    <color name="colorTextIcon">#253145</color>
+    <color name="colorAccentYellow">#fbcfaf</color>
 </resources>

@@ -31,7 +31,6 @@ class TaskAdapter(val context: Context, private val list: MutableList<Task>, pri
         name.text=list[position].name
         product.text=list[position].product
         return view
-
     }
 
 }

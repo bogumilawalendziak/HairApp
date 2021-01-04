@@ -5,27 +5,27 @@
         >
 
     <PreferenceCategory
-            app:title="Włosy"
+            app:title="@string/Hair"
             android:layout="@layout/settings_tittle"
     >
     <CheckBoxPreference
-            android:id="@+id/pref_niskoporowate"
-            android:title="niskoporowate"
-            android:key="niskoporowate"
+            android:id="@+id/pref_low_porosity"
+            android:title="@string/low_porosity"
+            android:key="@string/low_porosity"
     />
         <CheckBoxPreference
-                android:id="@+id/pref_wysokoporowate"
-                android:title="wysokoporowate"
-                android:key="wysokoporowate"
+                android:id="@+id/pref_high_porosity"
+                android:title="@string/high_porosity"
+                android:key="@string/high_porosity"
         />
         <CheckBoxPreference
-                android:id="@+id/pref_srednioporowate"
-                android:title="średnioporowate"
-                android:key="srednioporowate"
+                android:id="@+id/pref_medium_porosity"
+                android:title="@string/medium_porosity"
+                android:key="@string/medium_porosity"
         />
     </PreferenceCategory>
     <PreferenceCategory
-            app:title="Skóra głowy"
+            app:title="@string/Head_skin"
             android:layout="@layout/settings_tittle">
         <SwitchPreference
                 android:id="@+id/sw_lusz"
