@@ -24,7 +24,7 @@ class Scanner : AppCompatActivity() {
 
     var databaseHandler: DB_Helper? = null
     private val FILE_NAME = "text_photo"
-    lateinit var loadImage: Button
+    lateinit var loadImage: ImageView
     lateinit var textView: TextView
     lateinit var imageView: ImageView
     lateinit var listView: ListView

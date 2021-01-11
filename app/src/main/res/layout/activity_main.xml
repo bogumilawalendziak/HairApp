@@ -45,7 +45,7 @@
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorTextIcon"
+                        android:background="@drawable/bg"
                         android:padding="10dp"
                 />
 
@@ -70,8 +70,10 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             android:id="@+id/nav_view"
-            android:backgroundTint="@color/colorBackground"
-            app:itemIconSize="40dp"
+            android:background="@drawable/ic_bg"
+
+            app:itemIconPadding="30dp"
+            app:itemHorizontalPadding="20dp"
     >
 
 

@@ -4,8 +4,8 @@
 
         <item
                 android:id="@+id/btn_hair"
-                android:title="włosy"
-                android:icon="@drawable/plans"
+                android:title="test"
+                android:icon="@drawable/ic_grzebien_1"
                 android:iconTint="@color/colorAccentYellow"
         >
 
@@ -13,16 +13,17 @@
         <item
                 android:id="@+id/btn_scanner"
                 android:title="skaner"
-                android:icon="@drawable/scanner_icon"
+                android:icon="@drawable/ic_vial_1"
                 android:iconTint="@color/colorAccentYellow"
                 android:iconTintMode="add"
+
         >
 
         </item>
         <item
                 android:id="@+id/btn_plans"
                 android:title="plany"
-                android:icon="@drawable/clipboard_icon"
+                android:icon="@drawable/ic_grzebien_1"
                 android:iconTint="@color/colorAccentYellow"
         >
 
@@ -30,7 +31,7 @@
         <item
                 android:id="@+id/btn_calendar"
                 android:title="kalendarz"
-                android:icon="@drawable/calendar_icon"
+                android:icon="@drawable/ic_calendar_1"
                 android:iconTint="@color/colorAccentYellow"
         >
 

@@ -7,15 +7,17 @@
         tools:context=".scanner.Scanner"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/colorAccentYellow"
+        android:background="@drawable/bg"
 >
 
 
     <TextView
             android:id="@+id/textView"
             android:gravity="center"
+            android:padding="25dp"
             android:layout_width="match_parent"
             android:layout_height="116dp"
+            android:textColor="@color/colorAccentYellow"
             android:text="Zrób zdjęcie by sprawdzić skład produktu."
             android:textSize="25sp"
             android:textStyle="bold"
@@ -30,7 +32,7 @@
             android:layout_height="match_parent"
             android:id="@+id/lv_item"
             android:layout_marginTop="50dp"
-            />
+            android:visibility="gone"/>
 
 
     <ImageView
@@ -39,15 +41,13 @@
             android:layout_height="300dp"
     />
 
-    <Button
+    <ImageButton
             android:id="@+id/loadImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Zrób zdjęcie"
-            android:background="@color/colorBackground"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-    />
+            android:layout_gravity="center"
+            android:src="@drawable/ic_lupa_1"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:background="@null"/>
 
 
 </LinearLayout>

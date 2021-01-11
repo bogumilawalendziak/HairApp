@@ -17,11 +17,11 @@ import com.example.haircare.calendar.CareSchedule
 import com.example.haircare.calendar.Task
 import com.example.haircare.calendar.TaskAdapter
 import com.example.haircare.calendar.Task_DB_Helper
-import com.example.haircare.hairsettings.HairMenu
 import com.example.haircare.plans.HairCarePlan
 import com.example.haircare.plans.Plan
 import com.example.haircare.plans.PlanCreate
 import com.example.haircare.scanner.Scanner
+import com.example.haircare.test.StartTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDateTime
 
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         sp = getSharedPreferences("sh_pref", MODE_PRIVATE)
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.btn_hair -> startActivity(Intent(this, HairMenu::class.java))
+                R.id.btn_hair -> startActivity(Intent(this, StartTestActivity::class.java))
                 R.id.btn_plans -> startActivity(Intent(this, HairCarePlan::class.java))
                 R.id.btn_scanner -> startActivity(Intent(this, Scanner::class.java))
                 R.id.btn_calendar -> startActivity(Intent(this, CareSchedule::class.java))

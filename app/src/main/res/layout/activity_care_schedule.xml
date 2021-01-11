@@ -8,6 +8,7 @@
         tools:context=".calendar.CareSchedule"
         android:fillViewport="true"
         android:orientation="vertical"
+        android:background="@color/colorAccentYellow"
 >
 
     <TextView
@@ -54,7 +55,8 @@
                         android:id="@+id/card_plan"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        app:contentPadding="10dp">
+                        app:contentPadding="10dp"
+                >
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
