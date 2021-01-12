@@ -16,17 +16,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_dayAndMonth"
                 android:text="1 stycznia "
-                android:gravity="start"
-                android:textSize="20sp"/>
+                android:gravity="end"
+                android:textSize="15sp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_dayOfWeek"
                 android:text="wtorek"
-                android:gravity="end"
-                android:textSize="20sp"/>
+                android:gravity="start"
+                android:textSize="18sp"/>
     </androidx.cardview.widget.CardView>
-
     <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

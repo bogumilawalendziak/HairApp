@@ -8,14 +8,15 @@
         tools:context=".plans.HairCarePlan"
         android:orientation="vertical"
         android:padding="10dp"
-        android:layout_marginTop="60dp">
+>
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorAccentYellow"
+            app:cardBackgroundColor="@null"
             app:cardCornerRadius="15dp"
             android:padding="20dp"
             android:layout_marginBottom="50dp"
+            android:backgroundTint="@null"
     >
 
         <TextView
@@ -44,7 +45,8 @@
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="15dp"
                     android:layout_marginTop="50dp"
-                    app:contentPadding="20dp">
+                    app:contentPadding="20dp"
+            app:cardBackgroundColor="@color/colorBackground">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -52,7 +54,7 @@
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:shadowRadius="3"
-
+                        android:textColor="@color/colorAccentYellow"
                         android:gravity="top"
                 />
                 <androidx.cardview.widget.CardView
@@ -60,7 +62,6 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         android:layout_marginTop="50dp"
-                        app:cardBackgroundColor="@color/colorAccentYellow"
                         app:contentPadding="10dp"
 
                 >
@@ -155,6 +156,7 @@
                     android:layout_marginTop="50dp"
                     app:cardCornerRadius="15dp"
                     app:contentPadding="20dp"
+                    android:backgroundTint="@color/colorBackground"
             >
                 <TextView
                         android:layout_width="match_parent"
@@ -162,17 +164,13 @@
                         android:text="@string/additional_care_plan_text"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:shadowRadius="3"
                         android:padding="10dp"
-                        android:shadowColor="@color/colorAccentYellow"
-                        android:shadowDx="3"
-                        android:shadowDy="4"/>
+                        android:textColor="@color/colorAccentYellow"/>
                 <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         android:layout_marginTop="50dp"
-                        app:cardBackgroundColor="@color/colorAccentYellow"
                         app:contentPadding="10dp"
                 >
                     <LinearLayout

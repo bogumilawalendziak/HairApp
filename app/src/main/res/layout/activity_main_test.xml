@@ -7,7 +7,7 @@
               tools:context=".test.StartTestActivity"
               android:gravity="center"
               android:orientation="vertical"
-              android:background="@color/colorAccentYellow">
+              android:background="@drawable/ic_bg_orange">
 
     <TextView
             android:id="@+id/test_description"
@@ -19,8 +19,6 @@
             android:textColor="@color/colorTextIcon"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:shadowDx="3"
-            android:shadowDy="6"
             android:padding="20dp"
             android:shadowColor="@color/colorTextIcon"
             android:shadowRadius="5"/>

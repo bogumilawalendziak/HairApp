@@ -27,13 +27,13 @@
 
 
         <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="20dp"
                 app:contentPadding="15dp"
         >
             <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
@@ -52,7 +52,7 @@
 
                 <ListView
                         android:layout_marginTop="50dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/lv_task"
                 />
@@ -70,8 +70,8 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             android:id="@+id/nav_view"
-            android:background="@drawable/ic_bg"
-
+            android:backgroundTint="@color/colorBackground"
+            app:itemIconSize="30dp"
             app:itemIconPadding="30dp"
             app:itemHorizontalPadding="20dp"
     >
