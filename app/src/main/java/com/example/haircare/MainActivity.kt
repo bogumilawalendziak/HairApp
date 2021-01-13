@@ -11,10 +11,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.haircare.calendar.CareSchedule
-import com.example.haircare.calendar.Task
-import com.example.haircare.calendar.TaskAdapter
-import com.example.haircare.calendar.Task_DB_Helper
+import com.example.haircare.calendar.*
 import com.example.haircare.plans.HairCarePlan
 import com.example.haircare.plans.Plan
 import com.example.haircare.plans.PlanCreate
@@ -22,7 +19,6 @@ import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.DateFormat
-import java.time.DayOfWeek
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     var context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        println("************************ $dayOfWeekAsInt")
+        println("*****************create main")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
@@ -56,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.btn_hair -> startActivity(Intent(this, StartTestActivity::class.java))
                 R.id.btn_plans -> startActivity(Intent(this, HairCarePlan::class.java))
                 R.id.btn_scanner -> startActivity(Intent(this, Scanner::class.java))
-                R.id.btn_calendar -> startActivity(Intent(this, CareSchedule::class.java))
+                R.id.btn_calendarro -> startActivity(Intent(this, MyCalendar::class.java))
             }
             true
         }
@@ -90,9 +86,6 @@ class MainActivity : AppCompatActivity() {
         val dayOfWeek = date[0]
         val monthValue = date[1]
 
-        //val day = dateTime.dayOfWeek.toString().toLowerCase()
-        println(dateNow)
-        // val taskList = takePlanDay(day, sp, context)
         val taskList = takePlanDay(dayOfWeekAsInt, sp, context)
 
         try {
@@ -116,7 +109,6 @@ class MainActivity : AppCompatActivity() {
                 sp.getBoolean("sw_hig", true) -> "wysokoporowate"
                 else -> "no_plan"
             }
-            println("Actual plna: $hairType")
 
             for (item in planList) {
                 if (item.hairType == hairType) {

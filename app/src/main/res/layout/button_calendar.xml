@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:clickable="true"
+        android:id="@+id/frame_button"
+        android:padding="10dp"
+        android:orientation="vertical">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_white"
+    />
+
+    <TextView
+            android:id="@+id/frame_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="TEST">
+    </TextView>
+    <TextView
+            android:id="@+id/tv_day_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:text="TEST">
+    </TextView>
+</FrameLayout>

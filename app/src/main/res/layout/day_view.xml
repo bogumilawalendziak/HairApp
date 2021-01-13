@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:id="@+id/plan_layout">
 
     <androidx.cardview.widget.CardView
             android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
     <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lv_task"
+            android:id="@+id/lv_task_plan"
             android:fillViewport="true"
     />
 </LinearLayout>

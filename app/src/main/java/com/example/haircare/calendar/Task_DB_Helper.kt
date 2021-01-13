@@ -5,7 +5,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.haircare.scanner.dbName
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -16,8 +15,8 @@ private const val TASK_TABLE_NAME = "TASKS"
 
 private const val COL_NAME = "name"
 private const val COL_ID = "_id"
-private const val COL_PRODUCT= "product"
-private const val COL_DESCRIPTION= "description"
+private const val COL_PRODUCT = "product"
+private const val COL_DESCRIPTION = "description"
 
 
 class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, task_dbName, null, task_dbVersion) {
@@ -37,11 +36,10 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
 
     init {
         val dbExist = checkIfDbExist()
-        if (dbExist){
+        if (dbExist) {
             openDataBase()
             println("***** db exist *******")
-        }
-        else {
+        } else {
             createDataBase()
             println("***** db doesn't exist *******")
         }
@@ -76,7 +74,7 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
 
     fun viewTasks(task: Int): Task {
 // query & cursor
-        println(task.toString())
+
         val selectQuery = " SELECT * FROM $TASK_TABLE_NAME WHERE $COL_ID = $task"
         var cursor: Cursor? = null
 
@@ -93,14 +91,14 @@ class Task_DB_Helper(private val context: Context) : SQLiteOpenHelper(context, t
         return if (cursor != null && cursor.count > 0) {
             cursor.getInt(cursor.getColumnIndex(COL_ID))
             var name: String = cursor.getString(cursor.getColumnIndex(COL_NAME))
-            println(name)
+            //println(name)
             var product: String = cursor.getString(cursor.getColumnIndex(COL_PRODUCT))
-            println(product)
+            //println(product)
             var description: String = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
-            println(description)
+            //println(description)
 
-            Task( product = product, name = name,description = description)
-        } else Task( "error", "not found","sorry")
+            Task(product = product, name = name, description = description)
+        } else Task("error", "not found", "sorry")
 
     }
 

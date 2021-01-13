@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".calendar.CareSchedule"
+        android:fillViewport="true"
+        android:orientation="vertical"
+>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/layout_calendar_plan"
+    >
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/button_plan_layout">
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button"/>
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button2"/>
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button3"/>
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button4"/>
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button5"/>
+                <include layout="@layout/button_calendar"
+                         android:id="@+id/frame_button6"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+    >
+
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_task_plan"
+            android:fillViewport="true"
+    />
+    </LinearLayout>
+</LinearLayout>
