@@ -72,7 +72,7 @@
             android:id="@+id/nav_view"
             android:backgroundTint="@color/colorBackground"
             app:itemIconSize="30dp"
-            app:itemIconPadding="30dp"
+            app:itemIconPadding="20dp"
             app:itemHorizontalPadding="20dp"
     >
 

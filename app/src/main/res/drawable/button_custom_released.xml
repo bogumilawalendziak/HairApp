@@ -6,22 +6,22 @@
                     android:width="70dp"
                     android:height="100dp"/>
             <solid android:color="@color/colorBackground"/>
-            <corners android:radius="30dp"/>
+            <corners android:radius="20dp"/>
         </shape>
     </item>
 
     <item
-            android:top="30dp"
-            android:left="5dp"
-            android:right="5dp"
-            android:bottom="5dp"
+            android:top="3dp"
+            android:left="3dp"
+            android:right="3dp"
+            android:bottom="3dp"
     >
 
         <shape android:shape="rectangle">
             <solid android:color="#ffffff"/>
-            <corners android:radius="25dp"/>
-            <size android:width="20dp"
-                  android:height="20dp"/>
+            <corners android:radius="17dp"/>
+            <size android:width="67dp"
+                  android:height="97dp"/>
         </shape>
 
 

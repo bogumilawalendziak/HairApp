@@ -54,46 +54,61 @@ class MyCalendar : AppCompatActivity() {
             sp.getBoolean("sw_med", true) ||
             sp.getBoolean("sw_hig", true)
         ) {
-            takePlan(0)
+            takePlan(calendar.time.day)
         } else {
-
             layout.visibility = View.GONE
         }
 
+        buttonClear()
+
         button1.setOnClickListener {
+            buttonClear()
+
             takePlan(calendar.time.day)
+            button1.isEnabled = false
+            println("*****clicked********")
+
         }
         button2.setOnClickListener {
+            buttonClear()
             nextDate = calendar.add(Calendar.DATE, 1)
             takePlan(calendar.time.day)
-
             nextDate = calendar.add(Calendar.DATE, -1)
+            button2.isEnabled = false
+
+            println("*****clicked********")
         }
         button3.setOnClickListener {
+            buttonClear()
             nextDate = calendar.add(Calendar.DATE, 2)
-
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -2)
+            button3.isEnabled = false
+            println("*****clicked********")
         }
         button4.setOnClickListener {
+            buttonClear()
             nextDate = calendar.add(Calendar.DATE, 3)
-
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -3)
+            println("*****clicked********")
+            button4.isEnabled = false
         }
         button5.setOnClickListener {
+            buttonClear()
             nextDate = calendar.add(Calendar.DATE, 4)
-
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -4)
+            button5.isEnabled = false
         }
         button6.setOnClickListener {
+            buttonClear()
             nextDate = calendar.add(Calendar.DATE, 5)
-
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -5)
-        }
+            button6.isEnabled = false
 
+        }
     }
 
     private fun buttonInit() {
@@ -104,8 +119,12 @@ class MyCalendar : AppCompatActivity() {
                 if (v is FrameLayout) {
                     val date = v.findViewById<TextView>(R.id.tv_day_button)
                     val dayAsString = v.findViewById<TextView>(R.id.frame_button_text)
-                    date.text = dayNumberAndMonthArray[1]
-                    dayAsString.text = dayNumberAndMonthArray[2]
+                    val monthAsString = v.findViewById<TextView>(R.id.tv_calendar_month)
+                    date.text = nextDateAsArray[0]
+                    dayAsString.text = dayNumberAndMonthArray[1]
+                    println(dayNumberAndMonthArray[1])
+                    monthAsString.text = dayNumberAndMonthArray[2]
+                    println(dayNumberAndMonthArray[2])
                     dataInit()
                 }
             }
@@ -114,6 +133,18 @@ class MyCalendar : AppCompatActivity() {
 
         }
     }
+
+    private fun buttonClear() {
+        button1.isEnabled = true
+        button2.isEnabled = true
+        button3.isEnabled = true
+        button4.isEnabled = true
+        button5.isEnabled = true
+        button6.isEnabled = true
+        println("Clear")
+
+    }
+
 
     private fun takePlan(day: Int) {
         val date = dateNow.split(",")
@@ -142,6 +173,9 @@ class MyCalendar : AppCompatActivity() {
         layout = findViewById(R.id.button_plan_layout)
         dbhandler = Task_DB_Helper(this)
         layout.visibility = View.VISIBLE
+
+        // buttonreal = findViewById(R.id.button_real)
+        // buttonreal2 = findViewById(R.id.button_real2)
     }
 
     private fun dataInit() {

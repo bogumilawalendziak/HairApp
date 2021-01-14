@@ -36,13 +36,6 @@
         >
 
         </item>
-        <item
-                android:id="@+id/btn_calendarro"
-                android:title="kalendarz2"
-                android:icon="@drawable/ic_vial_1"
-                android:iconTint="@color/colorAccentYellow"
-        >
-
-        </item>
+      
     </group>
 </menu>

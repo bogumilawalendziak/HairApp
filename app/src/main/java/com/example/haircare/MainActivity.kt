@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.btn_hair -> startActivity(Intent(this, StartTestActivity::class.java))
                 R.id.btn_plans -> startActivity(Intent(this, HairCarePlan::class.java))
                 R.id.btn_scanner -> startActivity(Intent(this, Scanner::class.java))
-                R.id.btn_calendarro -> startActivity(Intent(this, MyCalendar::class.java))
+                R.id.btn_calendar-> startActivity(Intent(this, MyCalendar::class.java))
             }
             true
         }
