@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
@@ -48,7 +47,6 @@ class Scanner : AppCompatActivity() {
         textView = findViewById(R.id.textView)
         imageView = findViewById(R.id.imageView)
 
-        // listView.adapter=MyAdapter(this)
         imageView.visibility = View.GONE
         listView.visibility = View.GONE
 

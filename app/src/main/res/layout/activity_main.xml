@@ -11,53 +11,121 @@
         android:layout_gravity="start"
         tools:openDrawer="start"
 >
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/no_plan_text"
-              android:textSize="20sp"
-              android:gravity="center"
-              android:padding="20dp"
-              android:id="@+id/tv_layout_main_no_plan"/>
-
-
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:id="@+id/layout_active_plan">
-
-
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                app:contentPadding="15dp"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:background="@drawable/header_calendar"
         >
-            <LinearLayout
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="HOME"
+                      android:textSize="20dp"
+                      android:layout_gravity="bottom"
+                      android:padding="30dp"
+                      android:layout_marginBottom="5dp"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/colorAccentYellow"/>
+
+        </LinearLayout>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/no_plan_text"
+                  android:textSize="20sp"
+                  android:gravity="center"
+                  android:padding="20dp"
+                  android:id="@+id/tv_layout_main_no_plan"
+                  android:visibility="gone"/>
+
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:id="@+id/layout_active_plan">
+
+
+            <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dzisiejsze zadania"
-                        android:textSize="20sp"
-                />
-                <View
+                    app:cardCornerRadius="20dp"
+                    app:contentPadding="20dp"
+
+            >
+
+                <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@drawable/bg"
-                        android:padding="10dp"
-                />
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:id="@+id/layout_progress"
+                        android:gravity="center">
+                    <include
+                            layout="@layout/button_main_menu"
+                            android:id="@+id/btn_menu_main1"
+                            android:layout_gravity="start"
+                            android:layout_height="100dp"
+                            android:layout_width="100dp"
+                            android:layout_weight="1"
+
+                    />
+                    <View android:layout_width="100dp"
+                          android:layout_height="20dp"
+                          android:padding="10dp"
+                    />
+
+                    <include
+                            layout="@layout/button_calendar"
+                            android:id="@+id/btn_menu_main2"
+                            android:layout_gravity="end"
+                            android:layout_weight="1"
+                            android:layout_height="100dp"
+                            android:layout_width="100dp"
+                    />
+                </LinearLayout>
 
 
-                <ListView
-                        android:layout_marginTop="50dp"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/lv_task"
-                />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginTop="210dp"
+                        android:id="@+id/layout_button_category">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="KATEGORIA"
+                            android:textSize="20sp"
+                    />
+                    <View android:layout_width="0dp"
+                          android:layout_height="20dp"
+                    />
+                    <include layout="@layout/button_knowledge"
+                             android:id="@+id/btn_knowledge1"
+                    />
+                    <View android:layout_width="0dp"
+                          android:layout_height="10dp"
+                    />
+                    <include layout="@layout/button_knowledge"
+                             android:id="@+id/btn_knowledge2"
+                    />
+                    <View android:layout_width="0dp"
+                          android:layout_height="10dp"
+                    />
+                    <include layout="@layout/button_knowledge"
+                             android:id="@+id/btn_knowledge3"
+                    />
+                    <View android:layout_width="0dp"
+                          android:layout_height="10dp"
+                    />
+                    <include layout="@layout/button_knowledge"
+                             android:id="@+id/btn_knowledge4"
+                    />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
             tools:override="true"

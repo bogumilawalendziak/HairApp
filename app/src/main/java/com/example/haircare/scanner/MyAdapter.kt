@@ -11,16 +11,16 @@ import com.example.haircare.R
 class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:Int) : BaseAdapter() {
 
     private val myContext: Context = context
-    private val mydata: MutableList<Ingredients> = data
+    private val myData: MutableList<Ingredients> = data
 
 
     override fun getCount(): Int {
-        return mydata.size
+        return myData.size
     }
 
     override fun getItem(position: Int): Any {
 
-        return mydata[position]
+        return myData[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -36,8 +36,8 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
         val ilDescription: TextView = view.findViewById(R.id.il_description)
         val il_PEH: TextView = view.findViewById(R.id.il_PEH)
 
-        ilName.text = mydata[position].name
-        ilDescription.text = mydata[position].description
+        ilName.text = myData[position].name
+        ilDescription.text = myData[position].description
 
         return view
     }
