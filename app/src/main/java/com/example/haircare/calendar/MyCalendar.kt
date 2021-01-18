@@ -64,6 +64,7 @@ class MyCalendar : AppCompatActivity() {
             setCalendarButtonsUnchecked()
             takePlan(calendar.time.day)
             btnCalendarDay1.isEnabled = false
+            println( btnCalendarDay1.isEnabled)
         }
         btnCalendarDay2.setOnClickListener {
             setCalendarButtonsUnchecked()

@@ -16,6 +16,8 @@
             android:roundIcon="@mipmap/ic_lupa_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".customplan.CreateCustomPlan">
+        </activity>
         <activity android:name=".calendar.Calendar">
         </activity>
         <activity
@@ -53,7 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
                 android:name=".test.ResultActivity"
                 android:parentActivityName=".MainActivity">
@@ -70,7 +71,6 @@
                 android:name=".test.QuestionActivity"
                 android:parentActivityName=".test.StartTestActivity">
         </activity>
-
 
         <meta-data
                 android:name="preloaded_fonts"

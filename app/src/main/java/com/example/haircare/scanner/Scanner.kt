@@ -132,7 +132,7 @@ class Scanner : AppCompatActivity() {
 
             name = databaseHandler!!.viewCosmetic(item.trim()).name
 
-            if (name != "nic") {
+            if (name != "nothing") {
                 description = databaseHandler!!.viewCosmetic(item.trim()).description
                 ingredients.add(Ingredients(name, description))
             }

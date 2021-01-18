@@ -36,6 +36,15 @@
         >
 
         </item>
+
+        <item
+                android:id="@+id/btn_myPlan"
+                android:title="wlasny plan"
+                android:icon="@drawable/ic_calendar_border"
+                android:iconTint="@color/colorAccentYellow"
+        >
+
+        </item>
       
     </group>
 </menu>

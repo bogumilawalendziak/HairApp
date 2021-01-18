@@ -2,12 +2,15 @@
 
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="100dp"
-        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:layout_width="140dp"
         android:id="@+id/frame_button"
         android:orientation="vertical"
-        android:elevation="4dp"
+        android:elevation="2pt"
         android:padding="2dp"
+        android:layout_gravity="center"
+
+        android:background="@drawable/button_custom"
 >
 
 
@@ -15,5 +18,7 @@
               android:layout_height="wrap_content"
               android:textSize="20dp"
               android:text="Wlosy porowate"
-              android:layout_marginTop="25dp"/>
+              android:id="@+id/tv_state_of_care"
+              android:layout_marginTop="25dp"
+    android:gravity="center"/>
 </FrameLayout>

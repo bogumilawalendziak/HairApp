@@ -15,11 +15,11 @@
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="Przeglądaj zadania na kolejne 7 dni."
-                  android:textSize="20dp"
+                  android:textSize="20sp"
                   android:layout_gravity="bottom"
                   android:padding="30dp"
                   android:layout_marginBottom="5dp"
-                  android:layout_marginLeft="10dp"
+                  android:layout_marginStart="10dp"
                   android:textColor="@color/colorAccentYellow"/>
 
     </LinearLayout>
@@ -30,6 +30,13 @@
             android:id="@+id/layout_calendar_plan"
             android:padding="10dp"
     >
+        <LinearLayout android:layout_width="10dp"
+                      android:layout_height="25dp"
+                      android:background="@drawable/ic_arrow_blue"
+                      android:layout_marginTop="70dp"
+        >
+
+        </LinearLayout>
 
         <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -40,40 +47,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="10dp"
+                    android:padding="20dp"
                     android:id="@+id/button_plan_layout">
 
 
                 <include layout="@layout/button_calendar"
                          android:id="@+id/frame_button"
                 />
-                <View android:layout_width="10dp"
-                      android:layout_height="0dp"
-                />
+
                 <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button2"/>
-                <View android:layout_width="10dp"
-                      android:layout_height="0dp"
+                         android:id="@+id/frame_button2"
                 />
+
                 <include layout="@layout/button_calendar"
                          android:id="@+id/frame_button3"/>
-                <View android:layout_width="10dp"
-                      android:layout_height="0dp"
-                />
+
                 <include layout="@layout/button_calendar"
                          android:id="@+id/frame_button4"/>
-                <View android:layout_width="10dp"
-                      android:layout_height="0dp"
-                />
+
                 <include layout="@layout/button_calendar"
                          android:id="@+id/frame_button5"/>
-                <View android:layout_width="10dp"
-                      android:layout_height="0dp"
-                />
+
                 <include layout="@layout/button_calendar"
                          android:id="@+id/frame_button6"/>
-                <View android:layout_width="10dp"
+                <View android:layout_width="20dp"
                       android:layout_height="0dp"
+                      android:background="@null"
                 />
 
             </LinearLayout>

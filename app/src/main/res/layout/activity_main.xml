@@ -40,14 +40,15 @@
 
 
         <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
+                      android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:id="@+id/layout_active_plan">
+                      android:id="@+id/layout_active_plan"
+                      android:background="#FFFFFF">
 
 
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:cardCornerRadius="20dp"
                     app:contentPadding="20dp"
 
@@ -59,7 +60,7 @@
                         android:orientation="horizontal"
                         android:id="@+id/layout_progress"
                         android:gravity="center"
-                android:background="#FFFFFF">
+                        android:background="#FFFFFF">
                     <include
                             layout="@layout/button_main_menu"
                             android:id="@+id/btn_menu_main1"
@@ -75,7 +76,7 @@
                     />
 
                     <include
-                            layout="@layout/button_calendar"
+                            layout="@layout/button_main_menu"
                             android:id="@+id/btn_menu_main2"
                             android:layout_gravity="end"
                             android:layout_weight="1"
@@ -87,10 +88,10 @@
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_marginTop="210dp"
+                        android:layout_marginTop="110dp"
                         android:id="@+id/layout_button_category">
                     <TextView
                             android:layout_width="wrap_content"
@@ -98,27 +99,19 @@
                             android:text="KATEGORIA"
                             android:textSize="20sp"
                     />
-                    <View android:layout_width="0dp"
-                          android:layout_height="20dp"
-                    />
+
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge1"
                     />
-                    <View android:layout_width="0dp"
-                          android:layout_height="10dp"
-                    />
+
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge2"
                     />
-                    <View android:layout_width="0dp"
-                          android:layout_height="10dp"
-                    />
+
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge3"
                     />
-                    <View android:layout_width="0dp"
-                          android:layout_height="10dp"
-                    />
+
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge4"
                     />

@@ -7,7 +7,7 @@ object PlanCreate {
         val srednioporowate = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,4,2,3),1 to arrayOf(5,2,3),2 to arrayOf(7,2,3),3 to arrayOf(7,1,2,3),4 to arrayOf(1,3,9), 5 to arrayOf(1,5,3),6 to arrayOf(1,2,3)),"srednioporowate")
         val niskoporowate = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,4,5,3),1 to arrayOf(5,7,9,3),2 to arrayOf(6,2,3),3 to arrayOf(7,6,3),4 to arrayOf(1,2,8),5 to arrayOf(1,3,9),6 to arrayOf(1,2,3)),"niskoporowate")
         val wysokoporowate = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,4,7,3),1 to arrayOf(5,2,4,3),2 to arrayOf(5,2,3),3 to arrayOf(7,8,3),4 to arrayOf(1,9,3),5 to arrayOf(1,8,3),6 to arrayOf(1,2,3)),"wysokoporowate")
-        val no_plan = Plan(mapOf<Int,Array<Int>>(99 to arrayOf(0)),"no_plan")
+        val ownPlan = Plan(mapOf<Int,Array<Int>>(99 to arrayOf(0)),"no_plan")
 
         val volume = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,9,3),3 to arrayOf(4,9,3),1 to arrayOf(5,2,3),2 to arrayOf(9,6,2,3),3 to arrayOf(7,2,3),4 to arrayOf(1,2,3),6 to arrayOf(1,2,3)),"volume")
         val greasy = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,9,3),3 to arrayOf(2,4,2,3),1 to arrayOf(1,5,3),2 to arrayOf(1,6,3),3 to arrayOf(2,7,9),4 to arrayOf(1,2,3),6 to arrayOf(1,2,3)),"greasy")
