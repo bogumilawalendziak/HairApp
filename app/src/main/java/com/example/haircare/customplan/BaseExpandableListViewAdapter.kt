@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.example.haircare.R
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class BaseExpandableListViewAdapter(
     var context: Context,
     var header: MutableList<String>,
-    var body: MutableMap<Int, MutableList<String>>,
+    var body: MutableMap<Int, MutableList<CustomPlan>>,
 ) : BaseExpandableListAdapter() {
     override fun getGroupCount(): Int {
         return header.size
@@ -22,11 +21,11 @@ class BaseExpandableListViewAdapter(
         return body[groupPosition]!!.size
     }
 
-    override fun getGroup(groupPosition: Int): Any {
+    override fun getGroup(groupPosition: Int): String {
         return header[groupPosition]
     }
 
-    override fun getChild(groupPosition: Int, childPosition: Int): Any {
+    override fun getChild(groupPosition: Int, childPosition: Int): CustomPlan {
         return body[groupPosition]!![childPosition]
     }
 
@@ -51,6 +50,7 @@ class BaseExpandableListViewAdapter(
 
 
         var tittle = convertView?.findViewById<TextView>(R.id.list_parent)
+
         tittle!!.text = getGroup(groupPosition).toString()
             return convertView
     }
@@ -70,7 +70,10 @@ class BaseExpandableListViewAdapter(
 
 
         var tittle = convertView?.findViewById<TextView>(R.id.tv_list_child)
-        tittle!!.text = getChild(groupPosition,childPosition).toString()
+        tittle!!.text = getChild(groupPosition,childPosition).task.toString()
+
+        var tittle2 = convertView?.findViewById<TextView>(R.id.tv_list_child2)
+        tittle2!!.text = getChild(groupPosition,childPosition).peh.toString()
         return convertView
     }
 

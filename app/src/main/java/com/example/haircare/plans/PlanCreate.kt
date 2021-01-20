@@ -2,6 +2,7 @@ package com.example.haircare.plans
 
 object PlanCreate {
 
+    val hairType= null
     fun getPlan(): ArrayList<Plan>{
         val getPlanList = ArrayList<Plan>()
         val srednioporowate = Plan(mapOf<Int,Array<Int>>(0 to arrayOf(1,4,2,3),1 to arrayOf(5,2,3),2 to arrayOf(7,2,3),3 to arrayOf(7,1,2,3),4 to arrayOf(1,3,9), 5 to arrayOf(1,5,3),6 to arrayOf(1,2,3)),"srednioporowate")
