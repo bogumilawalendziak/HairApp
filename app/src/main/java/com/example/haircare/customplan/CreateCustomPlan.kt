@@ -1,6 +1,8 @@
 package com.example.haircare.customplan
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.R
@@ -8,19 +10,26 @@ import com.example.haircare.R
 class CreateCustomPlan : AppCompatActivity() {
 
     private lateinit var expandableList: ExpandableListView
-    private var listGroup: ArrayList<String> = ArrayList(6)
-    var mapChild: MutableMap<Int, ArrayList<String>> = mutableMapOf()
+    private lateinit var button: Button
+    private var listGroup: MutableList<String> = ArrayList(7)
+    var mapChild: MutableMap<Int, MutableList<String>> = mutableMapOf()
     var plan: CustomPlan? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_custom_plan)
         initViews()
+       expandableList.setAdapter(BaseExpandableListViewAdapter(this,listGroup,mapChild))
+
+        button.setOnClickListener{
+            addRow(1,"cośtaam")
+        }
 
     }
 
     private fun initViews() {
         expandableList = findViewById(R.id.expandable_list)
+        button= findViewById(R.id.btn_add_custom_task)
         listGroup.add("poniedziałek")
         listGroup.add("wtorek")
         listGroup.add("środa")
@@ -45,7 +54,9 @@ class CreateCustomPlan : AppCompatActivity() {
     }
 
     private fun addRow(day: Int , task: String){
+        plan?.planName="xDDDDDDD"
         plan?.taskList?.get(day)?.add(task)
+        println(plan?.planName)
         // dodaj do planu w miejscu DAY kolejny task ( kolejny element array
     }
 
