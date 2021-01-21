@@ -3,9 +3,12 @@ package com.example.haircare.customplan
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ExpandableListView
+import android.widget.ExpandableListView.OnGroupExpandListener
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.R
+import com.example.haircare.calendar.CustomTaskAdapter
 import kotlinx.android.synthetic.main.activity_create_custom_plan.*
+
 
 class CreateCustomPlan : AppCompatActivity() {
 
@@ -14,31 +17,34 @@ class CreateCustomPlan : AppCompatActivity() {
     private var listGroup: MutableList<String> = ArrayList(7)
     var mapChild: MutableMap<Int, MutableList<CustomPlan>> = mutableMapOf()
     var plan: CustomPlan? = null
-
+    var listPlan: MutableList<CustomPlan> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_custom_plan)
         initViews()
-
-        val day = spinner1.selectedItem.toString()
-        println(day)
-        val peh = spinner3.selectedItem.toString()
-        println(peh)
-        val task = tv_put_task.text.toString()
-        addRow(takeDay(day), task, peh)
-
-        expandableList.setAdapter(BaseExpandableListViewAdapter(this, listGroup, mapChild))
+        val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
+        expandableList.setAdapter(BaseExpandableListViewAdapter(this, listGroup, mapChild, expandableList))
 
         button.setOnClickListener {
 
-
             val day = spinner1.selectedItem.toString()
-            println(day)
             val peh = spinner3.selectedItem.toString()
-            println(peh)
             val task = tv_put_task.text.toString()
+
             addRow(takeDay(day), task, peh)
+            if (!task.isEmpty()){
+                val custPlan = CustomPlan(peh,task, takeDay(day))
+                databaseHandler.addCustomPlanTask(custPlan)
+            }
         }
+//////!!!!!!!/////
+        expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
+            var previousGroup = -1
+            override fun onGroupExpand(groupPosition: Int) {
+                if (groupPosition != previousGroup) expandableList.collapseGroup(previousGroup)
+                previousGroup = groupPosition
+            }
+        })
 
     }
 
@@ -52,8 +58,6 @@ class CreateCustomPlan : AppCompatActivity() {
         listGroup.add("piątek")
         listGroup.add("sobota")
         listGroup.add("niedziela")
-        addRow(3,"xD","LOOOOOL")
-        addRow(2,"xD","LOOOOOL")
 
     }
 
@@ -71,15 +75,11 @@ class CreateCustomPlan : AppCompatActivity() {
     }
 
     private fun addRow(day: Int, task: String, peh: String) {
-        plan = CustomPlan(peh,task,day)
-        var listPlan: MutableList<CustomPlan> = listOf<CustomPlan>(plan!!) as MutableList<CustomPlan>
-       // listPlan.add(CustomPlan(peh,task,day))
-        mapChild.put(day,listPlan)
-        println(mapChild[day])
-        // dodaj do planu w miejscu DAY kolejny task ( kolejny element array
-    }
+        listPlan.add(CustomPlan(peh, task, day))
+        val filter = listPlan.filter { customPlan -> customPlan.day == day }
+        mapChild.put(day, filter as MutableList<CustomPlan>)
 
-    private fun addCustomPlan() {
 
     }
+
 }

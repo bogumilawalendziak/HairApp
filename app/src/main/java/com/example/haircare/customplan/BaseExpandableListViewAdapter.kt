@@ -7,18 +7,31 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.example.haircare.R
+import android.widget.ExpandableListView
+
+
+
 
 class BaseExpandableListViewAdapter(
     var context: Context,
     var header: MutableList<String>,
     var body: MutableMap<Int, MutableList<CustomPlan>>,
+    val expandableListView: ExpandableListView,
 ) : BaseExpandableListAdapter() {
     override fun getGroupCount(): Int {
         return header.size
     }
 
     override fun getChildrenCount(groupPosition: Int): Int {
-        return body[groupPosition]!!.size
+
+     // println("**** body "  +body[groupPosition]!!.size )
+        return if (body[groupPosition]!=null) {
+           body[groupPosition]!!.size
+
+        } else {
+            return 0
+        }
+
     }
 
     override fun getGroup(groupPosition: Int): String {
@@ -34,6 +47,7 @@ class BaseExpandableListViewAdapter(
     }
 
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
+
         return childPosition.toLong()
     }
 
@@ -43,6 +57,8 @@ class BaseExpandableListViewAdapter(
 
     override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View? {
         var convertView = convertView
+        //val mExpandableListView = parent as ExpandableListView
+        //mExpandableListView.expandGroup(groupPosition)
         if (convertView == null) {
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = inflater.inflate(R.layout.list_group, null)
@@ -51,7 +67,16 @@ class BaseExpandableListViewAdapter(
 
         var tittle = convertView?.findViewById<TextView>(R.id.list_parent)
 
-        tittle!!.text = getGroup(groupPosition).toString()
+        tittle!!.text = getGroup(groupPosition)
+
+        tittle.setOnClickListener{
+            if(expandableListView.isGroupExpanded(groupPosition))
+            {
+                expandableListView.collapseGroup(groupPosition)
+            }
+            else expandableListView.expandGroup(groupPosition)
+        }
+
             return convertView
     }
 
@@ -70,10 +95,10 @@ class BaseExpandableListViewAdapter(
 
 
         var tittle = convertView?.findViewById<TextView>(R.id.tv_list_child)
-        tittle!!.text = getChild(groupPosition,childPosition).task.toString()
-
+        tittle!!.text = getChild(groupPosition,childPosition).task
+        println(childPosition)
         var tittle2 = convertView?.findViewById<TextView>(R.id.tv_list_child2)
-        tittle2!!.text = getChild(groupPosition,childPosition).peh.toString()
+        tittle2!!.text = getChild(groupPosition,childPosition).peh
         return convertView
     }
 

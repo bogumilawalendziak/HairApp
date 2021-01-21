@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
+import com.example.haircare.customplan.CreateCustomPlan
 import java.text.DateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -54,8 +55,8 @@ class MyCalendar : AppCompatActivity() {
             sp.getBoolean("sw_hig", true)
         ) {
             takePlan(calendar.time.day)
-        } else {
-            layout.visibility = View.GONE
+        } else if(sp.getBoolean("sw_custom", true)) {
+            takeCustomPlan(calendar.time.day)
         }
 
         setCalendarButtonsUnchecked()
@@ -103,6 +104,21 @@ class MyCalendar : AppCompatActivity() {
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -5)
             btnCalendarDay6.isEnabled = false
+
+        }
+    }
+
+    private fun takeCustomPlan(day: Int) {
+// wez liste customową ( otwóz baze danych)
+      //  odfiltruj z niej rządany dzien
+        // wpisz taski
+        val dbHelper = CustomTaskAdapter(this)
+
+        try {
+
+
+
+        } catch (e: Exception) {
 
         }
     }

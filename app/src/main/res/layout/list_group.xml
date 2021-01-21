@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="10dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/colorBackground"
+>
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/list_parent"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="LOL"
+            android:padding="10dp"
+            android:textColor="@color/colorAccentYellow"
     />
-</LinearLayout>
+</androidx.cardview.widget.CardView>
