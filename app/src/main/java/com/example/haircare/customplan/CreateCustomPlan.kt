@@ -30,12 +30,17 @@ class CreateCustomPlan : AppCompatActivity() {
             val day = spinner1.selectedItem.toString()
             val peh = spinner3.selectedItem.toString()
             val task = tv_put_task.text.toString()
-
-            addRow(takeDay(day), task, peh)
+            // add task to db
             if (!task.isEmpty()){
-                val custPlan = CustomPlan(peh,task, takeDay(day))
-                databaseHandler.addCustomPlanTask(custPlan)
+                val lol = databaseHandler.addCustomPlanTask(task, peh, takeDay(day))
             }
+            //show task in list
+            val filter= databaseHandler.getPlanDay(takeDay(day))
+            mapChild.put(takeDay(day), filter)
+
+
+
+
         }
 //////!!!!!!!/////
         expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
@@ -74,12 +79,11 @@ class CreateCustomPlan : AppCompatActivity() {
         return i
     }
 
-    private fun addRow(day: Int, task: String, peh: String) {
-        listPlan.add(CustomPlan(peh, task, day))
-        val filter = listPlan.filter { customPlan -> customPlan.day == day }
+   /* private fun addRow(day: Int, task: String, peh: String) {
+       val filter= databaseHandler.getPlanDay(takeDay(day))
+       // val filter = listPlan.filter { customPlan -> customPlan.day == day }
         mapChild.put(day, filter as MutableList<CustomPlan>)
 
-
-    }
+    }*/
 
 }

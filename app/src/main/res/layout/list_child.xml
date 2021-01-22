@@ -29,5 +29,14 @@
                 android:textSize="18sp"
                 android:text="test test"
                 android:textColor="@color/colorBackground"/>
+
+        <ImageButton android:layout_width="30dp"
+                     android:layout_height="30dp"
+                     android:src="@drawable/ic_grzebien_blue"
+                     android:background="@null"
+                     android:backgroundTint="@null"
+                     android:id="@+id/btn_delete_custom_task"
+
+        />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
