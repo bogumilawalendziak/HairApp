@@ -1,9 +1,13 @@
 package com.example.haircare.customplan
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.ExpandableListView
 import android.widget.ExpandableListView.OnGroupExpandListener
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.R
 import com.example.haircare.calendar.CustomTaskAdapter
@@ -11,9 +15,11 @@ import kotlinx.android.synthetic.main.activity_create_custom_plan.*
 
 
 class CreateCustomPlan : AppCompatActivity() {
-
+    private lateinit var editTask: LinearLayout
+    private lateinit var showList: LinearLayout
     private lateinit var expandableList: ExpandableListView
     private lateinit var button: Button
+    private lateinit var buttonEditTask: Button
     private var listGroup: MutableList<String> = ArrayList(7)
     var mapChild: MutableMap<Int, MutableList<CustomPlan>> = mutableMapOf()
     var plan: CustomPlan? = null
@@ -26,21 +32,25 @@ class CreateCustomPlan : AppCompatActivity() {
         expandableList.setAdapter(BaseExpandableListViewAdapter(this, listGroup, mapChild, expandableList))
 
         button.setOnClickListener {
+            editTask.visibility= GONE
+            showList.visibility= VISIBLE
 
             val day = spinner1.selectedItem.toString()
             val peh = spinner3.selectedItem.toString()
             val task = tv_put_task.text.toString()
             // add task to db
-            if (!task.isEmpty()){
+            if (!task.isEmpty()) {
                 val lol = databaseHandler.addCustomPlanTask(task, peh, takeDay(day))
             }
             //show task in list
-            val filter= databaseHandler.getPlanDay(takeDay(day))
+            val filter = databaseHandler.getPlanDay(takeDay(day))
             mapChild.put(takeDay(day), filter)
+        }
 
 
-
-
+        buttonEditTask.setOnClickListener {
+            showList.visibility= GONE
+            editTask.visibility= VISIBLE
         }
 //////!!!!!!!/////
         expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
@@ -50,12 +60,17 @@ class CreateCustomPlan : AppCompatActivity() {
                 previousGroup = groupPosition
             }
         })
-
     }
 
     private fun initViews() {
         expandableList = findViewById(R.id.expandable_list)
         button = findViewById(R.id.btn_add_custom_task)
+        buttonEditTask = findViewById(R.id.btn_show_create_custom_task)
+        editTask = findViewById(R.id.view_edit_task)
+        showList = findViewById(R.id.view_list_of_tasks)
+        showList.visibility= VISIBLE
+        editTask.visibility= GONE
+
         listGroup.add("poniedziałek")
         listGroup.add("wtorek")
         listGroup.add("środa")
@@ -78,12 +93,5 @@ class CreateCustomPlan : AppCompatActivity() {
         if (day == "niedziela") i = 6
         return i
     }
-
-   /* private fun addRow(day: Int, task: String, peh: String) {
-       val filter= databaseHandler.getPlanDay(takeDay(day))
-       // val filter = listPlan.filter { customPlan -> customPlan.day == day }
-        mapChild.put(day, filter as MutableList<CustomPlan>)
-
-    }*/
 
 }

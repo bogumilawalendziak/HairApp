@@ -22,74 +22,85 @@
                   android:padding="28dp"/>
     </LinearLayout>
 
-
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:padding="15dp">
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                app:contentPadding="5dp"
-                app:cardBackgroundColor="@color/colorAccentYellow"
-                app:cardCornerRadius="20dp"
-        >
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:padding="10dp">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/view_edit_task"
+                      android:orientation="vertical">
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="20sp"
+                      android:gravity="center"
+                      android:hint="nazwa zadania"
+                      android:textColorHint="@color/colorBackground"
+                      android:id="@+id/tv_put_task"
+            />
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/colorAccentYellow"
+                    app:cardCornerRadius="20dp"
+                    app:contentPadding="10dp"
+                    android:elevation="10dp">
+
 
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:orientation="horizontal"
-                              android:gravity="center">
+                              android:gravity="center"
+                              android:layout_margin="5dp">
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:textSize="18sp"
-                              android:text="Zadanie:"
-                              android:layout_weight="1"/>
-                    <EditText android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:textSize="18sp"
-                              android:hint="nazwa zadania"
-                              android:id="@+id/tv_put_task"
+                              android:text="Dzień tygodnia"
+                              android:textStyle="bold"
+                              android:textSize="23sp"
                               android:layout_weight="1"
-                    />
-
-
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal"
-                              android:gravity="center">
-
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="Dzień tygodnia:"
-                              android:textSize="18sp"
-                              android:layout_weight="1"/>
+                              android:shadowRadius="2"/>
                     <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/spinner1"
+                            style="@style/spinnerItemStyle"
                             android:entries="@array/day_of_week"
                             android:layout_weight="1"
                     />
                 </LinearLayout>
 
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:layout_margin="10dp"
+                    app:contentPadding="10dp"
+                    app:cardBackgroundColor="@color/colorAccentYellow"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="10dp"
+            >
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:orientation="horizontal"
-                              android:gravity="center">
+                              android:gravity="center"
+                              android:padding="5dp">
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:textSize="18sp"
-                              android:text="Rodzaj pielęgnacji:"
-                              android:layout_weight="1"/>
+                              android:textSize="23sp"
+                              android:text="Rodzaj pielęgnacji"
+                              android:layout_weight="1"
+                              android:textStyle="bold"
+                              android:shadowRadius="2"
+                    />
                     <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -99,24 +110,65 @@
                     />
 
                 </LinearLayout>
-                <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:padding="10dp"
-                        android:text="DODAJ"
-                        android:layout_gravity="center"
-                        android:id="@+id/btn_add_custom_task"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
 
-    <ExpandableListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_weight="1"
-            android:id="@+id/expandable_list"
-            android:padding="10dp"
-    >
-    </ExpandableListView>
+            </androidx.cardview.widget.CardView>
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:padding="0dp"
+                    android:text="DODAJ"
+                    android:layout_gravity="center"
+                    android:id="@+id/btn_add_custom_task"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/view_list_of_tasks"
+                      android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:layout_margin="10dp"
+                    app:contentPadding="10dp"
+                    app:cardBackgroundColor="@color/colorAccentYellow"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="10dp"
+            >
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:gravity="center"
+                              android:padding="5dp">
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="23sp"
+                              android:text="Dodaj zadania do kalendarza"
+                              android:layout_weight="1"
+                              android:textStyle="bold"
+                              android:shadowRadius="2"
+                    />
+                    <Button android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:padding="0dp"
+                            android:text="DODAJ"
+                            android:layout_gravity="center"
+                            android:id="@+id/btn_show_create_custom_task"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <ExpandableListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/expandable_list"
+                    android:padding="10dp"
+            />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

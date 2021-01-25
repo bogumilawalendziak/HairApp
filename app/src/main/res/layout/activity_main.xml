@@ -133,8 +133,8 @@
             android:fitsSystemWindows="true"
             android:id="@+id/nav_view"
             android:backgroundTint="@color/colorBackground"
-            app:itemIconSize="30dp"
-            app:itemIconPadding="80dp"
+            app:itemIconSize="70dp"
+
     >
 
 
