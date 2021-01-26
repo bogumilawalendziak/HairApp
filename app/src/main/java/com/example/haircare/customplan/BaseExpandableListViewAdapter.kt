@@ -69,13 +69,13 @@ class BaseExpandableListViewAdapter(
 
         tittle!!.text = getGroup(groupPosition)
 
-        tittle.setOnClickListener{
-            if(expandableListView.isGroupExpanded(groupPosition))
+        expandableListView.expandGroup(groupPosition)
+       tittle.setOnClickListener{
+           if(expandableListView.isGroupExpanded(groupPosition))
             {
-                expandableListView.collapseGroup(groupPosition)
-            }
-            else expandableListView.expandGroup(groupPosition)
-        }
+           //     expandableListView.collapseGroup(groupPosition)
+           }else expandableListView.expandGroup(groupPosition)
+       }
 
             return convertView
     }
