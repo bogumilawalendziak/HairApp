@@ -2,11 +2,12 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="10dp"
         app:cardCornerRadius="10dp"
         android:backgroundTint="@color/colorBackground"
+        android:layout_gravity="center"
 >
 
     <TextView
@@ -15,7 +16,7 @@
             android:id="@+id/list_parent"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:text="LOL"
+            android:text="TEST"
             android:padding="10dp"
             android:textColor="@color/colorAccentYellow"
     />

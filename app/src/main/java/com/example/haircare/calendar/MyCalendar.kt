@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
 import com.example.haircare.customplan.CreateCustomPlan
+import kotlinx.android.synthetic.main.activity_mycalendar.*
+import kotlinx.android.synthetic.main.button_calendar.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -31,7 +33,6 @@ class MyCalendar : AppCompatActivity() {
     private lateinit var calendarDayButton: FrameLayout
     private lateinit var listView: ListView
     private lateinit var sp: SharedPreferences
-
     private lateinit var layout: LinearLayout
     private lateinit var btnCalendarDay1: FrameLayout
     private lateinit var btnCalendarDay2: FrameLayout
@@ -66,6 +67,7 @@ class MyCalendar : AppCompatActivity() {
             takePlan(calendar.time.day)
             btnCalendarDay1.isEnabled = false
             println( btnCalendarDay1.isEnabled)
+            tv_data_monthCalendar.text = dayNumberAndMonthArray[2]
         }
         btnCalendarDay2.setOnClickListener {
             setCalendarButtonsUnchecked()
@@ -73,7 +75,7 @@ class MyCalendar : AppCompatActivity() {
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -1)
             btnCalendarDay2.isEnabled = false
-
+            tv_data_monthCalendar.text = dayNumberAndMonthArray[1]
 
         }
         btnCalendarDay3.setOnClickListener {
@@ -82,6 +84,7 @@ class MyCalendar : AppCompatActivity() {
             takePlan(calendar.time.day)
             nextDate = calendar.add(Calendar.DATE, -2)
             btnCalendarDay3.isEnabled = false
+            tv_data_monthCalendar.text = dayNumberAndMonthArray[1]
 
         }
         btnCalendarDay4.setOnClickListener {

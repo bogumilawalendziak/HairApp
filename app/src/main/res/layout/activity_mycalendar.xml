@@ -10,74 +10,77 @@
 >
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:orientation="vertical"
                   android:background="@drawable/header_calendar"
     >
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="Przeglądaj zadania na kolejne 7 dni."
                   android:textSize="20sp"
-                  android:layout_gravity="bottom"
                   android:padding="30dp"
-                  android:layout_marginBottom="5dp"
-                  android:layout_marginStart="10dp"
                   android:textColor="@color/colorAccentYellow"/>
 
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/layout_calendar_plan"
-            android:padding="10dp"
-    >
-        <LinearLayout android:layout_width="10dp"
-                      android:layout_height="25dp"
-                      android:background="@drawable/ic_arrow_blue"
-                      android:layout_marginTop="70dp"
-        >
-
-        </LinearLayout>
-
-        <HorizontalScrollView
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
+                android:orientation="vertical"
+                android:id="@+id/layout_calendar_plan"
+                android:padding="10dp"
         >
-            <LinearLayout
-                    android:layout_width="wrap_content"
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:text="data"
+                      android:textStyle="bold"
+                      android:textColor="@color/colorAccentYellow"
+                      android:gravity="left"
+                      android:padding="10dp"
+                      android:layout_marginTop="30dp"
+                      android:id="@+id/tv_data_monthCalendar"/>
+
+            <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:id="@+id/button_plan_layout">
+                    android:scrollbars="none"
+                    android:padding="15dp"
+            >
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:id="@+id/button_plan_layout">
 
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button"
-                />
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button"
+                    />
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button2"
-                />
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button2"
+                    />
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button3"/>
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button3"/>
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button4"/>
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button4"/>
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button5"/>
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button5"/>
 
-                <include layout="@layout/button_calendar"
-                         android:id="@+id/frame_button6"/>
-                <View android:layout_width="20dp"
-                      android:layout_height="0dp"
-                      android:background="@null"
-                />
+                    <include layout="@layout/button_calendar"
+                             android:id="@+id/frame_button6"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="0dp"
+                          android:background="@null"
+                    />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -20,6 +20,8 @@ class CreateCustomPlan : AppCompatActivity() {
     private lateinit var expandableList: ExpandableListView
     private lateinit var button: Button
     private lateinit var buttonEditTask: Button
+    private lateinit var planHeader: LinearLayout
+    private lateinit var editTaskHeader: LinearLayout
     private var listGroup: MutableList<String> = ArrayList(7)
     var mapChild: MutableMap<Int, MutableList<CustomPlan>> = mutableMapOf()
     var plan: CustomPlan? = null
@@ -34,7 +36,8 @@ class CreateCustomPlan : AppCompatActivity() {
         button.setOnClickListener {
             editTask.visibility= GONE
             showList.visibility= VISIBLE
-
+            planHeader.visibility = VISIBLE
+            editTaskHeader.visibility=GONE
             val day = spinner1.selectedItem.toString()
             val peh = spinner3.selectedItem.toString()
             val task = tv_put_task.text.toString()
@@ -51,6 +54,8 @@ class CreateCustomPlan : AppCompatActivity() {
         buttonEditTask.setOnClickListener {
             showList.visibility= GONE
             editTask.visibility= VISIBLE
+            planHeader.visibility = GONE
+            editTaskHeader.visibility= VISIBLE
         }
 //////!!!!!!!/////
         expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
@@ -68,8 +73,12 @@ class CreateCustomPlan : AppCompatActivity() {
         buttonEditTask = findViewById(R.id.btn_show_create_custom_task)
         editTask = findViewById(R.id.view_edit_task)
         showList = findViewById(R.id.view_list_of_tasks)
+        editTaskHeader = findViewById(R.id.edit_task_header)
+        planHeader = findViewById(R.id.plan_task_header)
         showList.visibility= VISIBLE
         editTask.visibility= GONE
+        planHeader.visibility = VISIBLE
+        editTaskHeader.visibility=GONE
 
         listGroup.add("poniedziałek")
         listGroup.add("wtorek")
