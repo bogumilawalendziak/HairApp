@@ -36,7 +36,7 @@
                       android:gravity="left"
                       android:padding="10dp"
                       android:layout_marginTop="30dp"
-                      android:id="@+id/tv_data_monthCalendar"/>
+                      android:id="@+id/tv_tittle_monthCalendar"/>
 
             <HorizontalScrollView
                     android:layout_width="match_parent"

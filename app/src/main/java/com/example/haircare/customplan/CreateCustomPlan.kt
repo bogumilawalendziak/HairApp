@@ -1,6 +1,5 @@
 package com.example.haircare.customplan
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -33,11 +32,16 @@ class CreateCustomPlan : AppCompatActivity() {
         val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
         expandableList.setAdapter(BaseExpandableListViewAdapter(this, listGroup, mapChild, expandableList))
 
+        for (i in 0..6) {
+            val filter = databaseHandler.getPlanDay(i)
+            mapChild.put(i, filter)
+        }
+
         button.setOnClickListener {
-            editTask.visibility= GONE
-            showList.visibility= VISIBLE
+            editTask.visibility = GONE
+            showList.visibility = VISIBLE
             planHeader.visibility = VISIBLE
-            editTaskHeader.visibility=GONE
+            editTaskHeader.visibility = GONE
             val day = spinner1.selectedItem.toString()
             val peh = spinner3.selectedItem.toString()
             val task = tv_put_task.text.toString()
@@ -52,10 +56,10 @@ class CreateCustomPlan : AppCompatActivity() {
 
 
         buttonEditTask.setOnClickListener {
-            showList.visibility= GONE
-            editTask.visibility= VISIBLE
+            showList.visibility = GONE
+            editTask.visibility = VISIBLE
             planHeader.visibility = GONE
-            editTaskHeader.visibility= VISIBLE
+            editTaskHeader.visibility = VISIBLE
         }
 //////!!!!!!!/////
         expandableList.setOnGroupExpandListener(object : OnGroupExpandListener {
@@ -75,10 +79,10 @@ class CreateCustomPlan : AppCompatActivity() {
         showList = findViewById(R.id.view_list_of_tasks)
         editTaskHeader = findViewById(R.id.edit_task_header)
         planHeader = findViewById(R.id.plan_task_header)
-        showList.visibility= VISIBLE
-        editTask.visibility= GONE
+        showList.visibility = VISIBLE
+        editTask.visibility = GONE
         planHeader.visibility = VISIBLE
-        editTaskHeader.visibility=GONE
+        editTaskHeader.visibility = GONE
 
         listGroup.add("poniedziałek")
         listGroup.add("wtorek")
@@ -87,7 +91,6 @@ class CreateCustomPlan : AppCompatActivity() {
         listGroup.add("piątek")
         listGroup.add("sobota")
         listGroup.add("niedziela")
-
     }
 
 

@@ -7,7 +7,7 @@
 
     <color name="color2">#43587C</color>
     <color name="colorBackground">#253145</color>
-    <color name="colorText">#253145</color>
+    <color name="colorText">#18212E</color>
     <color name="colorTextIcon">#253145</color>
-    <color name="colorAccentYellow">#fbcfaf</color>
+    <color name="colorAccentYellow">#FFE5D3</color>
 </resources>

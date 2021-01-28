@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         btnMainMenu1 = findViewById(R.id.btn_menu_main1)
-        btnMainMenu2 = findViewById(R.id.btn_menu_main2)
+        btnMainMenu2 = findViewById(R.id.btn_menu_plan_info)
         btnKnowledge1 = findViewById(R.id.btn_knowledge1)
         btnKnowledge2 = findViewById(R.id.btn_knowledge2)
         btnKnowledge3 = findViewById(R.id.btn_knowledge3)

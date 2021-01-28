@@ -13,15 +13,16 @@
                     android:height="60dp"/>
             <solid android:color="#FFFFFF"/>
             <corners android:radius="20dp"/>
-            <stroke android:width="0.1dp" android:color="@color/colorBackground"/>
+            <stroke android:width="0.1dp"
+                    android:color="@color/colorBackground"/>
         </shape>
     </item>
     <item android:drawable="@drawable/ic_arrow"
-    android:width="20dp"
+    android:width="12dp"
     android:height="20dp"
     android:gravity="center"
 
-    android:left="160dp"
+    android:left="190dp"
     >
 
     </item>

@@ -10,9 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
-import com.example.haircare.customplan.CreateCustomPlan
 import kotlinx.android.synthetic.main.activity_mycalendar.*
-import kotlinx.android.synthetic.main.button_calendar.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -28,8 +26,10 @@ class MyCalendar : AppCompatActivity() {
 
     private lateinit var nextDate: Unit
     private lateinit var nextDay: String
-    private lateinit var nextDateAsArray: List<String>
-    private lateinit var dayNumberAndMonthArray: List<String>
+
+    private lateinit var dayOfWeek: String
+    private lateinit var dayNumber: String
+    private lateinit var month: String
     private lateinit var calendarDayButton: FrameLayout
     private lateinit var listView: ListView
     private lateinit var sp: SharedPreferences
@@ -50,75 +50,49 @@ class MyCalendar : AppCompatActivity() {
         sp = getSharedPreferences("sh_pref", MODE_PRIVATE)
         initViews()
         setNextDayDate()
+        setDate(0)
         buttonInit()
         if (sp.getBoolean("sw_low", true) ||
             sp.getBoolean("sw_med", true) ||
             sp.getBoolean("sw_hig", true)
         ) {
             takePlan(calendar.time.day)
-        } else if(sp.getBoolean("sw_custom", true)) {
+        } else if (sp.getBoolean("sw_custom", true)) {
             takeCustomPlan(calendar.time.day)
         }
 
         setCalendarButtonsUnchecked()
 
         btnCalendarDay1.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            takePlan(calendar.time.day)
+            setDate(0)
             btnCalendarDay1.isEnabled = false
-            println( btnCalendarDay1.isEnabled)
-            tv_data_monthCalendar.text = dayNumberAndMonthArray[2]
         }
         btnCalendarDay2.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            nextDate = calendar.add(Calendar.DATE, 1)
-            takePlan(calendar.time.day)
-            nextDate = calendar.add(Calendar.DATE, -1)
+            setDate(1)
             btnCalendarDay2.isEnabled = false
-            tv_data_monthCalendar.text = dayNumberAndMonthArray[1]
-
         }
         btnCalendarDay3.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            nextDate = calendar.add(Calendar.DATE, 2)
-            takePlan(calendar.time.day)
-            nextDate = calendar.add(Calendar.DATE, -2)
-            btnCalendarDay3.isEnabled = false
-            tv_data_monthCalendar.text = dayNumberAndMonthArray[1]
 
+            setDate(2)
+            btnCalendarDay3.isEnabled = false
         }
         btnCalendarDay4.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            nextDate = calendar.add(Calendar.DATE, 3)
-            takePlan(calendar.time.day)
-            nextDate = calendar.add(Calendar.DATE, -3)
+            setDate(3)
             btnCalendarDay4.isEnabled = false
         }
         btnCalendarDay5.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            nextDate = calendar.add(Calendar.DATE, 4)
-            takePlan(calendar.time.day)
-            nextDate = calendar.add(Calendar.DATE, -4)
+            setDate(4)
             btnCalendarDay5.isEnabled = false
         }
         btnCalendarDay6.setOnClickListener {
-            setCalendarButtonsUnchecked()
-            nextDate = calendar.add(Calendar.DATE, 5)
-            takePlan(calendar.time.day)
-            nextDate = calendar.add(Calendar.DATE, -5)
+            setDate(5)
             btnCalendarDay6.isEnabled = false
-
         }
     }
 
     private fun takeCustomPlan(day: Int) {
-// wez liste customową ( otwóz baze danych)
-      //  odfiltruj z niej rządany dzien
-        // wpisz taski
-        val dbHelper = CustomTaskAdapter(this)
 
         try {
-
 
 
         } catch (e: Exception) {
@@ -132,13 +106,11 @@ class MyCalendar : AppCompatActivity() {
                 val v: View = layout.getChildAt(i)
 
                 if (v is FrameLayout) {
-                    val date = v.findViewById<TextView>(R.id.tv_day_button)
-                    val dayAsString = v.findViewById<TextView>(R.id.frame_button_text)
-                    val monthAsString = v.findViewById<TextView>(R.id.tv_calendar_month)
-                    date.text = nextDateAsArray[0]
-                    dayAsString.text = dayNumberAndMonthArray[1]
+                    val dayAsString = v.findViewById<TextView>(R.id.tv_btn_calendar_day)
+                    val dayAsNumber = v.findViewById<TextView>(R.id.tv_btn_calendar_number)
 
-                    monthAsString.text = dayNumberAndMonthArray[2]
+                    dayAsNumber.text = dayNumber
+                    dayAsString.text = dayOfWeek
 
                     setNextDayDate()
                 }
@@ -188,11 +160,22 @@ class MyCalendar : AppCompatActivity() {
     }
 
     private fun setNextDayDate() {
-
         nextDay = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
-        dayOfWeekAsInt = calendar.time.day
-        nextDateAsArray = nextDay.split(",")
-        dayNumberAndMonthArray = nextDateAsArray[1].split(" ")
+        dayNumber = calendar.get(Calendar.DAY_OF_MONTH).toString()
+        dayOfWeek = nextDay.split(",")[0]
         nextDate = calendar.add(Calendar.DATE, 1)
+    }
+
+    private fun setDate(day: Int) {
+
+        nextDate = calendar.add(Calendar.DATE, day)
+        val date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
+        val arrayDate = date.split(",")
+        val monthAndYear = arrayDate[1].split(" ")
+        month = calendar.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.getDefault())
+        setCalendarButtonsUnchecked()
+        takePlan(calendar.time.day)
+        tv_tittle_monthCalendar.text = month + ", " + arrayDate[2]
+        nextDate = calendar.add(Calendar.DATE, -day)
     }
 }

@@ -17,6 +17,7 @@
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:background="@drawable/header_calendar"
+                      android:orientation="vertical"
         >
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -28,6 +29,38 @@
                       android:layout_marginLeft="10dp"
                       android:textColor="@color/colorAccentYellow"/>
 
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/layout_progress"
+                    android:gravity="bottom"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="30dp">
+                <include
+                        layout="@layout/button_main_menu"
+                        android:id="@+id/btn_menu_main1"
+                        android:layout_gravity="start"
+                        android:layout_height="100dp"
+                        android:layout_width="100dp"
+                        android:layout_weight="1"
+
+                />
+                <View android:layout_width="100dp"
+                      android:layout_height="20dp"
+                      android:padding="10dp"
+                />
+
+                <include
+                        layout="@layout/button_main_menu"
+                        android:id="@+id/btn_menu_plan_info"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:layout_height="100dp"
+                        android:layout_width="100dp"
+                />
+            </LinearLayout>
         </LinearLayout>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -54,44 +87,13 @@
 
             >
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:orientation="horizontal"
-                        android:id="@+id/layout_progress"
-                        android:gravity="center"
-                        android:background="#FFFFFF">
-                    <include
-                            layout="@layout/button_main_menu"
-                            android:id="@+id/btn_menu_main1"
-                            android:layout_gravity="start"
-                            android:layout_height="100dp"
-                            android:layout_width="100dp"
-                            android:layout_weight="1"
-
-                    />
-                    <View android:layout_width="100dp"
-                          android:layout_height="20dp"
-                          android:padding="10dp"
-                    />
-
-                    <include
-                            layout="@layout/button_main_menu"
-                            android:id="@+id/btn_menu_main2"
-                            android:layout_gravity="end"
-                            android:layout_weight="1"
-                            android:layout_height="100dp"
-                            android:layout_width="100dp"
-                    />
-                </LinearLayout>
-
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_marginTop="110dp"
+                        android:layout_marginTop="40dp"
                         android:id="@+id/layout_button_category">
                     <TextView
                             android:layout_width="wrap_content"
@@ -103,15 +105,18 @@
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge1"
                     />
-
+                    <View android:layout_width="wrap_content"
+                          android:layout_height="10dp"/>
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge2"
                     />
-
+                    <View android:layout_width="wrap_content"
+                          android:layout_height="10dp"/>
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge3"
                     />
-
+                    <View android:layout_width="wrap_content"
+                          android:layout_height="10dp"/>
                     <include layout="@layout/button_knowledge"
                              android:id="@+id/btn_knowledge4"
                     />
