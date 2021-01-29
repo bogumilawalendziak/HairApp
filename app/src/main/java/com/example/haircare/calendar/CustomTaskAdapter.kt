@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.haircare.customplan.CustomPlan
 
 const val DATABASE_VERSION = 2
 const val DATABASE_NAME = "DATABASE"
@@ -31,8 +30,8 @@ class CustomTaskAdapter(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         onCreate(db)
     }
 
-    fun getPlanDay(day: Int): MutableList<CustomPlan> {
-        val list: MutableList<CustomPlan> = mutableListOf()
+    fun getPlanDay(day: Int): MutableList<Task> {
+        val list: MutableList<Task> = mutableListOf()
         val db = this.readableDatabase
         val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_CUSTOM_DAY=$day"
         var cursor: Cursor?
@@ -51,7 +50,7 @@ class CustomTaskAdapter(context: Context) : SQLiteOpenHelper(context, DATABASE_N
                     val peh = cursor.getString(cursor.getColumnIndex(COL_CUSTOM_PEH))
                     val id = cursor.getLong(cursor.getColumnIndex("_ID"))
 
-                    list.add(CustomPlan(peh = peh, task = name, day = day, id = id))
+                    list.add(Task(peh = peh, task = name, day = day, id = id))
                     //return list
                 }
             } while (cursor.moveToNext())
@@ -59,26 +58,46 @@ class CustomTaskAdapter(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         return list
     }
 
-    fun addCustomPlanTask(task: String, peh: String, day: Int): Long? {
-        val db = this.writableDatabase
-        val values = ContentValues().apply {
-            put(COL_CUSTOM_NAME, task)
-            put(COL_CUSTOM_PEH, peh)
-            put(COL_CUSTOM_DAY, day)
-        }
+    fun getTask(day: Int): Task {
+        val db = this.readableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_CUSTOM_DAY=$day"
+        var cursor: Cursor? = db?.rawQuery(selectQuery, null)
 
-        val success = db?.insert("TABLE_NAME", null, values)
-        db.close()
-        return success
+
+
+        return if (cursor != null && cursor.count > 0) {
+            val day = cursor.getInt(cursor.getColumnIndex(COL_CUSTOM_DAY))
+            val name = cursor.getString(cursor.getColumnIndex(COL_CUSTOM_NAME))
+            val peh = cursor.getString(cursor.getColumnIndex(COL_CUSTOM_PEH))
+            val id = cursor.getLong(cursor.getColumnIndex("_ID"))
+
+            Task(peh = peh, task = name, day = day, id = id)
+            //return list
+        }else Task("Error", "not found",0, 0)
     }
 
-    fun deleteCustomPlanTask(customPlan: CustomPlan) {
-        val db = this.writableDatabase
 
-        val values = ContentValues().apply {
-            put(COL_CUSTOM_NAME, customPlan.task)
 
-        }
+fun addTask(task: String, peh: String, day: Int): Long? {
+    val db = this.writableDatabase
+    val values = ContentValues().apply {
+        put(COL_CUSTOM_NAME, task)
+        put(COL_CUSTOM_PEH, peh)
+        put(COL_CUSTOM_DAY, day)
     }
+
+    val success = db?.insert("TABLE_NAME", null, values)
+    db.close()
+    return success
+}
+
+fun deleteTask(task: Task) {
+    val db = this.writableDatabase
+
+    val values = ContentValues().apply {
+        put(COL_CUSTOM_NAME, task.task)
+
+    }
+}
 
 }

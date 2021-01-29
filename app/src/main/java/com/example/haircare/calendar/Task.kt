@@ -1,4 +1,7 @@
 package com.example.haircare.calendar
 
-class Task ( var name:String?,var product:String?,var description:String?) {
+class Task (var peh: String,
+             var task: String,
+             var day: Int,
+             val id:Long) {
 }

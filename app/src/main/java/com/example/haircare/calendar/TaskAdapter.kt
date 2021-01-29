@@ -27,8 +27,8 @@ class TaskAdapter(val context: Context, private val list: MutableList<Task>, pri
         val view:View = layoutInflater.inflate(resources,null)
         val name: TextView = view.findViewById(R.id.tv_task_name)
         val product: TextView  = view.findViewById(R.id.tv_task_product)
-        name.text=list[position].name
-        product.text=list[position].product
+        name.text=list[position].peh
+        product.text=list[position].task
         return view
     }
 

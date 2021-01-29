@@ -27,6 +27,12 @@
                 android:id="@+id/layout_calendar_plan"
                 android:padding="10dp"
         >
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dodaj zadanie"
+                    android:layout_gravity="end"
+                    android:id="@+id/btn_calendar_create_task"/>
+
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:textSize="30sp"
@@ -37,6 +43,7 @@
                       android:padding="10dp"
                       android:layout_marginTop="30dp"
                       android:id="@+id/tv_tittle_monthCalendar"/>
+
 
             <HorizontalScrollView
                     android:layout_width="match_parent"

@@ -11,9 +11,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.haircare.calendar.CustomTaskAdapter
 import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.Task
-import com.example.haircare.calendar.Task_DB_Helper
 import com.example.haircare.customplan.CreateCustomPlan
 import com.example.haircare.plans.HairCarePlan
 import com.example.haircare.plans.Plan
@@ -85,62 +85,39 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun buttonInit(button: FrameLayout,tittle: String, description: String) {
+    private fun buttonInit(button: FrameLayout, tittle: String, description: String) {
         button.tv_knowledge_tittle.text = tittle
         button.tv_knowledge_description.text = description
 
     }
 
     companion object {
-        private fun takePlanWeek(sp: SharedPreferences): Plan {
 
-            val planList = PlanCreate.getPlan()
-            var plan: Plan = planList[1]
+        fun takePlanDay(day: Int, context: Context): MutableList<Task> {
+            var dbhandler = CustomTaskAdapter(context)
 
-            var hairType: String = when {
-                sp.getBoolean("sw_low", true) -> "niskoporowate"
-                sp.getBoolean("sw_med", true) -> "srednioporowate"
-                sp.getBoolean("sw_hig", true) -> "wysokoporowate"
-                else -> "no_plan"
-            }
-
-            for (item in planList) {
-                if (item.hairType == hairType) {
-                    plan = item
-                }
-            }
-            return plan
-
-        }
-
-        fun takePlanDay(day: Int, sp: SharedPreferences, context: Context): MutableList<Task> {
-            val taskList: MutableList<Task> = mutableListOf()
-            var dbhandler = Task_DB_Helper(context)
-            var numer: Array<Int>? = takePlanWeek(sp).taskList[day]
-            for (num in numer!!) {
-                taskList.add(dbhandler.viewTasks(num))
-            }
-            return taskList
+            return dbhandler.getPlanDay(day)
         }
     }
 
-    private fun initViews() {
-        btnMainMenu1 = findViewById(R.id.btn_menu_main1)
-        btnMainMenu2 = findViewById(R.id.btn_menu_plan_info)
-        btnKnowledge1 = findViewById(R.id.btn_knowledge1)
-        btnKnowledge2 = findViewById(R.id.btn_knowledge2)
-        btnKnowledge3 = findViewById(R.id.btn_knowledge3)
-        btnKnowledge4 = findViewById(R.id.btn_knowledge4)
-        noPlan = findViewById(R.id.tv_layout_main_no_plan)
-        state = findViewById(R.id.tv_state_of_care)
-        layout = findViewById(R.id.layout_button_category)
-        noPlan.visibility = View.GONE
-        layout.visibility = View.VISIBLE
-        state.text ="proteiny :10%"
-        buttonInit(btnKnowledge1,"Czesanie","Coś tam coś tam")
-        buttonInit(btnKnowledge2,"Spanie","Coś tam coś tam")
-        buttonInit(btnKnowledge3,"PEH","Coś tam coś tam")
-        buttonInit(btnKnowledge4,"Mycie","Coś tam coś tam")
+        private fun initViews() {
+            btnMainMenu1 = findViewById(R.id.btn_menu_main1)
+            btnMainMenu2 = findViewById(R.id.btn_menu_plan_info)
+            btnKnowledge1 = findViewById(R.id.btn_knowledge1)
+            btnKnowledge2 = findViewById(R.id.btn_knowledge2)
+            btnKnowledge3 = findViewById(R.id.btn_knowledge3)
+            btnKnowledge4 = findViewById(R.id.btn_knowledge4)
+            noPlan = findViewById(R.id.tv_layout_main_no_plan)
+            state = findViewById(R.id.tv_state_of_care)
+            layout = findViewById(R.id.layout_button_category)
+            noPlan.visibility = View.GONE
+            layout.visibility = View.VISIBLE
+            state.text = "proteiny :10%"
+            buttonInit(btnKnowledge1, "Czesanie", "Coś tam coś tam")
+            buttonInit(btnKnowledge2, "Spanie", "Coś tam coś tam")
+            buttonInit(btnKnowledge3, "PEH", "Coś tam coś tam")
+            buttonInit(btnKnowledge4, "Mycie", "Coś tam coś tam")
 
+        }
     }
-}
+

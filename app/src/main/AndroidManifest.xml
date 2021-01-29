@@ -17,7 +17,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".customplan.CreateCustomPlan"
-                  android:parentActivityName=".MainActivity"
+                  android:parentActivityName=".calendar.MyCalendar"
                   android:label="Twój własny plan">
         </activity>
         <activity android:name=".calendar.MyCalendar"

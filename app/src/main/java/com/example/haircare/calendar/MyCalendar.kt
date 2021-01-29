@@ -1,5 +1,6 @@
 package com.example.haircare.calendar
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
+import com.example.haircare.customplan.CreateCustomPlan
 import kotlinx.android.synthetic.main.activity_mycalendar.*
 import java.text.DateFormat
 import java.util.*
@@ -17,7 +19,7 @@ import kotlin.properties.Delegates
 
 class MyCalendar : AppCompatActivity() {
 
-    var dbhandler: Task_DB_Helper? = null
+    var dbhandler: CustomTaskAdapter? = null
     var name: String? = null
     var product: String? = null
 
@@ -58,7 +60,7 @@ class MyCalendar : AppCompatActivity() {
         ) {
             takePlan(calendar.time.day)
         } else if (sp.getBoolean("sw_custom", true)) {
-            takeCustomPlan(calendar.time.day)
+            takeTask(calendar.time.day)
         }
 
         setCalendarButtonsUnchecked()
@@ -88,13 +90,18 @@ class MyCalendar : AppCompatActivity() {
             setDate(5)
             btnCalendarDay6.isEnabled = false
         }
+
+        btn_calendar_create_task.setOnClickListener {
+          startActivity(Intent(this, CreateCustomPlan::class.java))
+        }
     }
 
-    private fun takeCustomPlan(day: Int) {
+    private fun takeTask(day: Int) {
 
         try {
-
-
+            val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
+            val filter = databaseHandler.getPlanDay(day)
+            listView.adapter = TaskAdapter(this, filter, R.layout.task_view)
         } catch (e: Exception) {
 
         }
@@ -111,8 +118,9 @@ class MyCalendar : AppCompatActivity() {
 
                     dayAsNumber.text = dayNumber
                     dayAsString.text = dayOfWeek
-
+                    nextDate = calendar.add(Calendar.DATE, 1)
                     setNextDayDate()
+
                 }
             }
             nextDate = calendar.add(Calendar.DATE, -7)
@@ -133,7 +141,7 @@ class MyCalendar : AppCompatActivity() {
 
     private fun takePlan(day: Int) {
 
-        val taskList = takePlanDay(day, sp, this)
+        val taskList = takePlanDay(day, this)
 
         try {
             listView.adapter = TaskAdapter(this, taskList, R.layout.task_view)
@@ -154,7 +162,7 @@ class MyCalendar : AppCompatActivity() {
         listView = findViewById(R.id.lv_task_plan)
         calendarDayButton = findViewById(R.id.frame_button)
         layout = findViewById(R.id.button_plan_layout)
-        dbhandler = Task_DB_Helper(this)
+        dbhandler = CustomTaskAdapter(this)
         layout.visibility = View.VISIBLE
 
     }
@@ -163,7 +171,6 @@ class MyCalendar : AppCompatActivity() {
         nextDay = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         dayNumber = calendar.get(Calendar.DAY_OF_MONTH).toString()
         dayOfWeek = nextDay.split(",")[0]
-        nextDate = calendar.add(Calendar.DATE, 1)
     }
 
     private fun setDate(day: Int) {
@@ -171,7 +178,6 @@ class MyCalendar : AppCompatActivity() {
         nextDate = calendar.add(Calendar.DATE, day)
         val date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         val arrayDate = date.split(",")
-        val monthAndYear = arrayDate[1].split(" ")
         month = calendar.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.getDefault())
         setCalendarButtonsUnchecked()
         takePlan(calendar.time.day)
