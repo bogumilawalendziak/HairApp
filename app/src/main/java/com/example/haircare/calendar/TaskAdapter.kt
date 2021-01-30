@@ -4,32 +4,42 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
+import android.widget.CalendarView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.R
+import kotlinx.android.synthetic.main.task_view.view.*
 
-class TaskAdapter(val context: Context, private val list: MutableList<Task>, private val resources: Int): BaseAdapter() {
-    override fun getCount(): Int {
-        return list.size
+class TaskAdapter(val context: Context, private val list: MutableList<Task>) :
+    RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {
+        return ViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.task_view, parent, false
+            )
+        )
     }
 
-    override fun getItem(position: Int): Any {
-        return list[position]
+    override fun onBindViewHolder(holder: TaskAdapter.ViewHolder, position: Int) {
+        val item = list.get(position)
+        holder.taskName.text = item.task
+        holder.product.text = item.task
+        holder.btnDelete.setOnClickListener {view ->
+            if (context is MyCalendar) {
+                context.deleteTask(item)
+            }
+        }
     }
 
-    override fun getItemId(position: Int): Long {
-       return position.toLong()
+    override fun getItemCount(): Int {
+       return list.size
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        //take an XML view, create its object set values, repeat
-        val layoutInflater: LayoutInflater = LayoutInflater.from(context)
-        val view:View = layoutInflater.inflate(resources,null)
-        val name: TextView = view.findViewById(R.id.tv_task_name)
-        val product: TextView  = view.findViewById(R.id.tv_task_product)
-        name.text=list[position].peh
-        product.text=list[position].task
-        return view
-    }
 
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        //holds tv and btn
+        val btnDelete = view.btn_delete_task
+        val taskName = view.tv_task_name
+        val product = view.tv_task_product
+    }
 }

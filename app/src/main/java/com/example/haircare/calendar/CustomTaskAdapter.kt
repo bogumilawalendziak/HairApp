@@ -91,13 +91,14 @@ fun addTask(task: String, peh: String, day: Int): Long? {
     return success
 }
 
-fun deleteTask(task: Task) {
+fun deleteTask(task: Task):Int {
     val db = this.writableDatabase
 
     val values = ContentValues().apply {
-        put(COL_CUSTOM_NAME, task.task)
-
+        put("_ID", task.id)
     }
+    val success = db.delete(TABLE_NAME,"_ID = " + task.id,null)
+    return success
 }
 
 }

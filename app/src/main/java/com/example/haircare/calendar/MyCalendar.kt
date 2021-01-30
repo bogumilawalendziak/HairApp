@@ -6,20 +6,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
 import com.example.haircare.customplan.CreateCustomPlan
 import kotlinx.android.synthetic.main.activity_mycalendar.*
 import java.text.DateFormat
 import java.util.*
-import kotlin.properties.Delegates
 
 class MyCalendar : AppCompatActivity() {
 
-    var dbhandler: CustomTaskAdapter? = null
+    var databaseHandler: CustomTaskAdapter? = null
     var name: String? = null
     var product: String? = null
 
@@ -33,8 +33,7 @@ class MyCalendar : AppCompatActivity() {
     private lateinit var dayNumber: String
     private lateinit var month: String
     private lateinit var calendarDayButton: FrameLayout
-    private lateinit var listView: ListView
-    private lateinit var sp: SharedPreferences
+    private lateinit var recyclerView: RecyclerView
     private lateinit var layout: LinearLayout
     private lateinit var btnCalendarDay1: FrameLayout
     private lateinit var btnCalendarDay2: FrameLayout
@@ -43,26 +42,15 @@ class MyCalendar : AppCompatActivity() {
     private lateinit var btnCalendarDay5: FrameLayout
     private lateinit var btnCalendarDay6: FrameLayout
 
-    private var dayOfWeekAsInt by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mycalendar)
 
-        sp = getSharedPreferences("sh_pref", MODE_PRIVATE)
         initViews()
         setNextDayDate()
         setDate(0)
         buttonInit()
-        if (sp.getBoolean("sw_low", true) ||
-            sp.getBoolean("sw_med", true) ||
-            sp.getBoolean("sw_hig", true)
-        ) {
-            takePlan(calendar.time.day)
-        } else if (sp.getBoolean("sw_custom", true)) {
-            takeTask(calendar.time.day)
-        }
-
         setCalendarButtonsUnchecked()
 
         btnCalendarDay1.setOnClickListener {
@@ -92,20 +80,10 @@ class MyCalendar : AppCompatActivity() {
         }
 
         btn_calendar_create_task.setOnClickListener {
-          startActivity(Intent(this, CreateCustomPlan::class.java))
+            startActivity(Intent(this, CreateCustomPlan::class.java))
         }
     }
 
-    private fun takeTask(day: Int) {
-
-        try {
-            val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
-            val filter = databaseHandler.getPlanDay(day)
-            listView.adapter = TaskAdapter(this, filter, R.layout.task_view)
-        } catch (e: Exception) {
-
-        }
-    }
 
     private fun buttonInit() {
         try {
@@ -139,19 +117,6 @@ class MyCalendar : AppCompatActivity() {
     }
 
 
-    private fun takePlan(day: Int) {
-
-        val taskList = takePlanDay(day, this)
-
-        try {
-            listView.adapter = TaskAdapter(this, taskList, R.layout.task_view)
-
-
-        } catch (e: Exception) {
-            listView.visibility = View.GONE
-        }
-    }
-
     private fun initViews() {
         btnCalendarDay1 = findViewById(R.id.frame_button)
         btnCalendarDay2 = findViewById(R.id.frame_button2)
@@ -159,11 +124,12 @@ class MyCalendar : AppCompatActivity() {
         btnCalendarDay4 = findViewById(R.id.frame_button4)
         btnCalendarDay5 = findViewById(R.id.frame_button5)
         btnCalendarDay6 = findViewById(R.id.frame_button6)
-        listView = findViewById(R.id.lv_task_plan)
+        recyclerView = findViewById(R.id.recycler_view_task)
+        recyclerView.setHasFixedSize(true)
+
         calendarDayButton = findViewById(R.id.frame_button)
         layout = findViewById(R.id.button_plan_layout)
-        dbhandler = CustomTaskAdapter(this)
-        layout.visibility = View.VISIBLE
+        databaseHandler = CustomTaskAdapter(this)
 
     }
 
@@ -173,14 +139,34 @@ class MyCalendar : AppCompatActivity() {
         dayOfWeek = nextDay.split(",")[0]
     }
 
+    fun deleteTask(task: Task) {
+
+        val lol = databaseHandler?.deleteTask(task)
+
+    }
+
+    private fun setupTaskListInRecyclerView(day: Int) {
+
+        val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
+        val filter = databaseHandler.getPlanDay(day)
+        if (filter.size > 0) {
+            val size = filter.size
+            println("rozmiar $size")
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = TaskAdapter(this, filter)
+        }
+
+    }
+
+
     private fun setDate(day: Int) {
 
         nextDate = calendar.add(Calendar.DATE, day)
         val date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         val arrayDate = date.split(",")
-        month = calendar.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.getDefault())
+        month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
         setCalendarButtonsUnchecked()
-        takePlan(calendar.time.day)
+        setupTaskListInRecyclerView(calendar.time.day)
         tv_tittle_monthCalendar.text = month + ", " + arrayDate[2]
         nextDate = calendar.add(Calendar.DATE, -day)
     }

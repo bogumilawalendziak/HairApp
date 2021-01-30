@@ -37,16 +37,6 @@
         >
 
         </item>
-
-        <item
-                android:id="@+id/btn_myPlan"
-                android:title="wlasny plan"
-                android:icon="@drawable/menu_icon_border_grzebien"
-                android:iconTint="@color/colorAccentYellow"
-
-        >
-
-        </item>
       
     </group>
 </menu>
