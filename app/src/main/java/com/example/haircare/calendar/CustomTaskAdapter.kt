@@ -73,32 +73,31 @@ class CustomTaskAdapter(context: Context) : SQLiteOpenHelper(context, DATABASE_N
 
             Task(peh = peh, task = name, day = day, id = id)
             //return list
-        }else Task("Error", "not found",0, 0)
+        } else Task("Error", "not found", 0, 0)
     }
 
 
+    fun addTask(task: String, peh: String, day: Int): Long? {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COL_CUSTOM_NAME, task)
+            put(COL_CUSTOM_PEH, peh)
+            put(COL_CUSTOM_DAY, day)
+        }
 
-fun addTask(task: String, peh: String, day: Int): Long? {
-    val db = this.writableDatabase
-    val values = ContentValues().apply {
-        put(COL_CUSTOM_NAME, task)
-        put(COL_CUSTOM_PEH, peh)
-        put(COL_CUSTOM_DAY, day)
+        val success = db?.insert("TABLE_NAME", null, values)
+        db.close()
+        return success
     }
 
-    val success = db?.insert("TABLE_NAME", null, values)
-    db.close()
-    return success
-}
+    fun deleteTask(task: Task): Boolean {
+        val db = this.writableDatabase
 
-fun deleteTask(task: Task):Int {
-    val db = this.writableDatabase
-
-    val values = ContentValues().apply {
-        put("_ID", task.id)
+        val values = ContentValues().apply {
+            put("_ID", task.id)
+        }
+        val success = db.delete(TABLE_NAME, "_ID = " + task.id, null)
+        return success!=0
     }
-    val success = db.delete(TABLE_NAME,"_ID = " + task.id,null)
-    return success
-}
 
 }

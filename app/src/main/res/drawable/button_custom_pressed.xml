@@ -19,11 +19,6 @@
 
         <shape android:shape="rectangle">
 
-
-<stroke android:color="@color/colorAccentYellow"
-        android:width="3dp"
-        android:dashGap="10dp"
-        android:dashWidth="10dp"/>
             <solid android:color="#FFFFFF"/>
             <corners android:radius="17dp"/>
             <size android:width="67dp"

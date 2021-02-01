@@ -14,22 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.haircare.calendar.CustomTaskAdapter
 import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.Task
-import com.example.haircare.customplan.CreateCustomPlan
-import com.example.haircare.plans.HairCarePlan
-import com.example.haircare.plans.Plan
-import com.example.haircare.plans.PlanCreate
 import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.button_knowledge.view.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     var name: String? = null
     var product: String? = null
-
-    val calendar: Date = Calendar.getInstance().time
 
 
     private lateinit var btnMainMenu1: FrameLayout
@@ -57,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         nav_view.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.btn_hair -> startActivity(Intent(this, StartTestActivity::class.java))
-                R.id.btn_plans -> startActivity(Intent(this, HairCarePlan::class.java))
                 R.id.btn_scanner -> startActivity(Intent(this, Scanner::class.java))
                 R.id.btn_calendar -> startActivity(Intent(this, MyCalendar::class.java))
             }
@@ -65,14 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         initViews()
-        if (sp.getBoolean("sw_low", true) ||
-            sp.getBoolean("sw_med", true) ||
-            sp.getBoolean("sw_hig", true)
-        ) {
-
-        } else {
-
-        }
     }
 
 
@@ -99,24 +83,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-        private fun initViews() {
-            btnMainMenu1 = findViewById(R.id.btn_menu_main1)
-            btnMainMenu2 = findViewById(R.id.btn_menu_plan_info)
-            btnKnowledge1 = findViewById(R.id.btn_knowledge1)
-            btnKnowledge2 = findViewById(R.id.btn_knowledge2)
-            btnKnowledge3 = findViewById(R.id.btn_knowledge3)
-            btnKnowledge4 = findViewById(R.id.btn_knowledge4)
-            noPlan = findViewById(R.id.tv_layout_main_no_plan)
-            state = findViewById(R.id.tv_state_of_care)
-            layout = findViewById(R.id.layout_button_category)
-            noPlan.visibility = View.GONE
-            layout.visibility = View.VISIBLE
-            state.text = "proteiny :10%"
-            buttonInit(btnKnowledge1, "Czesanie", "Coś tam coś tam")
-            buttonInit(btnKnowledge2, "Spanie", "Coś tam coś tam")
-            buttonInit(btnKnowledge3, "PEH", "Coś tam coś tam")
-            buttonInit(btnKnowledge4, "Mycie", "Coś tam coś tam")
+    private fun initViews() {
+        btnMainMenu1 = findViewById(R.id.btn_menu_main1)
+        btnMainMenu2 = findViewById(R.id.btn_menu_plan_info)
+        btnKnowledge1 = findViewById(R.id.btn_knowledge1)
+        btnKnowledge2 = findViewById(R.id.btn_knowledge2)
+        btnKnowledge3 = findViewById(R.id.btn_knowledge3)
+        btnKnowledge4 = findViewById(R.id.btn_knowledge4)
+        noPlan = findViewById(R.id.tv_layout_main_no_plan)
+        state = findViewById(R.id.tv_state_of_care)
+        layout = findViewById(R.id.layout_button_category)
+        noPlan.visibility = View.GONE
+        layout.visibility = View.VISIBLE
+        state.text = "proteiny :10%"
+        buttonInit(btnKnowledge1, "Czesanie", "Coś tam coś tam")
+        buttonInit(btnKnowledge2, "Spanie", "Coś tam coś tam")
+        buttonInit(btnKnowledge3, "PEH", "Coś tam coś tam")
+        buttonInit(btnKnowledge4, "Mycie", "Coś tam coś tam")
 
-        }
     }
+}
 

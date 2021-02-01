@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.haircare.R
 
-class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:Int) : BaseAdapter() {
+class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources: Int) : BaseAdapter() {
 
     private val myContext: Context = context
     private val myData: MutableList<Ingredients> = data
@@ -30,7 +30,7 @@ class MyAdapter(context: Context, data: MutableList<Ingredients>, var resources:
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater: LayoutInflater = LayoutInflater.from(myContext)
-        val view: View = layoutInflater.inflate(resources,null)
+        val view: View = layoutInflater.inflate(resources, null)
 
         val ilName: TextView = view.findViewById(R.id.il_name)
         val ilDescription: TextView = view.findViewById(R.id.il_description)

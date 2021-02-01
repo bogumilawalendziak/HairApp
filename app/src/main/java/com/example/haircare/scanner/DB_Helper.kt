@@ -57,7 +57,6 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
     }
 
 
-
     private fun openDatabase() {
         dataBase =
             SQLiteDatabase.openDatabase(context.getDatabasePath(dbName).path, null, SQLiteDatabase.OPEN_READWRITE)
@@ -86,7 +85,7 @@ class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName
         }
         cursor?.moveToFirst()
 
-         if (cursor != null && cursor.count > 0) {
+        if (cursor != null && cursor.count > 0) {
             val id = cursor.getInt(cursor.getColumnIndex(COL_ID))
             val name = cursor.getString(cursor.getColumnIndex(COL_NAME))
             val description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))

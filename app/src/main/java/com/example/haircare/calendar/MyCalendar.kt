@@ -1,16 +1,16 @@
 package com.example.haircare.calendar
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.haircare.MainActivity.Companion.takePlanDay
 import com.example.haircare.R
 import com.example.haircare.customplan.CreateCustomPlan
 import kotlinx.android.synthetic.main.activity_mycalendar.*
@@ -23,7 +23,7 @@ class MyCalendar : AppCompatActivity() {
     var name: String? = null
     var product: String? = null
 
-    val calendar: Calendar = Calendar.getInstance()
+    private val calendar: Calendar = Calendar.getInstance()
 
 
     private lateinit var nextDate: Unit
@@ -31,7 +31,6 @@ class MyCalendar : AppCompatActivity() {
 
     private lateinit var dayOfWeek: String
     private lateinit var dayNumber: String
-    private lateinit var month: String
     private lateinit var calendarDayButton: FrameLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var layout: LinearLayout
@@ -136,13 +135,11 @@ class MyCalendar : AppCompatActivity() {
     private fun setNextDayDate() {
         nextDay = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         dayNumber = calendar.get(Calendar.DAY_OF_MONTH).toString()
-        dayOfWeek = nextDay.split(",")[0]
+        dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
     }
 
-    fun deleteTask(task: Task) {
-
-        val lol = databaseHandler?.deleteTask(task)
-
+    fun deleteTask(task: Task):Boolean {
+        return databaseHandler?.deleteTask(task)!!
     }
 
     private fun setupTaskListInRecyclerView(day: Int) {
@@ -150,24 +147,29 @@ class MyCalendar : AppCompatActivity() {
         val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
         val filter = databaseHandler.getPlanDay(day)
         if (filter.size > 0) {
-            val size = filter.size
-            println("rozmiar $size")
+            tv_no_task_calendar.visibility = GONE
+            recyclerView.visibility = VISIBLE
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = TaskAdapter(this, filter)
+        } else {
+            tv_no_task_calendar.visibility = VISIBLE
+            recyclerView.visibility = GONE
         }
 
     }
 
 
-    private fun setDate(day: Int) {
+    private fun setDate(day: Int):Boolean {
+        return if (day in 0..6){
+            nextDate = calendar.add(Calendar.DATE, day)
+            val month = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
+            val year = calendar.get(Calendar.YEAR)
 
-        nextDate = calendar.add(Calendar.DATE, day)
-        val date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
-        val arrayDate = date.split(",")
-        month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
-        setCalendarButtonsUnchecked()
-        setupTaskListInRecyclerView(calendar.time.day)
-        tv_tittle_monthCalendar.text = month + ", " + arrayDate[2]
-        nextDate = calendar.add(Calendar.DATE, -day)
+            setCalendarButtonsUnchecked()
+            setupTaskListInRecyclerView(calendar.time.day)
+            tv_tittle_monthCalendar.text = "$month, $year"
+            nextDate = calendar.add(Calendar.DATE, -day)
+            true
+        }else false
     }
 }

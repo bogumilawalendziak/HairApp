@@ -16,26 +16,15 @@
                 android:icon="@drawable/menu_icon_border_vial"
                 android:iconTint="@color/colorAccentYellow"
                 android:iconTintMode="add"
-
-
         >
-
         </item>
-        <item
-                android:id="@+id/btn_plans"
-                android:title="plany"
-                android:icon="@drawable/menu_icon_border_grzebien"
-                android:iconTint="@color/colorAccentYellow"
-        >
 
-        </item>
         <item
                 android:id="@+id/btn_calendar"
                 android:title="kalendarz"
                 android:icon="@drawable/menu_icon_border_calendar"
                 android:iconTint="@color/colorAccentYellow"
         >
-
         </item>
       
     </group>
