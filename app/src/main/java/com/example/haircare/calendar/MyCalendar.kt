@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.R
@@ -19,7 +20,6 @@ import java.util.*
 
 class MyCalendar : AppCompatActivity() {
 
-    var databaseHandler: CustomTaskAdapter? = null
     var name: String? = null
     var product: String? = null
 
@@ -40,7 +40,7 @@ class MyCalendar : AppCompatActivity() {
     private lateinit var btnCalendarDay4: FrameLayout
     private lateinit var btnCalendarDay5: FrameLayout
     private lateinit var btnCalendarDay6: FrameLayout
-
+    private lateinit var mTaskViewModel: TaskViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,7 +128,7 @@ class MyCalendar : AppCompatActivity() {
 
         calendarDayButton = findViewById(R.id.frame_button)
         layout = findViewById(R.id.button_plan_layout)
-        databaseHandler = CustomTaskAdapter(this)
+        mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
     }
 
@@ -138,29 +138,31 @@ class MyCalendar : AppCompatActivity() {
         dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
     }
 
-    fun deleteTask(task: Task):Boolean {
-        return databaseHandler?.deleteTask(task)!!
+    fun deleteTask(task: TaskEntity) {
+        mTaskViewModel.deleteTask(task)
     }
 
     private fun setupTaskListInRecyclerView(day: Int) {
 
-        val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
-        val filter = databaseHandler.getPlanDay(day)
-        if (filter.size > 0) {
-            tv_no_task_calendar.visibility = GONE
-            recyclerView.visibility = VISIBLE
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = TaskAdapter(this, filter)
-        } else {
-            tv_no_task_calendar.visibility = VISIBLE
-            recyclerView.visibility = GONE
-        }
+        mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
+            if (task.size > 0) {
+                println(" Task z listy to $task")
 
+                tv_no_task_calendar.visibility = GONE
+                recyclerView.visibility = VISIBLE
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = TaskAdapter(this, task)
+            } else {
+                tv_no_task_calendar.visibility = VISIBLE
+                recyclerView.visibility = GONE
+            }
+        }
+      )
     }
 
 
-    private fun setDate(day: Int):Boolean {
-        return if (day in 0..6){
+    private fun setDate(day: Int): Boolean {
+        return if (day in 0..6) {
             nextDate = calendar.add(Calendar.DATE, day)
             val month = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
             val year = calendar.get(Calendar.YEAR)
@@ -170,6 +172,6 @@ class MyCalendar : AppCompatActivity() {
             tv_tittle_monthCalendar.text = "$month, $year"
             nextDate = calendar.add(Calendar.DATE, -day)
             true
-        }else false
+        } else false
     }
 }

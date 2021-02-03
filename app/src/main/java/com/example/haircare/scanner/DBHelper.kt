@@ -18,7 +18,7 @@ private const val COL_DESCRIPTION = "description"
 
 const val dbVersionNumber = 1
 
-class DB_Helper(private val context: Context) : SQLiteOpenHelper(context, dbName, null, dbVersionNumber) {
+class DBHelper(private val context: Context) : SQLiteOpenHelper(context, dbName, null, dbVersionNumber) {
     private var dataBase: SQLiteDatabase? = null
 
     init {

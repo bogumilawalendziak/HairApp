@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.R
 import kotlinx.android.synthetic.main.task_view.view.*
 
-class TaskAdapter(val context: Context, private val list: MutableList<Task>) :
+class TaskAdapter(val context: Context, private val list: MutableList<TaskEntity>) :
     RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {

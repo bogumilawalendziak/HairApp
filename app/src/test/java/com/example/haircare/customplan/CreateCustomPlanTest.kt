@@ -10,6 +10,7 @@ class CreateCustomPlanTest {
        val result= createCustomPlan.takeDay("incorrectName")
         assertEquals(result,-1)
     }
+    @Test
     fun `correct day of week name returns day of week as number`() {
         val createCustomPlan: CreateCustomPlan = CreateCustomPlan()
         val result= createCustomPlan.takeDay("poniedziałek")

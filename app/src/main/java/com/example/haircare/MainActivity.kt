@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.haircare.calendar.CustomTaskAdapter
 import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.Task
 import com.example.haircare.scanner.Scanner
@@ -74,14 +73,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    companion object {
-
-        fun takePlanDay(day: Int, context: Context): MutableList<Task> {
-            var dbhandler = CustomTaskAdapter(context)
-
-            return dbhandler.getPlanDay(day)
-        }
-    }
 
     private fun initViews() {
         btnMainMenu1 = findViewById(R.id.btn_menu_main1)

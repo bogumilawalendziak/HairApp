@@ -1,18 +1,13 @@
 package com.example.haircare.customplan
 
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Button
-import android.widget.ExpandableListView
-import android.widget.ExpandableListView.OnGroupExpandListener
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.haircare.R
-import com.example.haircare.calendar.CustomTaskAdapter
-import com.example.haircare.calendar.Task
+import com.example.haircare.calendar.TaskEntity
+import com.example.haircare.calendar.TaskViewModel
 import kotlinx.android.synthetic.main.activity_create_custom_plan.*
-import java.util.*
 
 
 class CreateCustomPlan : AppCompatActivity() {
@@ -23,19 +18,20 @@ class CreateCustomPlan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_custom_plan)
         initViews()
-        val databaseHandler: CustomTaskAdapter = CustomTaskAdapter(this)
+        val mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
-
+// TEST
         button.setOnClickListener {
             val day = spinner1.selectedItem.toString()
             val peh = spinner3.selectedItem.toString()
             val task = tv_put_task.text.toString()
             // add task to db
-            if (!task.isEmpty()) {
-              databaseHandler.addTask(task, peh, takeDay(day))
-            }
+           // if (task.isNotEmpty()) {
+                mTaskViewModel.addTask(TaskEntity(task, peh, takeDay(day)))
+                println(" Dodano task : $day  i  $task")
+           // }
             //show task in list
-           databaseHandler.getPlanDay(takeDay(day))
+          // mTaskViewModel.getTasksAtDay(takeDay(day))
         }
 
 
@@ -61,5 +57,4 @@ class CreateCustomPlan : AppCompatActivity() {
         if (day == "niedziela") i = 6
         return i
     }
-
 }

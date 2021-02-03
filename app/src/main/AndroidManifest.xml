@@ -25,11 +25,6 @@
                   android:label="Kalendarz">
         </activity>
 
-        <activity
-                android:name=".plans.HairCarePlan"
-                android:parentActivityName=".MainActivity"
-                android:label="Ustawienia">
-        </activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"

@@ -21,7 +21,7 @@ import java.io.File
 
 class Scanner : AppCompatActivity() {
 
-    var databaseHandler: DB_Helper? = null
+    var databaseHandler: DBHelper? = null
     private val FILE_NAME = "text_photo"
     lateinit var loadImage: ImageView
     lateinit var textView: TextView
@@ -40,7 +40,7 @@ class Scanner : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
 
-        databaseHandler = DB_Helper(this)
+        databaseHandler = DBHelper(this)
 
         listView = findViewById(R.id.lv_item)
         loadImage = findViewById(R.id.loadImage)
