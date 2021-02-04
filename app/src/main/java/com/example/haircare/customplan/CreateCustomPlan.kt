@@ -22,19 +22,22 @@ class CreateCustomPlan : AppCompatActivity() {
 
 // TEST
         button.setOnClickListener {
-            val day = spinner1.selectedItem.toString()
-            val peh = spinner3.selectedItem.toString()
-            val task = tv_put_task.text.toString()
-            // add task to db
-           // if (task.isNotEmpty()) {
-                mTaskViewModel.addTask(TaskEntity(task, peh, takeDay(day)))
-                println(" Dodano task : $day  i  $task")
-           // }
+            createTask(mTaskViewModel)
             //show task in list
           // mTaskViewModel.getTasksAtDay(takeDay(day))
         }
 
 
+    }
+
+    private fun createTask(mTaskViewModel: TaskViewModel) {
+        val day = spinner1.selectedItem.toString()
+        val peh = spinner3.selectedItem.toString()
+        val task = tv_put_task.text.toString()
+        // add task to db
+        if (task.isNotEmpty()) {
+            mTaskViewModel.addTask(TaskEntity(task, peh, takeDay(day)))
+        }
     }
 
     private fun initViews() {
