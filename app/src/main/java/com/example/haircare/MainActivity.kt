@@ -11,8 +11,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.haircare.calculations.CalculationOfIngredients
 import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.Task
+import com.example.haircare.calendar.TaskViewModel
 import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -86,11 +89,19 @@ class MainActivity : AppCompatActivity() {
         layout = findViewById(R.id.layout_button_category)
         noPlan.visibility = View.GONE
         layout.visibility = View.VISIBLE
-        state.text = "proteiny :10%"
         buttonInit(btnKnowledge1, "Czesanie", "Coś tam coś tam")
         buttonInit(btnKnowledge2, "Spanie", "Coś tam coś tam")
         buttonInit(btnKnowledge3, "PEH", "Coś tam coś tam")
         buttonInit(btnKnowledge4, "Mycie", "Coś tam coś tam")
+        ingredientsPercentage()
+    }
+
+    fun ingredientsPercentage(){
+        val model = ViewModelProvider(this).get(TaskViewModel::class.java)
+        val list = model.readAllTask.observe(this,{taskList->
+            val percentage = CalculationOfIngredients().amountIngredients(taskList)
+            state.text = "P : ${percentage.protein}%"
+        })
 
     }
 }
