@@ -1,10 +1,11 @@
 package com.example.haircare.calculations
 
 import com.example.haircare.calendar.TaskEntity
+import com.github.mikephil.charting.data.PieEntry
 
 class CalculationOfIngredients {
 
-    fun amountIngredients(list: MutableList<TaskEntity>): AmountOfIngredients {
+    fun amountIngredients(list: MutableList<TaskEntity>): ArrayList<PieEntry> {
         var list = list
         var protein: Int = 0
         var humektant: Int = 0
@@ -24,14 +25,18 @@ class CalculationOfIngredients {
                         }
                     }
                 }
-                val proteinPerc = ingredientsPercentage(protein, allTask)
+               /* val proteinPerc = ingredientsPercentage(protein, allTask)
                 val humektantPerc = ingredientsPercentage(humektant, allTask)
-                val emolientPerc = ingredientsPercentage(emolients, allTask)
-                return AmountOfIngredients(proteinPerc, humektantPerc, emolientPerc)
+                val emolientPerc = ingredientsPercentage(emolients, allTask)*/
+        val inglist= ArrayList<PieEntry>()
+        inglist.add(PieEntry(protein.toFloat(),"proteiny"))
+        inglist.add(PieEntry(humektant.toFloat(),"humetanty"))
+        inglist.add(PieEntry(emolients.toFloat(),"emolienty"))
+                return inglist
             }
 
 
-    fun ingredientsPercentage(ingredient: Int, all: Int): Int {
+    private fun ingredientsPercentage(ingredient: Int, all: Int): Int {
         return (ingredient * 100 / all).toInt()
     }
 }

@@ -10,4 +10,6 @@
     <color name="colorText">#18212E</color>
     <color name="colorTextIcon">#253145</color>
     <color name="colorAccentYellow">#FFE5D3</color>
+    <color name="colorLightBlue">#99C6DC</color>
+    <color name="color3">#D1168D</color>
 </resources>
