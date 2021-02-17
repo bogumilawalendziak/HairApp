@@ -4,41 +4,28 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.graphics.Typeface
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ComplexColorCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.calculations.CalculationOfIngredients
 import com.example.haircare.calendar.MyCalendar
-import com.example.haircare.calendar.Task
 import com.example.haircare.calendar.TaskViewModel
 import com.example.haircare.chart.PercValueFormatter
+import com.example.haircare.menucard.MenuCardTaskAdapter
 import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.DataSet
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
-import com.github.mikephil.charting.formatter.IValueFormatter
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.button_knowledge.view.*
-import kotlinx.android.synthetic.main.button_main_menu.*
-import java.text.DecimalFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var noPlan: TextView
     lateinit var toggle: ActionBarDrawerToggle
     var context: Context = this
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var mTaskViewModel: TaskViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -73,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
+    override fun onStart() {
+        super.onStart()
+        initViews()
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
@@ -82,47 +75,56 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun buttonInit(button: FrameLayout, tittle: String, description: String) {
-        button.tv_knowledge_tittle.text = tittle
-        button.tv_knowledge_description.text = description
-
-    }
-
 
     private fun initViews() {
-
+        recyclerView = findViewById(R.id.recycler_view_menu_card)
+        recyclerView.setHasFixedSize(true)
+        mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         pieChart = findViewById(R.id.pie_chart)
         ingredientsPercentage()
+        //TODO: do poprawy te dni
+        setupTaskListInRecyclerView(Calendar.getInstance().time.day-1)
+
     }
 
-    private fun ingredientsPercentage(){
-        val model = ViewModelProvider(this).get(TaskViewModel::class.java)
+    private fun ingredientsPercentage() {
 
-        val list = model.readAllTask.observe(this,{taskList->
+        mTaskViewModel.readAllTask.observe(this, { taskList ->
             val data = CalculationOfIngredients().amountIngredients(taskList)
-            val pieDataSet= PieDataSet(data,"")
-            var colors = intArrayOf(R.color.colorLightBlue,R.color.color2,R.color.color3)
-            pieDataSet.setColors(colors,context)
+            val pieDataSet = PieDataSet(data, "")
+            var colors = intArrayOf(R.color.colorLightBlue, R.color.color2, R.color.color3)
+            pieDataSet.setColors(colors, context)
             pieDataSet.valueTextColor = Color.WHITE
-            pieDataSet.valueTextSize= 15F
+            pieDataSet.valueTextSize = 15F
 
-
-            val pieData= PieData(pieDataSet)
-            pieChart.description.isEnabled=false
-            pieChart.data=pieData
+            val pieData = PieData(pieDataSet)
+            pieChart.description.isEnabled = false
+            pieChart.data = pieData
             pieChart.animate()
             pieChart.setDrawEntryLabels(true)
             pieChart.setEntryLabelColor(Color.WHITE)
             pieChart.setEntryLabelTextSize(11F)
-            pieChart.legend.isEnabled=false
+            pieChart.legend.isEnabled = false
             pieChart.setHoleColor(Color.TRANSPARENT)
             pieDataSet.valueFormatter = DefaultValueFormatter(1)
             pieChart.holeRadius = 25f
-            pieChart.transparentCircleRadius=35f
+            pieChart.transparentCircleRadius = 35f
             pieChart.setUsePercentValues(true)
-            pieDataSet.valueFormatter=PercValueFormatter()
+            pieDataSet.valueFormatter = PercValueFormatter()
 
         })
+    }
+
+    private fun setupTaskListInRecyclerView(day: Int) {
+
+        mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
+            if (task.size > 0) {
+                recyclerView.visibility = View.VISIBLE
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = MenuCardTaskAdapter(this, task)
+            }
+        }
+        )
     }
 }
 

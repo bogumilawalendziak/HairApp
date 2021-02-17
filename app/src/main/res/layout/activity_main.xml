@@ -14,34 +14,178 @@
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
-                  android:padding="30dp"
+                  android:padding="10dp"
                   android:background="@android:color/darker_gray">
         <androidx.cardview.widget.CardView
                 app:contentPadding="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 app:cardElevation="10dp"
                 app:cardBackgroundColor="@android:color/white"
-        >
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="Twoje statystyki"
-                      android:textSize="30dp"
-                      android:textStyle="bold"
-                      android:textColor="@color/colorBackground"/>
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/layout_progress"
-                    android:layout_gravity="center">
-                <com.github.mikephil.charting.charts.PieChart
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:id="@+id/pie_chart"
+                app:cardCornerRadius="20dp">
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="25sp"
+                          android:textColor="@color/colorBackground"
+                          android:text="@string/hello"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="30sp"
+                          android:textColor="@color/colorBackground"
+                          android:textStyle="bold"
+                          android:text="Miłka!"
                 />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <GridLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="2"
+                    android:rowCount="2"
+                    android:orientation="horizontal"
+                    android:alignmentMode="alignBounds"
+                    android:padding="10dp"
+                    android:useDefaultMargins="true"
+        >
+            <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="20dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_columnWeight="1"
+            >
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/layout_progress"
+                        android:gravity="center"
+                        android:layout_gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="Równowaga PEH"
+                              android:textSize="16sp"
+                              android:textStyle="bold"
+                              android:textColor="@color/colorBackground"/>
+
+                    <com.github.mikephil.charting.charts.PieChart
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:id="@+id/pie_chart"
+                    />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:layout_height="200dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="#FF7AAB"
+                    app:cardCornerRadius="20dp"
+            >
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textStyle="bold"
+                          android:text="Zapuszczanie włosów"
+                          android:padding="10dp"
+                          android:textSize="16sp"/>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:layout_marginTop="10dp"
+                >
+                    <include layout="@layout/menu_card_target"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="@color/lightblue"
+                    app:cardCornerRadius="20dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:layout_columnWeight="1"
+            >
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Włosy porowate"
+                          android:textSize="16sp"
+                          android:textStyle="bold"
+                          android:layout_gravity="top"
+                          android:gravity="top"
+                          android:padding="10dp"
+                />
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center">
+
+                    <View android:layout_width="100dp"
+                          android:layout_height="60dp"
+                          android:background="@drawable/ic_logo"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="1"
+                    android:layout_height="200dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="20dp"
+            >
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Dzisiejsze zadania:"
+                          android:textSize="16sp"
+                          android:textStyle="bold"
+                          android:layout_gravity="top"
+
+                          android:padding="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:textColor="@color/colorBackground"/>
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                >
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="20dp"
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:id="@+id/recycler_view_menu_card"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

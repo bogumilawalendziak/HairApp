@@ -6,10 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".customplan.CreateCustomPlan"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#54DFDFDF">
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="250dp"
                   android:background="@drawable/header_edit_task"
                   android:orientation="vertical"
                   android:elevation="8dp"
@@ -38,7 +39,6 @@
                     android:layout_gravity="bottom"
                     android:layout_marginTop="80dp"
                     android:layout_marginHorizontal="20dp"
-
             />
 
         </LinearLayout>
@@ -57,81 +57,232 @@
                       android:id="@+id/view_edit_task"
                       android:orientation="vertical">
 
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
                     android:layout_margin="10dp"
-                    android:elevation="4dp"
-                    android:background="@drawable/edit_task_card">
-
-
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal"
-                              android:gravity="center"
-                              android:layout_gravity="center"
-                              android:padding="10dp">
+                    app:cardCornerRadius="20dp"
+                    android:elevation="10dp"
+            >
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp"
+                        android:elevation="4dp"
+                        android:padding="10dp">
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:text="Dzień tygodnia"
                               android:textStyle="bold"
-                              android:textSize="23sp"
-                              android:layout_weight="1"
-                              android:shadowRadius="2"/>
-                    <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/spinner1"
-                            style="@style/spinnerItemStyle"
-                            android:entries="@array/day_of_week"
-                            android:layout_weight="1"
-                    />
+                              android:textSize="18sp"
+                              android:padding="10dp"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal"
+                    >
+                        <View android:layout_width="20dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/poniedziałek"
+                                android:id="@+id/btn_monday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/wtorek"
+                                android:id="@+id/btn_tuesday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/sroda"
+                                android:id="@+id/btn_wednesday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/czwartek"
+                                android:id="@+id/btn_thursday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/piątek"
+                                android:id="@+id/btn_friday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/sobota"
+                                android:id="@+id/btn_saturday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="40dp"
+                                android:layout_height="60dp"
+                                android:text="@string/niedziela"
+                                android:id="@+id/btn_sunday_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                    </LinearLayout>
+
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
                     android:layout_margin="10dp"
-                    android:elevation="4dp"
-                    android:background="@drawable/edit_task_card"
-                    android:padding="10dp">
+                    app:cardCornerRadius="20dp"
+                    android:elevation="10dp">
 
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal"
-                              android:gravity="center"
-                              android:padding="5dp">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:elevation="4dp"
+                        android:padding="5dp"
+                        android:orientation="vertical">
+
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:textSize="23sp"
+                              android:textSize="17sp"
                               android:text="Rodzaj pielęgnacji"
                               android:layout_weight="1"
                               android:textStyle="bold"
                               android:shadowRadius="2"
                     />
-                    <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/spinner3"
-                            android:entries="@array/PEH"
-                            android:layout_weight="1"
-                    />
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal"
+                                  android:padding="10dp"
+                    >
+                        <Button
+                                android:background="@drawable/small_button_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
 
+                                android:text="@string/proteiny"
+                                android:id="@+id/btn_protein_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"
+                        />
+
+                        <Button
+                                android:background="@drawable/small_button_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/olejowanie"
+                                android:textColor="@color/colorBackground"
+                                android:id="@+id/btn_emolient_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/mycie"
+                                android:id="@+id/btn_wash_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/henna"
+                                android:id="@+id/btn_henna_task"
+                        />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal"
+                                  android:padding="10dp"
+                                  android:gravity="center">
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/laminowanie"
+                                android:id="@+id/btn_laminowanie_task"
+
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/wcierka"
+                                android:id="@+id/btn_wcierka_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                        <Button
+                                android:background="@drawable/button_calendar_pressed_and_released"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:text="@string/nawilżanie"
+                                android:id="@+id/btn_nawilżanie_task"
+                        />
+                        <View android:layout_width="10dp"
+                              android:layout_height="2dp"/>
+                    </LinearLayout>
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:padding="0dp"
-                    android:text="DODAJ"
+                    android:text="zapisz"
+                    android:background="@drawable/buttonsave"
                     android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/btn_add_custom_task"/>
         </LinearLayout>
 

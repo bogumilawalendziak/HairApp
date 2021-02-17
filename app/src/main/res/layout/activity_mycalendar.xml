@@ -17,7 +17,7 @@
                   android:layout_height="wrap_content"
                   android:text="Przeglądaj zadania na kolejne 7 dni."
                   android:textSize="20sp"
-                  android:padding="30dp"
+                  android:padding="10dp"
                   android:textColor="@color/colorAccentYellow"/>
 
         <LinearLayout
@@ -25,13 +25,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/layout_calendar_plan"
-                android:padding="10dp"
+                android:padding="20dp"
         >
+
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dodaj zadanie"
                     android:layout_gravity="end"
                     android:id="@+id/btn_calendar_create_task"/>
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kalendarz"
+                    android:layout_gravity="end"
+                    android:id="@+id/btn_calendar_open"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -40,8 +46,7 @@
                       android:textStyle="bold"
                       android:textColor="@color/colorAccentYellow"
                       android:gravity="left"
-                      android:padding="10dp"
-                      android:layout_marginTop="30dp"
+                      android:padding="5dp"
                       android:id="@+id/tv_tittle_monthCalendar"/>
 
 

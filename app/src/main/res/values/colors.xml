@@ -12,4 +12,11 @@
     <color name="colorAccentYellow">#FFE5D3</color>
     <color name="colorLightBlue">#99C6DC</color>
     <color name="color3">#D1168D</color>
+    <color name="released">#e5ebf2</color>
+    <color name="pressed">#7f9fbf</color>
+    <color name="white">#ffffff</color>
+    <color name="lightpink">#EA4C86</color>
+    <color name="lightblue">#47B6EC</color>
+    <color name="lightblue2">#1245DD</color>
+
 </resources>

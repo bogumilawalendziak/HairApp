@@ -6,6 +6,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler
 
 class PercValueFormatter(): ValueFormatter() {
     override fun getFormattedValue(value: Float): String {
-        return "$value%"
+        return "${value.toInt()}%"
     }
 }

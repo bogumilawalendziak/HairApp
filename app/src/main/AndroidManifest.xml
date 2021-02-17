@@ -16,15 +16,18 @@
             android:roundIcon="@mipmap/ic_lupa_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".customplan.CreateCustomPlan"
-                  android:parentActivityName=".calendar.MyCalendar"
-                  android:label="Twój własny plan">
+        <activity android:name=".calendar.CalendarViewActivity">
         </activity>
-        <activity android:name=".calendar.MyCalendar"
-                  android:parentActivityName=".MainActivity"
-                  android:label="Kalendarz">
+        <activity
+                android:name=".customplan.CreateCustomPlan"
+                android:label="Twój własny plan"
+                android:parentActivityName=".calendar.MyCalendar">
         </activity>
-
+        <activity
+                android:name=".calendar.MyCalendar"
+                android:label="Kalendarz"
+                android:parentActivityName=".MainActivity">
+        </activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -54,18 +57,18 @@
         </activity>
         <activity
                 android:name=".test.ResultActivity"
-                android:parentActivityName=".MainActivity"
-                android:label="Test">
+                android:label="Test"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity
                 android:name=".test.StartTestActivity"
-                android:parentActivityName=".MainActivity"
-                android:label="Test">
+                android:label="Test"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity
                 android:name=".test.QuestionActivity"
-                android:parentActivityName=".test.StartTestActivity"
-                android:label="Test">
+                android:label="Test"
+                android:parentActivityName=".test.StartTestActivity">
         </activity>
 
         <meta-data

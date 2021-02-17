@@ -22,7 +22,7 @@ class TaskAdapter(val context: Context, private val list: MutableList<TaskEntity
     override fun onBindViewHolder(holder: TaskAdapter.ViewHolder, position: Int) {
         val item = list.get(position)
         holder.taskName.text = item.task
-        holder.product.text = item.task
+        holder.product.text = item.peh
         holder.btnDelete.setOnClickListener { view ->
             if (context is MyCalendar) {
                 context.deleteTask(item)

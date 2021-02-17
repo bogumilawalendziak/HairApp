@@ -32,6 +32,22 @@
     <string name="additional_care_plan_text">Dodatkowy cel pielęgnacji:</string>
     <string name="question">Jak oceniasz porowatość swoich włosów ?</string>
     <string name="question_description">Jak oceniasz porowatość swoich włosów ?</string>
+    <string name="niedziela">ND</string>
+    <string name="sobota">SB</string>
+    <string name="piątek">PT</string>
+    <string name="czwartek">CZ</string>
+    <string name="sroda">SR</string>
+    <string name="wtorek">WT</string>
+    <string name="poniedziałek">PON</string>
+    <string name="proteiny">proteiny</string>
+    <string name="emolienty"/>
+    <string name="mycie">mycie</string>
+    <string name="laminowanie">laminowanie</string>
+    <string name="henna">henna</string>
+    <string name="olejowanie">olejowanie</string>
+    <string name="wcierka">wcierka</string>
+    <string name="nawilżanie">nawilżanie</string>
+    <string name="hello">Cześć,</string>
 
 
 </resources>

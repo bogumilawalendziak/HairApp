@@ -12,6 +12,20 @@ import kotlinx.android.synthetic.main.activity_create_custom_plan.*
 
 class CreateCustomPlan : AppCompatActivity() {
     private lateinit var button: Button
+    private lateinit var btnMonday: Button
+    private lateinit var btnWednesday: Button
+    private lateinit var btnTuesday: Button
+    private lateinit var btnThursday: Button
+    private lateinit var btnFriday: Button
+    private lateinit var btnSaturday: Button
+    private lateinit var btnSunday: Button
+    private lateinit var btnWashTask: Button
+    private lateinit var btnEmolientTask: Button
+    private lateinit var btnHumektantTask: Button
+    private lateinit var btnHennaTask: Button
+    private lateinit var btnLotionTask: Button
+    private lateinit var btnProteinTask: Button
+    private lateinit var btnLamiTask: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,24 +38,155 @@ class CreateCustomPlan : AppCompatActivity() {
         button.setOnClickListener {
             createTask(mTaskViewModel)
             //show task in list
-          // mTaskViewModel.getTasksAtDay(takeDay(day))
+            // mTaskViewModel.getTasksAtDay(takeDay(day))
         }
 
+        btnMonday.setOnClickListener {
+            btnCalendarClear()
+            btnMonday.isEnabled = false
+        }
 
+        btnTuesday.setOnClickListener {
+            btnCalendarClear()
+            btnTuesday.isEnabled = false
+        }
+        btnWednesday.setOnClickListener {
+            btnCalendarClear()
+            btnWednesday.isEnabled = false
+        }
+        btnThursday.setOnClickListener {
+            btnCalendarClear()
+            btnThursday.isEnabled = false
+        }
+        btnFriday.setOnClickListener {
+            btnCalendarClear()
+            btnFriday.isEnabled = false
+        }
+        btnSaturday.setOnClickListener {
+            btnCalendarClear()
+            btnSaturday.isEnabled = false
+        }
+        btnSunday.setOnClickListener {
+            btnCalendarClear()
+            btnSunday.isEnabled = false
+        }
+
+        btnHumektantTask.setOnClickListener {
+            btnTaskClear()
+            btnHumektantTask.isEnabled=false
+        }
+        btnWashTask.setOnClickListener {
+            btnTaskClear()
+            btnWashTask.isEnabled=false
+        }
+        btnLotionTask.setOnClickListener {
+            btnTaskClear()
+            btnLotionTask.isEnabled=false
+        }
+        btnProteinTask.setOnClickListener {
+            btnTaskClear()
+            btnProteinTask.isEnabled=false
+        }
+        btnEmolientTask.setOnClickListener {
+            btnTaskClear()
+            btnEmolientTask.isEnabled=false
+        }
+        btnLamiTask.setOnClickListener {
+            btnTaskClear()
+            btnLamiTask.isEnabled=false
+        }
+        btnHennaTask.setOnClickListener {
+            btnTaskClear()
+            btnHennaTask.isEnabled=false
+        }
     }
 
     private fun createTask(mTaskViewModel: TaskViewModel) {
-        val day = spinner1.selectedItem.toString()
-        val peh = spinner3.selectedItem.toString()
+        val day = getSelectedCalendarButton()
+        val peh = getSelectedTaskButton()
         val task = tv_put_task.text.toString()
         // add task to db
         if (task.isNotEmpty()) {
-            mTaskViewModel.addTask(TaskEntity(task, peh, takeDay(day)))
+            println("dodano dzień : $day")
+            println("i task : $task")
+
+            mTaskViewModel.addTask(TaskEntity(task, peh, day))
         }
     }
 
+    private fun getSelectedCalendarButton(): Int {
+
+        when {
+            !btnMonday.isEnabled -> {
+                return 0
+            }
+            !btnTuesday.isEnabled -> {
+                return 1
+            }
+            !btnWednesday.isEnabled -> {
+                return 2
+            }
+            !btnThursday.isEnabled -> {
+                return 3
+            }
+            !btnFriday.isEnabled -> {
+                return 4
+            }
+            !btnSaturday.isEnabled -> {
+                return 5
+            }
+            !btnSunday.isEnabled -> {
+                return 6
+            }
+        }
+        return 0
+
+    }
+
+    private fun getSelectedTaskButton(): String {
+
+        when {
+            !btnWashTask.isEnabled -> {
+                return "mycie"
+            }
+            !btnHennaTask.isEnabled -> {
+                return "henna"
+            }
+            !btnLamiTask.isEnabled -> {
+                return "laminowanie"
+            }
+            !btnEmolientTask.isEnabled -> {
+                return "emolienty"
+            }
+            !btnHumektantTask.isEnabled -> {
+                return "humektanty"
+            }
+            !btnLotionTask.isEnabled -> {
+                return "wcierka"
+            }
+            !btnProteinTask.isEnabled -> {
+                return "proteiny"
+            }
+        }
+
+        return "nic nie zaznaczono"
+    }
     private fun initViews() {
         button = findViewById(R.id.btn_add_custom_task)
+        btnMonday = findViewById(R.id.btn_monday_task)
+        btnWednesday = findViewById(R.id.btn_wednesday_task)
+        btnTuesday = findViewById(R.id.btn_tuesday_task)
+        btnThursday = findViewById(R.id.btn_thursday_task)
+        btnFriday = findViewById(R.id.btn_friday_task)
+        btnSaturday = findViewById(R.id.btn_saturday_task)
+        btnSunday = findViewById(R.id.btn_sunday_task)
+        btnWashTask = findViewById(R.id.btn_wash_task)
+        btnEmolientTask = findViewById(R.id.btn_emolient_task)
+        btnHumektantTask = findViewById(R.id.btn_nawilżanie_task)
+        btnHennaTask = findViewById(R.id.btn_henna_task)
+        btnLotionTask = findViewById(R.id.btn_wcierka_task)
+        btnLamiTask = findViewById(R.id.btn_laminowanie_task)
+        btnProteinTask = findViewById(R.id.btn_protein_task)
     }
 
     /**
@@ -59,5 +204,25 @@ class CreateCustomPlan : AppCompatActivity() {
         if (day == "sobota") i = 5
         if (day == "niedziela") i = 6
         return i
+    }
+
+    private fun btnCalendarClear() {
+        btnMonday.isEnabled = true
+        btnTuesday.isEnabled = true
+        btnWednesday.isEnabled = true
+        btnThursday.isEnabled = true
+        btnFriday.isEnabled = true
+        btnSaturday.isEnabled = true
+        btnSunday.isEnabled = true
+    }
+
+    private fun btnTaskClear() {
+        btnProteinTask.isEnabled = true
+        btnWashTask.isEnabled = true
+        btnEmolientTask.isEnabled = true
+        btnLamiTask.isEnabled = true
+        btnLotionTask.isEnabled = true
+        btnHennaTask.isEnabled = true
+        btnHumektantTask.isEnabled = true
     }
 }

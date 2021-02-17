@@ -81,6 +81,8 @@ class MyCalendar : AppCompatActivity() {
         btn_calendar_create_task.setOnClickListener {
             startActivity(Intent(this, CreateCustomPlan::class.java))
         }
+
+
     }
 
 
@@ -97,7 +99,6 @@ class MyCalendar : AppCompatActivity() {
                     dayAsString.text = dayOfWeek
                     nextDate = calendar.add(Calendar.DATE, 1)
                     setNextDayDate()
-
                 }
             }
             nextDate = calendar.add(Calendar.DATE, -7)
@@ -146,7 +147,6 @@ class MyCalendar : AppCompatActivity() {
 
         mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
             if (task.size > 0) {
-                println(" Task z listy to $task")
 
                 tv_no_task_calendar.visibility = GONE
                 recyclerView.visibility = VISIBLE
@@ -157,7 +157,7 @@ class MyCalendar : AppCompatActivity() {
                 recyclerView.visibility = GONE
             }
         }
-      )
+        )
     }
 
 
