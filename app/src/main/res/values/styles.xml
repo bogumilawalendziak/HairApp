@@ -3,31 +3,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorBackground</item>
+        <item name="colorPrimary">@color/colorLightBlue</item>
         <item name="colorPrimaryDark">@color/colorTextIcon</item>
         <item name="colorAccent">@color/colorBackground</item>
         <item name="fontFamily">@font/quicksand_light</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="AppTheme2" parent="Theme.AppCompat.Light">
-
-        <item name="android:textSize">20sp</item>
-        <item name="colorPrimary">@color/colorBackground</item>
-        <item name="colorPrimaryDark">@color/colorTextIcon</item>
-        <item name="colorAccent">@color/colorTextIcon</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="android:textColor">@color/colorBackground</item>
-        <item name="fontFamily">@font/quicksand_light</item>
-
-        <item name="colorControlActivated">@color/colorAccentYellow</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name ="titleTextColor">@color/colorBackground</item>
-        <item name="android:textColorAlertDialogListItem">@color/colorAccentYellow</item>
-        <item name="dialogTheme">@style/DialogStyle</item>
-        <item name="alertDialogTheme">@style/DialogStyle</item>
-    </style>
-    <style name="MediumCalendarText" parent="@android:style/TextAppearance.Medium">
+    <style name="MediumText" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -35,14 +17,34 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">20sp</item><!-- text size in menu-->
+        <item name="android:textStyle">bold</item>
+
+        <!-- item size in menu-->
+        <item name="android:listPreferredItemHeightSmall">80dp</item>
+        <item name="listPreferredItemHeightSmall">80dp</item>
+        <item name="listPreferredItemHeightLarge">80dp</item>
+        <item name="android:rowHeight">20dp</item>
+        <item name="itemIconSize">50dp</item>
+
+        <!-- item padding left in menu-->
+        <item name="android:listPreferredItemPaddingLeft">18dp</item>
+        <item name="listPreferredItemPaddingLeft">18dp</item>
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">18dp</item>
+        <item name="listPreferredItemPaddingRight">18dp</item>
+    </style>
 
 
     <style name="DialogStyle" parent="android:Theme.Material.Dialog">
         <item name="android:colorAccent">@color/colorBackground</item>
-        <item name="android:colorBackground">@color/colorAccentYellow</item>
+        <item name="android:colorBackground">@color/colorLightBlue</item>
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@color/colorBackground</item>
+        <item name="android:background">@color/colorLightBlue</item>
     </style>
 </resources>

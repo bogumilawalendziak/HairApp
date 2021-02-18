@@ -7,7 +7,7 @@
         tools:context=".scanner.Scanner"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/bg"
+        android:background="@color/lightblue"
 >
 
 
@@ -17,7 +17,7 @@
             android:padding="25dp"
             android:layout_width="match_parent"
             android:layout_height="116dp"
-            android:textColor="@color/colorAccentYellow"
+            android:textColor="@color/white"
             android:text="Zrób zdjęcie by sprawdzić skład produktu."
             android:textSize="25sp"
             android:textStyle="bold"

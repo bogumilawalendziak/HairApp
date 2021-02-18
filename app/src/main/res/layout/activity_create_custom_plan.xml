@@ -11,7 +11,7 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="250dp"
-                  android:background="@drawable/header_edit_task"
+                  android:background="@drawable/header_calendar"
                   android:orientation="vertical"
                   android:elevation="8dp"
                   android:id="@+id/edit_task_header"
@@ -22,7 +22,7 @@
                       android:padding="20dp">
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:textColor="@color/colorAccentYellow"
+                      android:textColor="@color/white"
                       android:text="Dodaj zadanie"
                       android:textSize="35sp"
                       android:textStyle="bold"
@@ -32,8 +32,8 @@
                     android:layout_height="wrap_content"
                     android:hint="nazwa zadania"
                     android:id="@+id/tv_put_task"
-                    android:textColorHint="@color/colorAccentYellow"
-                    android:textColor="@color/colorAccentYellow"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
                     android:layout_gravity="bottom"
@@ -62,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:layout_margin="10dp"
+                    android:paddingVertical="5dp"
                     app:cardCornerRadius="20dp"
                     android:elevation="10dp"
             >
@@ -71,7 +72,7 @@
                         android:orientation="vertical"
                         android:layout_margin="10dp"
                         android:elevation="4dp"
-                        android:padding="10dp">
+                        android:paddingVertical="10dp">
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -83,72 +84,82 @@
                                   android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                     >
-                        <View android:layout_width="20dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/poniedziałek"
-                                android:id="@+id/btn_monday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
+                        <RadioGroup android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:id="@+id/radio_group"
+                        >
+                            <View android:layout_width="20dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:text="@string/poniedziałek"
+                                    android:id="@+id/btn_monday_task"
+                                    android:background="@drawable/button_calendar_pressed_and_released"
 
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/wtorek"
-                                android:id="@+id/btn_tuesday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/sroda"
-                                android:id="@+id/btn_wednesday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/czwartek"
-                                android:id="@+id/btn_thursday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/piątek"
-                                android:id="@+id/btn_friday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/sobota"
-                                android:id="@+id/btn_saturday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
-                        <Button
-                                android:background="@drawable/button_calendar_pressed_and_released"
-                                android:layout_width="40dp"
-                                android:layout_height="60dp"
-                                android:text="@string/niedziela"
-                                android:id="@+id/btn_sunday_task"
-                        />
-                        <View android:layout_width="10dp"
-                              android:layout_height="2dp"/>
+
+
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/wtorek"
+                                    android:id="@+id/btn_tuesday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/sroda"
+                                    android:id="@+id/btn_wednesday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/czwartek"
+                                    android:id="@+id/btn_thursday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/piątek"
+                                    android:id="@+id/btn_friday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/sobota"
+                                    android:id="@+id/btn_saturday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                            <Button
+                                    android:background="@drawable/button_calendar_pressed_and_released"
+                                    android:layout_width="40dp"
+                                    android:layout_height="60dp"
+                                    android:text="@string/niedziela"
+                                    android:id="@+id/btn_sunday_task"
+                            />
+                            <View android:layout_width="10dp"
+                                  android:layout_height="2dp"/>
+                        </RadioGroup>
                     </LinearLayout>
 
                 </LinearLayout>

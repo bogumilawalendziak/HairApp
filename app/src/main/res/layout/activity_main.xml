@@ -14,52 +14,46 @@
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
-                  android:padding="10dp"
-                  android:background="@android:color/darker_gray">
-        <androidx.cardview.widget.CardView
-                app:contentPadding="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="10dp"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="20dp">
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical">
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textSize="25sp"
-                          android:textColor="@color/colorBackground"
-                          android:text="@string/hello"
-                />
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textSize="30sp"
-                          android:textColor="@color/colorBackground"
-                          android:textStyle="bold"
-                          android:text="Miłka!"
-                />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                  android:id="@+id/linearLayout">
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_margin="30dp">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="25sp"
+                      android:textColor="@color/colorBackground"
+                      android:text="@string/hello"
+            />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:textColor="@color/colorBackground"
+                      android:textStyle="bold"
+                      android:text="Miłka!"
+            />
+        </LinearLayout>
 
         <GridLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:columnCount="2"
                     android:rowCount="2"
                     android:orientation="horizontal"
                     android:alignmentMode="alignBounds"
-                    android:padding="10dp"
                     android:useDefaultMargins="true"
+                    android:padding="10dp"
         >
             <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="8dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="20dp"
                     android:layout_column="0"
                     android:layout_row="0"
                     android:layout_columnWeight="1"
+                    android:padding="10dp"
             >
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -89,58 +83,67 @@
                     android:layout_columnWeight="1"
                     android:layout_row="0"
                     android:layout_height="200dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="8dp"
                     app:cardBackgroundColor="#FF7AAB"
                     app:cardCornerRadius="20dp"
+                    android:padding="10dp"
             >
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textStyle="bold"
-                          android:text="Zapuszczanie włosów"
-                          android:padding="10dp"
-                          android:textSize="16sp"/>
-                <LinearLayout android:layout_width="match_parent"
+                <FrameLayout android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@drawable/menu_card_progress">
+                    <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:layout_gravity="center"
-                              android:gravity="center"
-                              android:layout_marginTop="10dp"
-                >
-                    <include layout="@layout/menu_card_target"/>
-                </LinearLayout>
-
+                              android:textStyle="bold"
+                              android:text="Zapuszczanie włosów"
+                              android:padding="10dp"
+                              android:textSize="16sp"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_gravity="center"
+                                  android:gravity="center"
+                                  android:layout_marginTop="10dp"
+                    >
+                        <include layout="@layout/progress_bar_and_text"/>
+                    </LinearLayout>
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="2dp"
                     app:cardBackgroundColor="@color/lightblue"
                     app:cardCornerRadius="20dp"
                     android:layout_column="0"
                     android:layout_row="1"
                     android:layout_columnWeight="1"
+
             >
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="Włosy porowate"
-                          android:textSize="16sp"
-                          android:textStyle="bold"
-                          android:layout_gravity="top"
-                          android:gravity="top"
-                          android:padding="10dp"
-                />
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_gravity="center">
+                <FrameLayout android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@drawable/menu_card_hair">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="Włosy porowate"
+                              android:textSize="16sp"
+                              android:textStyle="bold"
+                              android:layout_gravity="top"
+                              android:gravity="top"
+                              android:padding="10dp"
+                    />
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center">
 
-                    <View android:layout_width="100dp"
-                          android:layout_height="60dp"
-                          android:background="@drawable/ic_logo"/>
+                        <View android:layout_width="100dp"
+                              android:layout_height="60dp"
+                              android:background="@drawable/ic_logo"/>
 
-                </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -149,9 +152,10 @@
                     android:layout_columnWeight="1"
                     android:layout_row="1"
                     android:layout_height="200dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="8dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="20dp"
+                    android:padding="10dp"
             >
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -187,21 +191,20 @@
 
         </GridLayout>
     </LinearLayout>
-
     <com.google.android.material.navigation.NavigationView
             tools:override="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:headerLayout="@layout/nav_header"
-            app:itemIconTint="@color/colorAccentYellow"
-            app:itemTextColor="@color/colorAccentYellow"
+            app:itemIconTint="@color/colorTextIcon"
+            app:itemTextColor="@color/colorBackground"
             app:menu="@menu/menu_details"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             android:id="@+id/nav_view"
-            android:backgroundTint="@color/colorBackground"
-            app:itemIconSize="70dp">
-
+            android:backgroundTint="@color/white"
+            app:theme="@style/NavigationDrawerStyle"
+    >
 
     </com.google.android.material.navigation.NavigationView>
 

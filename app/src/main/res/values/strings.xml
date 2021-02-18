@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HairCare</string>
+    <string name="app_name">WłosApp</string>
 
     <string name="test_name">Rozpocznij test</string>
     <string name="test_description">Odpowiedz na 10 pytań i sprawdź porowatość swoich włosów</string>

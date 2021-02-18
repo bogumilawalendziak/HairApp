@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         mTaskViewModel.readAllTask.observe(this, { taskList ->
             val data = CalculationOfIngredients().amountIngredients(taskList)
             val pieDataSet = PieDataSet(data, "")
-            var colors = intArrayOf(R.color.colorLightBlue, R.color.color2, R.color.color3)
+            var colors = intArrayOf(R.color.lightblue, R.color.colorBackground, R.color.color3)
             pieDataSet.setColors(colors, context)
             pieDataSet.valueTextColor = Color.WHITE
             pieDataSet.valueTextSize = 15F
@@ -127,4 +127,3 @@ class MainActivity : AppCompatActivity() {
         )
     }
 }
-

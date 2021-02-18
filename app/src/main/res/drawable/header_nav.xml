@@ -7,8 +7,8 @@
                     android:height="250dp"/>
             <solid android:color="#7099E1"/>
             <corners
-            android:bottomLeftRadius="70dp"
-            android:bottomRightRadius="70dp"/>
+                    android:bottomLeftRadius="70dp"
+                    android:bottomRightRadius="70dp"/>
             <gradient android:startColor="@color/lightblue"
                       android:centerColor="@color/lightblue"
                       android:type="linear" android:angle="0"

@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccentYellow"
+        android:background="@color/lightpink"
         android:gravity="center"
         tools:context=".test.ResultActivity"
 >
@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_return"
                 android:layout_weight="1"
-                android:background="@color/colorBackground"
+                android:background="@drawable/btn_add_task"
+                android:layout_margin="5dp"
         />
         <Button
                 android:text="Jeszcze raz"
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_again"
                 android:layout_weight="1"
-                android:background="@color/colorBackground"/>
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_add_task"/>
     </LinearLayout>
 </LinearLayout>

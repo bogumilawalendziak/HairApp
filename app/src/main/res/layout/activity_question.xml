@@ -6,6 +6,7 @@
         android:layout_height="match_parent"
         tools:context=".test.QuestionActivity"
         android:orientation="vertical"
+        android:background="@color/whitebackground"
 >
 
     <LinearLayout
@@ -70,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccentYellow"
+                android:background="@color/colorLightBlue"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="TextView"
@@ -81,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccentYellow"
+                android:background="@color/lightpink"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="TextView"
@@ -92,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccentYellow"
+                android:background="@color/white"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="TextView"
@@ -103,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccentYellow"
+                android:background="@color/lightblue"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="TextView"

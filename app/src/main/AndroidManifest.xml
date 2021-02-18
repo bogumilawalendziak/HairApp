@@ -16,8 +16,6 @@
             android:roundIcon="@mipmap/ic_lupa_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".calendar.CalendarViewActivity">
-        </activity>
         <activity
                 android:name=".customplan.CreateCustomPlan"
                 android:label="Twój własny plan"

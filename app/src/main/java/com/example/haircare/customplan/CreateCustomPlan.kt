@@ -33,12 +33,40 @@ class CreateCustomPlan : AppCompatActivity() {
         setContentView(R.layout.activity_create_custom_plan)
         initViews()
         val mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
-
 // TEST
         button.setOnClickListener {
             createTask(mTaskViewModel)
             //show task in list
             // mTaskViewModel.getTasksAtDay(takeDay(day))
+        }
+
+        btnHumektantTask.setOnClickListener {
+            btnTaskClear()
+            btnHumektantTask.isEnabled = false
+        }
+        btnWashTask.setOnClickListener {
+            btnTaskClear()
+            btnWashTask.isEnabled = false
+        }
+        btnLotionTask.setOnClickListener {
+            btnTaskClear()
+            btnLotionTask.isEnabled = false
+        }
+        btnProteinTask.setOnClickListener {
+            btnTaskClear()
+            btnProteinTask.isEnabled = false
+        }
+        btnEmolientTask.setOnClickListener {
+            btnTaskClear()
+            btnEmolientTask.isEnabled = false
+        }
+        btnLamiTask.setOnClickListener {
+            btnTaskClear()
+            btnLamiTask.isEnabled = false
+        }
+        btnHennaTask.setOnClickListener {
+            btnTaskClear()
+            btnHennaTask.isEnabled = false
         }
 
         btnMonday.setOnClickListener {
@@ -71,34 +99,7 @@ class CreateCustomPlan : AppCompatActivity() {
             btnSunday.isEnabled = false
         }
 
-        btnHumektantTask.setOnClickListener {
-            btnTaskClear()
-            btnHumektantTask.isEnabled=false
-        }
-        btnWashTask.setOnClickListener {
-            btnTaskClear()
-            btnWashTask.isEnabled=false
-        }
-        btnLotionTask.setOnClickListener {
-            btnTaskClear()
-            btnLotionTask.isEnabled=false
-        }
-        btnProteinTask.setOnClickListener {
-            btnTaskClear()
-            btnProteinTask.isEnabled=false
-        }
-        btnEmolientTask.setOnClickListener {
-            btnTaskClear()
-            btnEmolientTask.isEnabled=false
-        }
-        btnLamiTask.setOnClickListener {
-            btnTaskClear()
-            btnLamiTask.isEnabled=false
-        }
-        btnHennaTask.setOnClickListener {
-            btnTaskClear()
-            btnHennaTask.isEnabled=false
-        }
+
     }
 
     private fun createTask(mTaskViewModel: TaskViewModel) {
@@ -171,6 +172,17 @@ class CreateCustomPlan : AppCompatActivity() {
 
         return "nic nie zaznaczono"
     }
+
+    private fun btnCalendarClear() {
+        btnMonday.isEnabled = true
+        btnTuesday.isEnabled = true
+        btnWednesday.isEnabled = true
+        btnThursday.isEnabled = true
+        btnFriday.isEnabled = true
+        btnSaturday.isEnabled = true
+        btnSunday.isEnabled = true
+    }
+
     private fun initViews() {
         button = findViewById(R.id.btn_add_custom_task)
         btnMonday = findViewById(R.id.btn_monday_task)
@@ -206,15 +218,6 @@ class CreateCustomPlan : AppCompatActivity() {
         return i
     }
 
-    private fun btnCalendarClear() {
-        btnMonday.isEnabled = true
-        btnTuesday.isEnabled = true
-        btnWednesday.isEnabled = true
-        btnThursday.isEnabled = true
-        btnFriday.isEnabled = true
-        btnSaturday.isEnabled = true
-        btnSunday.isEnabled = true
-    }
 
     private fun btnTaskClear() {
         btnProteinTask.isEnabled = true

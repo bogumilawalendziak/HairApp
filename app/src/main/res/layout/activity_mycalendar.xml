@@ -7,6 +7,7 @@
         tools:context=".calendar.MyCalendar"
         android:fillViewport="true"
         android:orientation="vertical"
+        android:background="@color/whitebackground"
 >
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -15,46 +16,51 @@
     >
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="Przeglądaj zadania na kolejne 7 dni."
+                  android:text="Przeglądaj i zmieniaj plan tygodnia"
                   android:textSize="20sp"
                   android:padding="10dp"
-                  android:textColor="@color/colorAccentYellow"/>
+                  android:textColor="@color/white"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/layout_calendar_plan"
-                android:padding="20dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="5dp"
         >
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="20dp">
 
-            <Button android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dodaj zadanie"
-                    android:layout_gravity="end"
-                    android:id="@+id/btn_calendar_create_task"/>
-            <Button android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kalendarz"
-                    android:layout_gravity="end"
-                    android:id="@+id/btn_calendar_open"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="30sp"
+                          android:text="data"
+                          android:textStyle="bold"
+                          android:textColor="@color/white"
+                          android:gravity="left"
+                          android:padding="5dp"
+                          android:id="@+id/tv_tittle_monthCalendar"
+                          android:layout_weight="1"/>
+                <Button android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dodaj"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_gravity="end"
+                        android:background="@drawable/btn_add_task"
+                        android:id="@+id/btn_calendar_create_task"
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="25sp"
-                      android:text="data"
-                      android:textStyle="bold"
-                      android:textColor="@color/colorAccentYellow"
-                      android:gravity="left"
-                      android:padding="5dp"
-                      android:id="@+id/tv_tittle_monthCalendar"/>
+                />
 
-
+            </LinearLayout>
             <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="none"
-                    android:padding="15dp"
+                    android:padding="5dp"
             >
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -97,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:padding="20dp"
     >
 
         <androidx.recyclerview.widget.RecyclerView
@@ -109,6 +115,6 @@
                   android:layout_gravity="center"
                   android:text="Brak zadań."
                   android:textSize="25sp"
-        android:id="@+id/tv_no_task_calendar"/>
+                  android:id="@+id/tv_no_task_calendar"/>
     </LinearLayout>
 </LinearLayout>

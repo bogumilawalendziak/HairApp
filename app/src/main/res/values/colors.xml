@@ -5,18 +5,18 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorTextIcon2">#655347</color>
 
-    <color name="color2">#43587C</color>
+
     <color name="colorBackground">#253145</color>
     <color name="colorText">#18212E</color>
     <color name="colorTextIcon">#253145</color>
-    <color name="colorAccentYellow">#FFE5D3</color>
     <color name="colorLightBlue">#99C6DC</color>
     <color name="color3">#D1168D</color>
     <color name="released">#e5ebf2</color>
     <color name="pressed">#7f9fbf</color>
     <color name="white">#ffffff</color>
-    <color name="lightpink">#EA4C86</color>
+    <color name="lightpink">#F68FB5</color>
     <color name="lightblue">#47B6EC</color>
-    <color name="lightblue2">#1245DD</color>
+    <color name="lightblue2">#5D77F8</color>
+    <color name="whitebackground">#EFEDED</color>
 
 </resources>
