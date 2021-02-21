@@ -15,7 +15,6 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun addTask(taskEntity: TaskEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTask(taskEntity)
-            print(" dodano task : ${taskEntity.day} oraz id ${taskEntity.id}, ${taskEntity.task}")
         }
     }
 

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -7,8 +7,20 @@
         <item name="colorPrimaryDark">@color/colorTextIcon</item>
         <item name="colorAccent">@color/colorBackground</item>
         <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="dialogTheme">@style/DialogStyle</item>
+        <item name="dialogLayout">@drawable/dialog_card</item>
+        <item name="android:dialogCornerRadius" tools:targetApi="p">20dp</item>
+        <item name="android:dialogLayout">@layout/dialog</item>
+
+
     </style>
 
+
+    <style name="EditText" parent="@style/Preference.DialogPreference.EditTextPreference">
+        <item name="android:colorEdgeEffect">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
     <style name="MediumText" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
@@ -39,9 +51,12 @@
     </style>
 
 
-    <style name="DialogStyle" parent="android:Theme.Material.Dialog">
-        <item name="android:colorAccent">@color/colorBackground</item>
-        <item name="android:colorBackground">@color/colorLightBlue</item>
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">

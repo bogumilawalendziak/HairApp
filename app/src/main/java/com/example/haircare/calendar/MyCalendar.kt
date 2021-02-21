@@ -48,9 +48,10 @@ class MyCalendar : AppCompatActivity() {
 
         initViews()
         setNextDayDate()
-        setDate(0)
         buttonInit()
         setCalendarButtonsUnchecked()
+        setDate(0)
+        btnCalendarDay1.isEnabled = false
 
         btnCalendarDay1.setOnClickListener {
             setDate(0)
@@ -162,7 +163,7 @@ class MyCalendar : AppCompatActivity() {
 
 
     private fun setDate(day: Int): Boolean {
-        return if (day in 0..6) {
+        return if (day in 0..7) {
             nextDate = calendar.add(Calendar.DATE, day)
             val month = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
             val year = calendar.get(Calendar.YEAR)

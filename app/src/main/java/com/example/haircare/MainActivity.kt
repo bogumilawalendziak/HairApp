@@ -1,29 +1,30 @@
 package com.example.haircare
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.NumberPicker
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.haircare.calculations.CalculationOfIngredients
 import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.TaskViewModel
-import com.example.haircare.chart.PercValueFormatter
+import com.example.haircare.chart.PieChartCustom
+import com.example.haircare.customplan.Dialog
 import com.example.haircare.menucard.MenuCardTaskAdapter
 import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity() {
     var context: Context = this
     private lateinit var recyclerView: RecyclerView
     private lateinit var mTaskViewModel: TaskViewModel
+
+    private lateinit var progressCard: androidx.cardview.widget.CardView
+    private lateinit var taskCard: androidx.cardview.widget.CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -60,6 +64,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         initViews()
+
+        progressCard.setOnClickListener {
+            val target = findViewById<ProgressBar>(R.id.progress_bar_circle)
+            val length=findViewById<TextView>(R.id.tv_length)
+
+            Dialog(this,target,length).createDialog()
+        }
     }
 
     override fun onStart() {
@@ -81,36 +92,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         pieChart = findViewById(R.id.pie_chart)
+        progressCard = findViewById(R.id.progress_menu_card)
         ingredientsPercentage()
         //TODO: do poprawy te dni
-        setupTaskListInRecyclerView(Calendar.getInstance().time.day-1)
+        setupTaskListInRecyclerView(Calendar.getInstance().time.day - 1)
 
     }
 
     private fun ingredientsPercentage() {
 
         mTaskViewModel.readAllTask.observe(this, { taskList ->
-            val data = CalculationOfIngredients().amountIngredients(taskList)
-            val pieDataSet = PieDataSet(data, "")
-            var colors = intArrayOf(R.color.lightblue, R.color.colorBackground, R.color.color3)
-            pieDataSet.setColors(colors, context)
-            pieDataSet.valueTextColor = Color.WHITE
-            pieDataSet.valueTextSize = 15F
-
-            val pieData = PieData(pieDataSet)
-            pieChart.description.isEnabled = false
-            pieChart.data = pieData
-            pieChart.animate()
-            pieChart.setDrawEntryLabels(true)
-            pieChart.setEntryLabelColor(Color.WHITE)
-            pieChart.setEntryLabelTextSize(11F)
-            pieChart.legend.isEnabled = false
-            pieChart.setHoleColor(Color.TRANSPARENT)
-            pieDataSet.valueFormatter = DefaultValueFormatter(1)
-            pieChart.holeRadius = 25f
-            pieChart.transparentCircleRadius = 35f
-            pieChart.setUsePercentValues(true)
-            pieDataSet.valueFormatter = PercValueFormatter()
+            PieChartCustom(taskList, pieChart, this).createChart()
 
         })
     }

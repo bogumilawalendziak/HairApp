@@ -46,7 +46,7 @@
         >
             <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="230dp"
                     app:cardElevation="8dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="20dp"
@@ -54,6 +54,7 @@
                     android:layout_row="0"
                     android:layout_columnWeight="1"
                     android:padding="10dp"
+                    android:layout_margin="10dp"
             >
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -82,11 +83,13 @@
                     android:layout_column="1"
                     android:layout_columnWeight="1"
                     android:layout_row="0"
-                    android:layout_height="200dp"
+                    android:layout_height="230dp"
                     app:cardElevation="8dp"
                     app:cardBackgroundColor="#FF7AAB"
                     app:cardCornerRadius="20dp"
                     android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/progress_menu_card"
             >
                 <FrameLayout android:layout_width="match_parent"
                              android:layout_height="match_parent"
@@ -110,13 +113,14 @@
 
             <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="230dp"
                     app:cardElevation="2dp"
                     app:cardBackgroundColor="@color/lightblue"
                     app:cardCornerRadius="20dp"
                     android:layout_column="0"
                     android:layout_row="1"
                     android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
 
             >
                 <FrameLayout android:layout_width="match_parent"
@@ -151,11 +155,12 @@
                     android:layout_column="1"
                     android:layout_columnWeight="1"
                     android:layout_row="1"
-                    android:layout_height="200dp"
+                    android:layout_height="230dp"
                     app:cardElevation="8dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="20dp"
                     android:padding="10dp"
+                    android:layout_margin="10dp"
             >
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -172,17 +177,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
                         android:padding="10dp"
                 >
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:id="@+id/recycler_view_menu_card"/>
 
                 </LinearLayout>

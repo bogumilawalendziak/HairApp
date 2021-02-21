@@ -44,16 +44,6 @@
                           android:padding="5dp"
                           android:id="@+id/tv_tittle_monthCalendar"
                           android:layout_weight="1"/>
-                <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dodaj"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:layout_gravity="end"
-                        android:background="@drawable/btn_add_task"
-                        android:id="@+id/btn_calendar_create_task"
-
-                />
 
             </LinearLayout>
             <HorizontalScrollView
@@ -104,6 +94,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp"
+            android:layout_weight="1"
     >
 
         <androidx.recyclerview.widget.RecyclerView
@@ -117,4 +108,15 @@
                   android:textSize="25sp"
                   android:id="@+id/tv_no_task_calendar"/>
     </LinearLayout>
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="end"
+            android:background="@drawable/btn_add_task"
+            android:id="@+id/btn_calendar_create_task"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+    />
 </LinearLayout>

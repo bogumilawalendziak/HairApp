@@ -22,7 +22,7 @@
               android:textSize="20sp"
               android:textStyle="bold"
               android:textColor="@color/colorBackground"
-              android:id="@+id/textView2"
+              android:id="@+id/tv_length"
               app:layout_constraintBottom_toBottomOf="@+id/progress_bar_circle"
               app:layout_constraintEnd_toEndOf="@+id/progress_bar_circle"
               app:layout_constraintTop_toTopOf="@+id/progress_bar_circle"

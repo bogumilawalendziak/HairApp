@@ -1,5 +1,7 @@
 package com.example.haircare.customplan
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -35,9 +37,19 @@ class CreateCustomPlan : AppCompatActivity() {
         val mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 // TEST
         button.setOnClickListener {
-            createTask(mTaskViewModel)
-            //show task in list
-            // mTaskViewModel.getTasksAtDay(takeDay(day))
+            val builder = AlertDialog.Builder(this)
+            if (createTask(mTaskViewModel)) {
+                builder.setTitle("Zapisano zadanie!")
+                tv_put_task.text.clear()
+                btnCalendarClear()
+                btnTaskClear()
+
+            } else {
+                builder.setTitle("Uzupełnij wszystkie pola.")
+            }
+            builder.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss()
+            }).create().show()
         }
 
         btnHumektantTask.setOnClickListener {
@@ -102,42 +114,42 @@ class CreateCustomPlan : AppCompatActivity() {
 
     }
 
-    private fun createTask(mTaskViewModel: TaskViewModel) {
+    private fun createTask(mTaskViewModel: TaskViewModel): Boolean {
         val day = getSelectedCalendarButton()
         val peh = getSelectedTaskButton()
         val task = tv_put_task.text.toString()
         // add task to db
-        if (task.isNotEmpty()) {
-            println("dodano dzień : $day")
-            println("i task : $task")
+        if (task.isNotEmpty() && day != 0 && peh != "null") {
 
             mTaskViewModel.addTask(TaskEntity(task, peh, day))
+            return true
         }
+        return false
     }
 
     private fun getSelectedCalendarButton(): Int {
 
         when {
             !btnMonday.isEnabled -> {
-                return 0
-            }
-            !btnTuesday.isEnabled -> {
                 return 1
             }
-            !btnWednesday.isEnabled -> {
+            !btnTuesday.isEnabled -> {
                 return 2
             }
-            !btnThursday.isEnabled -> {
+            !btnWednesday.isEnabled -> {
                 return 3
             }
-            !btnFriday.isEnabled -> {
+            !btnThursday.isEnabled -> {
                 return 4
             }
-            !btnSaturday.isEnabled -> {
+            !btnFriday.isEnabled -> {
                 return 5
             }
-            !btnSunday.isEnabled -> {
+            !btnSaturday.isEnabled -> {
                 return 6
+            }
+            !btnSunday.isEnabled -> {
+                return 7
             }
         }
         return 0
@@ -170,7 +182,7 @@ class CreateCustomPlan : AppCompatActivity() {
             }
         }
 
-        return "nic nie zaznaczono"
+        return "null"
     }
 
     private fun btnCalendarClear() {
@@ -208,13 +220,13 @@ class CreateCustomPlan : AppCompatActivity() {
      */
     fun takeDay(day: String): Int {
         var i: Int = -1
-        if (day == "poniedziałek") i = 0
-        if (day == "wtorek") i = 1
-        if (day == "środa") i = 2
-        if (day == "czwartek") i = 3
-        if (day == "piątek") i = 4
-        if (day == "sobota") i = 5
-        if (day == "niedziela") i = 6
+        if (day == "poniedziałek") i = 1
+        if (day == "wtorek") i = 2
+        if (day == "środa") i = 3
+        if (day == "czwartek") i = 4
+        if (day == "piątek") i = 5
+        if (day == "sobota") i = 6
+        if (day == "niedziela") i = 7
         return i
     }
 
