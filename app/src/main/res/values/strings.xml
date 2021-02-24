@@ -48,6 +48,12 @@
     <string name="wcierka">wcierka</string>
     <string name="nawilżanie">nawilżanie</string>
     <string name="hello">Cześć,</string>
+    <string name="hair_growing">Zapusczanie włosów</string>
+    <string name="produkt">produkt</string>
+    <string name="dodaj_zadanie">Dodaj zadanie</string>
+    <string name="rodzaj_piel_gnacji">Rodzaj pielęgnacji</string>
+    <string name="zob_zdj">Zrób zdjęcie by sprawdzić skład produktu.</string>
+    <string name="twoje_dane">Twoje dane</string>
 
 
 </resources>

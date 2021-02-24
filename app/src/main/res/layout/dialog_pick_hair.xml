@@ -6,7 +6,7 @@
         android:id="@+id/dialog_card"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/dialog_card"
+        android:background="@drawable/btn_save"
 >
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"

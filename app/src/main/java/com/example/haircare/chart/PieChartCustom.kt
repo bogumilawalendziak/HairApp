@@ -10,7 +10,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 
-class PieChartCustom(val taskList:MutableList<TaskEntity>, val pieChart:PieChart, val context: Context) {
+class PieChartCustom(private val taskList:MutableList<TaskEntity>, private val pieChart:PieChart, val context: Context) {
 
     fun createChart(){
         val data = CalculationOfIngredients().amountIngredients(taskList)
@@ -20,7 +20,7 @@ class PieChartCustom(val taskList:MutableList<TaskEntity>, val pieChart:PieChart
         pieDataSet.valueTextColor = Color.WHITE
         pieDataSet.valueTextSize = 15F
         pieDataSet.valueFormatter = DefaultValueFormatter(1)
-        pieDataSet.valueFormatter = PercValueFormatter()
+        pieDataSet.valueFormatter = PercentageValueFormatter()
 
         val pieData = PieData(pieDataSet)
         pieChart.description.isEnabled = false

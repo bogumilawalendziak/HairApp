@@ -8,10 +8,19 @@
         <item name="fontFamily">@font/quicksand_light</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="dialogTheme">@style/DialogStyle</item>
-        <item name="dialogLayout">@drawable/dialog_card</item>
-        <item name="android:dialogLayout">@drawable/dialog_card</item>
+        <item name="dialogLayout">@drawable/btn_save</item>
+        <item name="android:dialogLayout">@drawable/btn_save</item>
         <item name="android:dialogCornerRadius">20dp</item>
 
 
     </style>
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:dialogCornerRadius">15dp</item>
+    </style>
+
 </resources>

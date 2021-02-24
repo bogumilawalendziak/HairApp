@@ -7,15 +7,18 @@
         <item name="colorPrimaryDark">@color/colorTextIcon</item>
         <item name="colorAccent">@color/colorBackground</item>
         <item name="fontFamily">@font/quicksand_light</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="dialogTheme">@style/DialogStyle</item>
-        <item name="dialogLayout">@drawable/dialog_card</item>
+        <item name="android:navigationBarColor">@null</item>
+        <item name="android:dialogTheme">@style/DialogStyle</item>
         <item name="android:dialogCornerRadius" tools:targetApi="p">20dp</item>
-        <item name="android:dialogLayout">@layout/dialog</item>
+        <item name="android:datePickerDialogTheme">@style/DatePicker</item>
 
 
     </style>
 
+    <style name="DatePicker" parent="@style/Preference">
+        <item name="android:background">@color/lightpink</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 
     <style name="EditText" parent="@style/Preference.DialogPreference.EditTextPreference">
         <item name="android:colorEdgeEffect">@color/white</item>
@@ -30,16 +33,16 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="NavigationDrawerStyle">
-
-        <item name="android:textSize">20sp</item><!-- text size in menu-->
-        <item name="android:textStyle">bold</item>
+        <!-- text size in menu-->
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
 
         <!-- item size in menu-->
-        <item name="android:listPreferredItemHeightSmall">80dp</item>
-        <item name="listPreferredItemHeightSmall">80dp</item>
-        <item name="listPreferredItemHeightLarge">80dp</item>
-        <item name="android:rowHeight">20dp</item>
-        <item name="itemIconSize">50dp</item>
+        <item name="android:listPreferredItemHeightSmall">50dp</item>
+        <item name="listPreferredItemHeightSmall">50dp</item>
+        <item name="listPreferredItemHeightLarge">50dp</item>
+        <item name="android:rowHeight">18dp</item>
+        <item name="itemIconSize">35dp</item>
 
         <!-- item padding left in menu-->
         <item name="android:listPreferredItemPaddingLeft">18dp</item>
@@ -57,6 +60,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:dialogCornerRadius" tools:targetApi="p">15dp</item>
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">

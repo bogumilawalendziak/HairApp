@@ -16,6 +16,7 @@ import com.example.haircare.R
 import com.example.haircare.customplan.CreateCustomPlan
 import kotlinx.android.synthetic.main.activity_mycalendar.*
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MyCalendar : AppCompatActivity() {
@@ -25,7 +26,6 @@ class MyCalendar : AppCompatActivity() {
 
     private val calendar: Calendar = Calendar.getInstance()
 
-
     private lateinit var nextDate: Unit
     private lateinit var nextDay: String
 
@@ -34,107 +34,89 @@ class MyCalendar : AppCompatActivity() {
     private lateinit var calendarDayButton: FrameLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var layout: LinearLayout
-    private lateinit var btnCalendarDay1: FrameLayout
-    private lateinit var btnCalendarDay2: FrameLayout
-    private lateinit var btnCalendarDay3: FrameLayout
-    private lateinit var btnCalendarDay4: FrameLayout
-    private lateinit var btnCalendarDay5: FrameLayout
-    private lateinit var btnCalendarDay6: FrameLayout
     private lateinit var mTaskViewModel: TaskViewModel
-
+    val format = SimpleDateFormat("MM-dd-yyyy")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mycalendar)
 
         initViews()
-        setNextDayDate()
+        setButtonDateTv()
         buttonInit()
         setCalendarButtonsUnchecked()
-        setDate(0)
-        btnCalendarDay1.isEnabled = false
-
-        btnCalendarDay1.setOnClickListener {
-            setDate(0)
-            btnCalendarDay1.isEnabled = false
-        }
-        btnCalendarDay2.setOnClickListener {
-            setDate(1)
-            btnCalendarDay2.isEnabled = false
-        }
-        btnCalendarDay3.setOnClickListener {
-
-            setDate(2)
-            btnCalendarDay3.isEnabled = false
-        }
-        btnCalendarDay4.setOnClickListener {
-            setDate(3)
-            btnCalendarDay4.isEnabled = false
-        }
-        btnCalendarDay5.setOnClickListener {
-            setDate(4)
-            btnCalendarDay5.isEnabled = false
-        }
-        btnCalendarDay6.setOnClickListener {
-            setDate(5)
-            btnCalendarDay6.isEnabled = false
-        }
+        setDate(calendar.time)
+        findViewById<FrameLayout>(R.id.frame_button).isEnabled = false
+        btnClickListener()
 
         btn_calendar_create_task.setOnClickListener {
             startActivity(Intent(this, CreateCustomPlan::class.java))
         }
-
-
     }
 
 
     private fun buttonInit() {
-        try {
-            for (i in 0 until layout.childCount) {
-                val v: View = layout.getChildAt(i)
 
-                if (v is FrameLayout) {
-                    val dayAsString = v.findViewById<TextView>(R.id.tv_btn_calendar_day)
-                    val dayAsNumber = v.findViewById<TextView>(R.id.tv_btn_calendar_number)
+        var days: Int = 0
+        for (i in 0 until layout.childCount) {
+            val v: View = layout.getChildAt(i)
 
-                    dayAsNumber.text = dayNumber
-                    dayAsString.text = dayOfWeek
-                    nextDate = calendar.add(Calendar.DATE, 1)
-                    setNextDayDate()
+            if (v is FrameLayout) {
+                val dayAsString = v.findViewById<TextView>(R.id.tv_btn_calendar_day)
+                val dayAsNumber = v.findViewById<TextView>(R.id.tv_btn_calendar_number)
+
+                dayAsNumber.text = dayNumber
+                dayAsString.text = dayOfWeek
+
+                nextDate = calendar.add(Calendar.DATE, 1)
+                days += 1
+                setButtonDateTv()
+            }
+        }
+        nextDate = calendar.add(Calendar.DATE, -days)
+
+    }
+
+    private fun btnClickListener() {
+
+        for (i in 0 until layout.childCount) {
+            val v: View = layout.getChildAt(i)
+
+            if (v is FrameLayout) {
+                v.setOnClickListener {
+                    setCalendarButtonsUnchecked()
+                    v.isEnabled = false
+
+                    calendar.add(Calendar.DATE, i)
+                    setDate(calendar.time)
+                    calendar.add(Calendar.DATE, -i)
+
                 }
             }
-            nextDate = calendar.add(Calendar.DATE, -7)
-        } catch (e: Exception) {
-
         }
     }
 
     private fun setCalendarButtonsUnchecked() {
-        btnCalendarDay1.isEnabled = true
-        btnCalendarDay2.isEnabled = true
-        btnCalendarDay3.isEnabled = true
-        btnCalendarDay4.isEnabled = true
-        btnCalendarDay5.isEnabled = true
-        btnCalendarDay6.isEnabled = true
+
+        for (i in 0 until layout.childCount) {
+            val v: View = layout.getChildAt(i)
+
+            if (v is FrameLayout) {
+                v.isEnabled = true
+            }
+        }
     }
 
 
     private fun initViews() {
-        btnCalendarDay1 = findViewById(R.id.frame_button)
-        btnCalendarDay2 = findViewById(R.id.frame_button2)
-        btnCalendarDay3 = findViewById(R.id.frame_button3)
-        btnCalendarDay4 = findViewById(R.id.frame_button4)
-        btnCalendarDay5 = findViewById(R.id.frame_button5)
-        btnCalendarDay6 = findViewById(R.id.frame_button6)
-        recyclerView = findViewById(R.id.recycler_view_task)
-        recyclerView.setHasFixedSize(true)
 
+        recyclerView = findViewById(R.id.recycler_view_task)
         calendarDayButton = findViewById(R.id.frame_button)
         layout = findViewById(R.id.button_plan_layout)
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
     }
 
-    private fun setNextDayDate() {
+    private fun setButtonDateTv() {
         nextDay = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         dayNumber = calendar.get(Calendar.DAY_OF_MONTH).toString()
         dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
@@ -144,11 +126,10 @@ class MyCalendar : AppCompatActivity() {
         mTaskViewModel.deleteTask(task)
     }
 
-    private fun setupTaskListInRecyclerView(day: Int) {
+    private fun setupTaskListInRecyclerView(day: String) {
 
-        mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
+        mTaskViewModel.getTasksAtDay(day.trim()).observe(this, { task ->
             if (task.size > 0) {
-
                 tv_no_task_calendar.visibility = GONE
                 recyclerView.visibility = VISIBLE
                 recyclerView.layoutManager = LinearLayoutManager(this)
@@ -162,17 +143,13 @@ class MyCalendar : AppCompatActivity() {
     }
 
 
-    private fun setDate(day: Int): Boolean {
-        return if (day in 0..7) {
-            nextDate = calendar.add(Calendar.DATE, day)
-            val month = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
-            val year = calendar.get(Calendar.YEAR)
+    private fun setDate(day: Date) {
 
-            setCalendarButtonsUnchecked()
-            setupTaskListInRecyclerView(calendar.time.day)
-            tv_tittle_monthCalendar.text = "$month, $year"
-            nextDate = calendar.add(Calendar.DATE, -day)
-            true
-        } else false
+        val strDate: String = format.format(day)
+        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
+        val year = calendar.get(Calendar.YEAR)
+
+        setupTaskListInRecyclerView(strDate)
+        tv_tittle_monthCalendar.text = "$month, $year"
     }
 }

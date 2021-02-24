@@ -14,6 +14,6 @@ interface TaskDao {
     @Query("SELECT * FROM task_table")
     fun readAllTask(): LiveData<MutableList<TaskEntity>>
 
-    @Query("SELECT * FROM task_table WHERE day = :day")
-    fun observeAllTaskAtDay(day:Int): LiveData<MutableList<TaskEntity>>
+    @Query("SELECT * FROM task_table WHERE date =:date")
+    fun observeAllTaskAtDay(date: String): LiveData<MutableList<TaskEntity>>
 }

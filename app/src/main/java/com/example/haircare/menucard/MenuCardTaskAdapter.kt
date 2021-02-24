@@ -21,7 +21,7 @@ class MenuCardTaskAdapter(val context: Context, private val list: MutableList<Ta
     }
 
     override fun onBindViewHolder(holder: MenuCardTaskAdapter.ViewHolder, position: Int) {
-        val item = list.get(position)
+        val item = list[position]
         holder.taskName.text = item.task
         holder.peh.text = item.peh
     }

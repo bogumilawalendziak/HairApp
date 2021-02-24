@@ -8,8 +8,8 @@ class TaskRepository ( private val taskDao: TaskDao){
     suspend fun addTask(taskEntity: TaskEntity){
         taskDao.insertTask(taskEntity)
     }
-    fun getTaskAtDay(day:Int): LiveData<MutableList<TaskEntity>> {
-        return taskDao.observeAllTaskAtDay(day)
+    fun getTaskAtDay(date:String): LiveData<MutableList<TaskEntity>> {
+        return taskDao.observeAllTaskAtDay(date)
     }
     suspend fun deleteTask(taskEntity: TaskEntity){
         taskDao.deleteTask(taskEntity)

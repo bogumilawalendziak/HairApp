@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.haircare.R
@@ -26,9 +24,12 @@ class Scanner : AppCompatActivity() {
     lateinit var loadImage: ImageView
     lateinit var textView: TextView
     lateinit var imageView: ImageView
+    lateinit var layout: LinearLayout
     lateinit var listView: ListView
+    lateinit var button: Button
     lateinit var recognizedText: Array<String>
     var name: String? = null
+    var peh: String? = null
     private var description: String? = null
     var ingredients: MutableList<Ingredients> = mutableListOf()
 
@@ -41,19 +42,25 @@ class Scanner : AppCompatActivity() {
         setContentView(R.layout.activity_scanner)
 
         databaseHandler = DBHelper(this)
-
+        layout = findViewById(R.id.layout_item_list)
         listView = findViewById(R.id.lv_item)
         loadImage = findViewById(R.id.loadImage)
         textView = findViewById(R.id.textView)
         imageView = findViewById(R.id.imageView)
+        button=findViewById(R.id.btn_save_product)
 
+        layout.visibility=View.GONE
         imageView.visibility = View.GONE
-        listView.visibility = View.GONE
+
 
 
         loadImage.setOnClickListener { v: View ->
             dispatchTakePictureIntent()
 
+        }
+
+        button.setOnClickListener {
+            //save listView
         }
     }
 
@@ -109,7 +116,7 @@ class Scanner : AppCompatActivity() {
 
     private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText?) {
         val resultText = firebaseVisionText?.text
-        listView.visibility = View.VISIBLE
+        layout.visibility = View.VISIBLE
         loadImage.visibility = View.GONE
         textView.visibility = View.GONE
 
@@ -134,11 +141,12 @@ class Scanner : AppCompatActivity() {
 
             if (name != "nothing") {
                 description = databaseHandler!!.viewCosmetic(item.trim()).description
-                ingredients.add(Ingredients(name, description))
+                peh = databaseHandler!!.viewCosmetic(item.trim()).peh
+                ingredients.add(Ingredients(name, description,peh))
             }
         }
 
-        listView.adapter = MyAdapter(this, ingredients, R.layout.item_listview)
+        listView.adapter = MyAdapter(this, ingredients, R.layout.ingredients_view)
     }
 
 }

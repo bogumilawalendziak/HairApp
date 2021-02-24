@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/btn_save"
+>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:padding="30dp">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:gravity="center">
+            <EditText android:layout_width="250dp"
+                      android:layout_height="wrap_content"
+                      android:textSize="22sp"
+                      android:hint="imie"
+                      android:gravity="center"
+                      android:id="@+id/et_name_settings"/>
+            <EditText android:layout_width="250dp"
+                      android:layout_height="wrap_content"
+                      android:textSize="22sp"
+                      android:inputType="number"
+                      android:hint="dugosc wlosow w cm"
+                      android:gravity="center"
+                      android:id="@+id/et_hair_length_settings"/>
+            <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:entries="@array/pref_hair_type"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:id="@+id/spinner_settings"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

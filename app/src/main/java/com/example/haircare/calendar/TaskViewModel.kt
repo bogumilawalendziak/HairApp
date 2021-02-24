@@ -18,16 +18,13 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getTasksAtDay(day: Int): LiveData<MutableList<TaskEntity>> {
-
+    fun getTasksAtDay(day: String): LiveData<MutableList<TaskEntity>> {
         return repository.getTaskAtDay(day)
-
     }
 
     fun deleteTask(taskEntity: TaskEntity) {
         viewModelScope.launch(Dispatchers.IO) {
            repository.deleteTask(taskEntity)
         }
-
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:context=".scanner.Scanner"
         android:orientation="vertical"
         android:gravity="center"
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="116dp"
             android:textColor="@color/white"
-            android:text="Zrób zdjęcie by sprawdzić skład produktu."
+            android:text="@string/zob_zdj"
             android:textSize="25sp"
             android:textStyle="bold"
             android:shadowDx="3"
@@ -26,14 +26,30 @@
             android:shadowColor="@color/colorTextIcon"
             android:shadowRadius="5"
     />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_item_list"
+                  android:visibility="gone">
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lv_item"
+                android:layout_marginTop="50dp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+        />
 
-    <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/lv_item"
-            android:layout_marginTop="50dp"
-            android:visibility="gone"/>
-
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_save"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="Zapisz"
+                android:id="@+id/btn_save_product"
+                android:layout_gravity="center_horizontal"
+        />
+    </LinearLayout>
 
     <ImageView
             android:id="@+id/imageView"

@@ -14,7 +14,8 @@ private const val TABLE_NAME = "COSMETICS"
 private const val COL_NAME = "name"
 private const val COL_ID = "_id"
 private const val COL_DESCRIPTION = "description"
-
+private const val COL_NAME_PL = "nazwa"
+private const val COL_PEH = "rodzaj"
 
 const val dbVersionNumber = 1
 
@@ -25,6 +26,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, dbName,
         val dbExist = checkDatabase()
         if (dbExist) {
             //if copied just open
+            println("exist *************************")
             openDatabase()
         } else {
             // copy database
@@ -44,7 +46,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, dbName,
         val outputFile = File(context.getDatabasePath(dbName).path)
         val outputStream = FileOutputStream(outputFile)
         val bytesCopied = inputStream.copyTo(outputStream)
-        println("*** bytesCopied $bytesCopied")
+        println("************** bytesCopied $bytesCopied")
         inputStream.close()
 
         outputStream.flush()
@@ -80,7 +82,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, dbName,
 
         } catch (e: SQLiteException) {
             dataBase?.execSQL(selectQuery)
-            return Cosmetics("error", 1, "nothing")
+            return Cosmetics("error", 1, "nothing", "null")
 
         }
         cursor?.moveToFirst()
@@ -89,10 +91,11 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, dbName,
             val id = cursor.getInt(cursor.getColumnIndex(COL_ID))
             val name = cursor.getString(cursor.getColumnIndex(COL_NAME))
             val description = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
-
-            return Cosmetics(id = id, description = description, name = name)
+            val peh = cursor.getString(cursor.getColumnIndex(COL_PEH))
+            println(" nazwa $name , peh: $peh")
+            return Cosmetics(id = id, description = description, name = name, peh = peh)
         }
-        return Cosmetics("nothing", 0, "nothing")
+        return Cosmetics("nothing", 0, "nothing", "null")
     }
 
 }

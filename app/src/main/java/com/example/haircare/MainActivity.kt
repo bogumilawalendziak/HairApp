@@ -1,15 +1,12 @@
 package com.example.haircare
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.NumberPicker
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -21,11 +18,14 @@ import com.example.haircare.calendar.MyCalendar
 import com.example.haircare.calendar.TaskViewModel
 import com.example.haircare.chart.PieChartCustom
 import com.example.haircare.customplan.Dialog
+import com.example.haircare.customplan.UserSettingsDialog
 import com.example.haircare.menucard.MenuCardTaskAdapter
 import com.example.haircare.scanner.Scanner
 import com.example.haircare.test.StartTestActivity
 import com.github.mikephil.charting.charts.PieChart
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -41,10 +41,12 @@ class MainActivity : AppCompatActivity() {
     var context: Context = this
     private lateinit var recyclerView: RecyclerView
     private lateinit var mTaskViewModel: TaskViewModel
+    private lateinit var buttonSettings: ImageView
 
     private lateinit var progressCard: androidx.cardview.widget.CardView
     private lateinit var taskCard: androidx.cardview.widget.CardView
-
+    val calendar: Calendar = Calendar.getInstance()
+    val format = SimpleDateFormat("MM-dd-yyyy")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -63,29 +65,33 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
         initViews()
+        getIngredientsPercentageChart()
+        val local = LocalDate.now().dayOfWeek
+        setupTaskListInRecyclerView(calendar.time)
 
         progressCard.setOnClickListener {
             val target = findViewById<ProgressBar>(R.id.progress_bar_circle)
-            val length=findViewById<TextView>(R.id.tv_length)
-
-            Dialog(this,target,length).createDialog()
+            val length = findViewById<TextView>(R.id.tv_length)
+            Dialog(this, target, length).createDialog()
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-        initViews()
+        buttonSettings.setOnClickListener {
+            val target = findViewById<ProgressBar>(R.id.progress_bar_circle)
+            val length = findViewById<TextView>(R.id.tv_length)
+            val userName = findViewById<TextView>(R.id.tv_name_user)
+            val hairType = findViewById<TextView>(R.id.tv_hair_type)
+            UserSettingsDialog(this, length, userName, hairType, target).createSettingsDialog()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
-
 
     private fun initViews() {
         recyclerView = findViewById(R.id.recycler_view_menu_card)
@@ -93,23 +99,21 @@ class MainActivity : AppCompatActivity() {
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         pieChart = findViewById(R.id.pie_chart)
         progressCard = findViewById(R.id.progress_menu_card)
-        ingredientsPercentage()
-        //TODO: do poprawy te dni
-        setupTaskListInRecyclerView(Calendar.getInstance().time.day - 1)
+        buttonSettings = findViewById(R.id.btn_settings)
 
     }
 
-    private fun ingredientsPercentage() {
+    private fun getIngredientsPercentageChart() {
 
         mTaskViewModel.readAllTask.observe(this, { taskList ->
             PieChartCustom(taskList, pieChart, this).createChart()
-
         })
     }
 
-    private fun setupTaskListInRecyclerView(day: Int) {
+    private fun setupTaskListInRecyclerView(day: Date) {
 
-        mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
+       var strDay = format.format(day)
+        mTaskViewModel.getTasksAtDay(strDay).observe(this, { task ->
             if (task.size > 0) {
                 recyclerView.visibility = View.VISIBLE
                 recyclerView.layoutManager = LinearLayoutManager(this)
