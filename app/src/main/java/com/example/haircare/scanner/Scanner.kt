@@ -2,6 +2,7 @@ package com.example.haircare.scanner
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
@@ -11,9 +12,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.haircare.R
-import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.text.FirebaseVisionText
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
 import java.io.File
 
 
@@ -77,7 +78,7 @@ class Scanner : AppCompatActivity() {
             imageView.setImageBitmap(imageFull)
             loadImage.visibility = View.GONE
             textView.text = getString(R.string.checking_text)
-            detectTextFromImage()
+            detectTextFromImage(imageFull)
         }
     }
 
@@ -89,7 +90,6 @@ class Scanner : AppCompatActivity() {
         val fileProvider = FileProvider.getUriForFile(this, "com.example.haircare.fileprovider", photoFile)
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
         try {
-
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         } catch (e: ActivityNotFoundException) {
             // error for user
@@ -97,14 +97,12 @@ class Scanner : AppCompatActivity() {
 
     }
 
-    private fun detectTextFromImage() {
-        val image: FirebaseVisionImage
+    private fun detectTextFromImage(imageInput: Bitmap) {
 
-        val fileProvider = FileProvider.getUriForFile(this, "com.example.haircare.fileprovider", photoFile)
-        image = FirebaseVisionImage.fromFilePath(this, fileProvider)
-
-        val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
-        detector.processImage(image)
+       // val fileProvider = FileProvider.getUriForFile(this, "com.example.haircare.fileprovider", photoFile)
+        val image = InputImage.fromBitmap(imageInput, 0)
+        val recognizer = TextRecognition.getClient()
+        val result = recognizer.process(image)
             .addOnSuccessListener { firebaseVisionText ->
                 // success
                 displayTextFromImage(firebaseVisionText)
@@ -114,8 +112,7 @@ class Scanner : AppCompatActivity() {
             }
     }
 
-    private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText?) {
-        val resultText = firebaseVisionText?.text
+    private fun displayTextFromImage(resultText: Text) {
         layout.visibility = View.VISIBLE
         loadImage.visibility = View.GONE
         textView.visibility = View.GONE
@@ -130,7 +127,7 @@ class Scanner : AppCompatActivity() {
         val delimiter7 = "/"
 
         recognizedText =
-            resultText?.toLowerCase()
+            resultText.text.toLowerCase()
                 ?.split(delimiter1, delimiter2, delimiter3, delimiter4, delimiter5, delimiter6, delimiter7)
                 ?.toTypedArray()!!
 

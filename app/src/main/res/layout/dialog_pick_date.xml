@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dialog_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/btn_save"
+>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:baselineAligned="false"
+                  android:orientation="horizontal"
+                  android:padding="30dp">
+      <DatePicker
+      android:layout_height="match_parent"
+      android:layout_width="match_parent"
+      android:outlineSpotShadowColor="@color/lightpink"
+      android:calendarTextColor="@color/white"
+      android:datePickerMode="calendar"
+      android:id="@+id/date_picker"
+      />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

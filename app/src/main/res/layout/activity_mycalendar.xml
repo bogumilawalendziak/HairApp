@@ -44,7 +44,6 @@
                           android:padding="5dp"
                           android:id="@+id/tv_tittle_monthCalendar"
                           android:layout_weight="1"/>
-
             </LinearLayout>
             <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -58,31 +57,29 @@
                         android:orientation="horizontal"
                         android:padding="20dp"
                         android:id="@+id/button_plan_layout">
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
+                    <include layout="@layout/button_calendar"/>
 
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button"
-                    />
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button2"
-                    />
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button3"/>
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button4"/>
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button5"/>
-
-                    <include layout="@layout/button_calendar"
-                             android:id="@+id/frame_button6"/>
-                    <View android:layout_width="20dp"
-                          android:layout_height="0dp"
-                          android:background="@null"
-                    />
 
                 </LinearLayout>
             </HorizontalScrollView>

@@ -5,13 +5,16 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.haircare.R
 import com.example.haircare.calendar.TaskEntity
 import com.example.haircare.calendar.TaskViewModel
 import kotlinx.android.synthetic.main.activity_create_custom_plan.*
+import kotlinx.android.synthetic.main.dialog_pick_date.*
 import java.util.*
 
 
@@ -38,7 +41,6 @@ class CreateCustomPlan : AppCompatActivity() {
             if (createTask(mTaskViewModel)) {
                 builder.setTitle("Zapisano zadanie!")
                 tv_put_task.text.clear()
-                btnClear(layout_week_day_btn)
                 btnClear(layout_tasks_btn_bottom)
                 btnClear(layout_tasks_btn_top)
 
@@ -50,33 +52,31 @@ class CreateCustomPlan : AppCompatActivity() {
             }).create().show()
         }
 
-        date_picker.setOnDateChangedListener { view, year, month, day ->
-            month+1
-            strDate = "$month-$day-$year"
+
+        btn_set_date.setOnClickListener {
+            val tvDate = findViewById<TextView>(R.id.tv_date)
+         DatePickerDialog(this,calendar.time,tvDate).createDatePickerDialog()
         }
+
 
         btnTaskClicked(layout_tasks_btn_top, layout_tasks_btn_bottom)
         btnTaskClicked(layout_tasks_btn_bottom, layout_tasks_btn_top)
-        btnWeekClicked(layout_week_day_btn)
+
     }
 
     private fun createTask(mTaskViewModel: TaskViewModel): Boolean {
-        val day = getSelectedCalendarButton(strDate)
+        val day = tv_date.text.toString()
         val peh = getSelectedTaskButton()
         val task = tv_put_task.text.toString()
-        println(" dzień : $day , peh : $peh i task : $task")
+        println(" ******** dzień : $day , peh : $peh i task : $task")
         if (task.isNotEmpty() && day != null && peh != null) {
-
             mTaskViewModel.addTask(TaskEntity(task, peh, day))
             return true
         }
         return false
     }
 
-    private fun getSelectedCalendarButton(strDate: String?): String {
 
-        return strDate!!
-    }
 
     private fun getSelectedTaskButton(): String? {
 
@@ -120,23 +120,6 @@ class CreateCustomPlan : AppCompatActivity() {
         btnProteinTask = findViewById(R.id.btn_protein_task)
     }
 
-    /**
-     * If input does not belong to days of week in PL language
-     * returns i=-1
-     * else return day od week as number
-     */
-    fun takeDay(day: String): Int {
-        var i: Int = -1
-        if (day == "poniedziałek") i = 0
-        if (day == "wtorek") i = 1
-        if (day == "środa") i = 2
-        if (day == "czwartek") i = 3
-        if (day == "piątek") i = 4
-        if (day == "sobota") i = 5
-        if (day == "niedziela") i = 6
-        return i
-    }
-
 
     private fun btnClear(layout: LinearLayout) {
         for (i in 0 until layout.childCount) {
@@ -162,17 +145,5 @@ class CreateCustomPlan : AppCompatActivity() {
         }
     }
 
-    private fun btnWeekClicked(layout: LinearLayout) {
-        for (i in 0 until layout.childCount) {
-            val v: View = layout.getChildAt(i)
-            if (v is Button) {
-                v.setOnClickListener {
-                    btnClear(layout)
-                    v.isEnabled = false
-                    v.setTextColor(getColor(R.color.white))
-                }
-            }
-        }
-    }
 }
 

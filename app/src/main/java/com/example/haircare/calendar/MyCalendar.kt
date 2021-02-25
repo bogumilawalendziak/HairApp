@@ -3,8 +3,7 @@ package com.example.haircare.calendar
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -18,6 +17,16 @@ import kotlinx.android.synthetic.main.activity_mycalendar.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import android.view.LayoutInflater
+
+import android.view.ViewGroup
+
+
+
+
+
+
+
 
 class MyCalendar : AppCompatActivity() {
 
@@ -28,10 +37,8 @@ class MyCalendar : AppCompatActivity() {
 
     private lateinit var nextDate: Unit
     private lateinit var nextDay: String
-
     private lateinit var dayOfWeek: String
     private lateinit var dayNumber: String
-    private lateinit var calendarDayButton: FrameLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var layout: LinearLayout
     private lateinit var mTaskViewModel: TaskViewModel
@@ -51,6 +58,7 @@ class MyCalendar : AppCompatActivity() {
         btn_calendar_create_task.setOnClickListener {
             startActivity(Intent(this, CreateCustomPlan::class.java))
         }
+
     }
 
 
@@ -110,7 +118,6 @@ class MyCalendar : AppCompatActivity() {
     private fun initViews() {
 
         recyclerView = findViewById(R.id.recycler_view_task)
-        calendarDayButton = findViewById(R.id.frame_button)
         layout = findViewById(R.id.button_plan_layout)
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
@@ -127,8 +134,8 @@ class MyCalendar : AppCompatActivity() {
     }
 
     private fun setupTaskListInRecyclerView(day: String) {
-
-        mTaskViewModel.getTasksAtDay(day.trim()).observe(this, { task ->
+println("****** szukany dzień : $day")
+        mTaskViewModel.getTasksAtDay(day).observe(this, { task ->
             if (task.size > 0) {
                 tv_no_task_calendar.visibility = GONE
                 recyclerView.visibility = VISIBLE

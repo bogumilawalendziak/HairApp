@@ -39,7 +39,7 @@ class TaskDaoTest {
 
     @Test
     fun insertTask() = runBlocking {
-        val task = TaskEntity("task", "peh", 0, 1)
+        val task = TaskEntity("task", "peh", "04-22-2021", 1)
         dao.insertTask(task)
 
         val allTask = dao.readAllTask().getOrAwaitValue()
@@ -48,7 +48,7 @@ class TaskDaoTest {
 
     @Test
     fun deleteTask() = runBlocking {
-        val task = TaskEntity("task", "peh", 0, 1)
+        val task = TaskEntity("task", "peh", "04-22-2021", 1)
         dao.insertTask(task)
         dao.deleteTask(task)
         val allTask = dao.readAllTask().getOrAwaitValue()
@@ -57,14 +57,14 @@ class TaskDaoTest {
 
     @Test
     fun findListOfTaskForSpecificDay() = runBlocking {
-        val task1 = TaskEntity("task1", "peh1", 0, 1)
-        val task2 = TaskEntity("task2", "peh2", 0, 2)
-        val task3 = TaskEntity("task3", "peh3", 1, 3)
+        val task1 = TaskEntity("task1", "peh1", "04-22-2021", 1)
+        val task2 = TaskEntity("task2", "peh2","04-22-2021" , 2)
+        val task3 = TaskEntity("task3", "peh3", "04-22-2021", 3)
         dao.insertTask(task1)
         dao.insertTask(task2)
         dao.insertTask(task3)
 
-        val allTaskForSpecificDay = dao.observeAllTaskAtDay(0).getOrAwaitValue()
+        val allTaskForSpecificDay = dao.observeAllTaskAtDay("04-22-2021").getOrAwaitValue()
         assertEquals(allTaskForSpecificDay.contains(task3), false)
     }
 }

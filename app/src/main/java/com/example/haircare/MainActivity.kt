@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haircare.calendar.MyCalendar
+import com.example.haircare.calendar.TaskEntity
 import com.example.haircare.calendar.TaskViewModel
 import com.example.haircare.chart.PieChartCustom
 import com.example.haircare.customplan.Dialog
@@ -68,7 +69,6 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         getIngredientsPercentageChart()
-        val local = LocalDate.now().dayOfWeek
         setupTaskListInRecyclerView(calendar.time)
 
         progressCard.setOnClickListener {
@@ -104,15 +104,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getIngredientsPercentageChart() {
-
-        mTaskViewModel.readAllTask.observe(this, { taskList ->
-            PieChartCustom(taskList, pieChart, this).createChart()
+        var filter: MutableList<TaskEntity> = mutableListOf()
+        mTaskViewModel.readAllTask.observe(this, { task ->
+            filter = task.filter {
+                checkDate(it.date)
+            } as MutableList<TaskEntity>
+            PieChartCustom(filter, pieChart, this).createChart()
         })
+    }
+
+    private fun checkDate(date: String): Boolean {
+        val date = format.parse(date)
+       val nowStr = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(Date())
+        val now = format.parse(nowStr)
+        calendar.add(Calendar.DATE, -30)
+
+        val thirtyDaysBackStr =format.format(calendar.time)
+        val thirtyDaysBack = format.parse(thirtyDaysBackStr)
+        println("******** $date i $thirtyDaysBack oraz $now *****")
+        calendar.add(Calendar.DATE, 30)
+        return date in thirtyDaysBack..now
     }
 
     private fun setupTaskListInRecyclerView(day: Date) {
 
-       var strDay = format.format(day)
+        var strDay = format.format(day)
         mTaskViewModel.getTasksAtDay(strDay).observe(this, { task ->
             if (task.size > 0) {
                 recyclerView.visibility = View.VISIBLE

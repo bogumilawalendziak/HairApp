@@ -9,15 +9,20 @@
         <item name="fontFamily">@font/quicksand_light</item>
         <item name="android:navigationBarColor">@null</item>
         <item name="android:dialogTheme">@style/DialogStyle</item>
+        <item name="android:alertDialogTheme">@style/DialogStyle</item>
+        <item name="android:alertDialogStyle">@style/DialogStyle</item>
+
         <item name="android:dialogCornerRadius" tools:targetApi="p">20dp</item>
         <item name="android:datePickerDialogTheme">@style/DatePicker</item>
-
+        <item name="android:datePickerStyle">@style/DatePicker</item>
 
     </style>
 
     <style name="DatePicker" parent="@style/Preference">
         <item name="android:background">@color/lightpink</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:keyTextSize">15sp</item>
+        <item name="cornerRadius">15dp</item>
     </style>
 
     <style name="EditText" parent="@style/Preference.DialogPreference.EditTextPreference">
@@ -54,13 +59,13 @@
     </style>
 
 
-    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+    <style name="DialogStyle" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/lightpink</item>
+        <item name="android:selectedDateVerticalBar">@color/lightpink</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
         <item name="android:dialogCornerRadius" tools:targetApi="p">15dp</item>
+
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">

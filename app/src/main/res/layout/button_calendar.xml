@@ -8,7 +8,6 @@
              android:elevation="3dp"
              android:layout_width="60dp"
              android:background="@drawable/button_calendar_pressed_and_released"
-
 >
 
         <TextView
